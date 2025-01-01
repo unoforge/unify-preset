@@ -5,7 +5,6 @@ export const genBtnVariantSolidBase = () => {
         focus-visible-outline-[--btn-solid-color-hover]
         [background-image:radial-gradient(farthest-corner_at_50%_-50%,_rgba(255,_255,_255,_.1)_0%,_transparent_100%)]
         [box-shadow:inset_0px_2px_0_var(--btn-solid-top-shadow),_inset_0px_-2px_0_var(--btn-solid-bottom-shadow)]
-        
     `;
 };
 
@@ -39,6 +38,5 @@ export const genBtnGradientBase = () => {
     to-[--btn-gradient-color-to]
     hover-from-[--btn-gradient-color-from]
     hover-to-[--btn-gradient-color-to]
-    focus-visible-outline-[--btn-gradient-color-from]
-    `
+    focus-visible-outline-[--btn-gradient-color-from]`
 }

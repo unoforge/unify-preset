@@ -1,11 +1,9 @@
-import type { BtnGhostOrSoft, BtnGhostVariants, BtnGradientVariants, BtnIconBase, BtnOutlineVariants, BtnSizeBase, BtnSoftVariants, Button, GradientBtn, SolidBtnShade } from "./types";
-import { genBtnVariantOutline, genBtnVariantSolid, genBtnVariantSoft, genBtnVariantGhost, genBtnVariantWhite, genBtnVariantSolidGradient, } from "./helpers";
+import type { BtnIconBase, BtnSizeBase, Button } from "./types";
 import { getConfigValue } from "@/utils";
 import { btnCongig } from "./const";
 
-import type { SemanticColorNames, SharedFormConfig, UiConfig, formOutline } from "@/types";
+import type { SharedFormConfig } from "@/types";
 import type { Shortcut } from "unocss";
-import { isValidColor } from "@/utils/colors-utils";
 import { genBtnGradientBase, genBtnOutlineBase, genBtnSoftBase, genBtnVariantSolidBase } from "./baseHelpers";
 
 const getBtnSizeInfo = (sizeVariant: BtnSizeBase) => {
@@ -21,26 +19,19 @@ const getBtnIconSizeInfo = (sizeVariant: BtnIconBase) => {
 
 const getBtnShortcuts = ({
 	button,
-	uiConfig,
 	formConfig,
-}: { button?: Button; formConfig?: SharedFormConfig; uiConfig: UiConfig }) => {
+}: { button?: Button; formConfig?: SharedFormConfig }) => {
 	const btn = Object.assign({}, btnCongig, button)
 
 	const btnSizes = btn.sizes;
 	const btnIconSizes = btn.iconSizes;
 
-	const solidVariants = btn.solidVariants
-	const softVariants = btn.softVariants
-	const ghostVariants = btn.ghostVariants
-	const outlineVariants = btn.outlineVariants
-	const gradientVariants = btn.gradientVariants
-	const btnWhite = btn.btnWhite;
-	const appearance = uiConfig.appearance;
+
 	const ringBase = Object.assign({}, formConfig?.ringBase, btn.ringBase)
 
 	const btnOutlineOnFocus = () =>
-		`focus-visible-outline focus-visible-outline-offset-${ringBase.offset} 
-		focus-visible-outline-${ringBase.size} 
+		`focus-visible-outline focus-visible-[outline-offset:var(--btn-focus-outline-offset,${ringBase.offset}px)]
+		focus-visible-[outline-width:var(--btn-focus-outline-width,${ringBase.size}px)] 
 		focus-visible-outline-[--btn-focus-outline-color]`;
 	const btns = {
 		btn: "flex items-center disabled-opacity-50 disabled-cursor-not-allowed disabled-hover-opacity-70 outline-0 outline-transparent",
@@ -54,7 +45,6 @@ const getBtnShortcuts = ({
 		"btn-icon-md": `${getBtnIconSizeInfo(btnIconSizes?.md as BtnIconBase)}`,
 		"btn-icon-lg": `${getBtnIconSizeInfo(btnIconSizes?.lg as BtnIconBase)}`,
 		"btn-icon-xl": `${getBtnIconSizeInfo(btnIconSizes?.xl as BtnIconBase)}`,
-		"btn-white": `${genBtnVariantWhite({ solid: btnWhite, appearance })}`,
 		"btn-solid": `${genBtnVariantSolidBase()} ${btnOutlineOnFocus()}`,
 		"btn-outline": `${genBtnOutlineBase()} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
@@ -65,113 +55,47 @@ const getBtnShortcuts = ({
 	const dynamicBtns: Shortcut[] = [
 		[
 			/^btn-solid-(.*)$/,
-			([, color], { theme }) => {
-				let shades: SolidBtnShade = { bgShade: "500", hoverBgShade: "600", pressBgShade: "700", };
-				if (color === 'neutral' || isValidColor(color, theme)) {
-					if (solidVariants) {
-						const key = color as SemanticColorNames
-						if (solidVariants.base && color in solidVariants.base) {
-							shades = solidVariants.base[key] as SolidBtnShade;
-						} else if (solidVariants.custom && color in solidVariants.custom) {
-							shades = solidVariants.custom[key];
-						} else { shades = solidVariants['global'] as SolidBtnShade }
-						return `${genBtnVariantSolid({ color, appearance, shades, theme })}`;
-					}
-				}
-			},
+			([, color]) =>  `
+				[--btn-solid-color:--ui-btn-${color}] [--btn-solid-color-hover:--ui-btn-${color}-hover]
+				[--btn-solid-color-press:--ui-btn-${color}-press] [--btn-solid-color-hover:--ui-btn-${color}-hover]
+				[--btn-solid-top-shadow:--ui-btn-${color}-top-shadow] [--btn-solid-bottom-shadow:--ui-btn-${color}-bottom-shadow]
+				[--btn-focus-outline-color:--btn-solid-color-hover]
+				`,
 			{ autocomplete: ["btn-solid", "btn-solid-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
 		],
 		[
 			/^btn-outline-(.*)$/,
-			([, color], { theme }) => {
-				if (color === 'neutral' || isValidColor(color, theme)) {
-					let shades: formOutline = { borderSize: 1, borderShade: "500", textShade: "600", hoverBorderShade: "600", hoverTextShade: "700", activeBorderShade: "600" }
-					if (outlineVariants) {
-						const key = color as SemanticColorNames
-						if (outlineVariants.base && color in outlineVariants.base) {
-							shades = outlineVariants.base[key] as formOutline;
-						} else if (outlineVariants.custom && color in outlineVariants.custom) {
-							shades = outlineVariants.custom[color as keyof BtnOutlineVariants];
-						} else { shades = outlineVariants['global'] as formOutline }
-						return `${genBtnVariantOutline({
-							color, appearance, outlineShades: shades, theme
-						})}`;
-					}
-				}
-			},
-			{ autocomplete: ["btn-outline", "btn-outline-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
+			([, color]) => `
+				[--btn-outline-color:--ui-btn-outline-${color}] [--btn-outline-color-hover:--ui-btn-outline-${color}-hover]
+				[--btn-outline-text-color:--ui-btn-outline-${color}-text] [--btn-outline-text-color-hover:--btn-ui-outline-${color}-hover]
+				[--btn-focus-outline-color:--btn-outline-text-color-hover]
+				`,
+			{ autocomplete: ["btn-outline", "btn-outline-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-outline-$colors"], },
 		],
 		[
 			/^btn-soft-(.*)$/,
-			([, color], { theme }) => {
-				if (isValidColor(color, theme)) {
-					if (softVariants) {
-						let shades: BtnGhostOrSoft
-						const key = color as SemanticColorNames
-						if (softVariants.base && color in softVariants.base) {
-							shades = softVariants.base[key] as BtnGhostOrSoft;
-						} else if (softVariants.custom && color in softVariants.custom) {
-							shades = softVariants.custom[color as keyof BtnSoftVariants];
-						} else { shades = softVariants.global as BtnGhostOrSoft }
-
-						return `${genBtnVariantSoft({
-							color,
-							appearance,
-							ghostOrSoft: shades,
-							theme
-						})}`;
-					}
-				}
-			},
-			{ autocomplete: ["btn-soft", "btn-soft-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",] },
+			([, color]) =>  `
+				[--btn-soft-bg-color:--ui-btn-soft-${color}] [--btn-soft-bg-color-hover:--ui-btn-soft-${color}-hover]
+				[--btn-soft-bg-color-press:--ui-btn-soft-${color}-press] [--btn-soft-text-color:--ui-btn-soft-text-${color}]
+				[--btn-focus-outline-color:--btn-soft-text-color]
+				`,
+			{ autocomplete: ["btn-soft", "btn-soft-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-soft-$colors"] },
 		],
 		[
 			/^btn-ghost-(.*)$/,
-			([, color], { theme }) => {
-				if (isValidColor(color, theme)) {
-					if (ghostVariants) {
-						let shades: BtnGhostOrSoft
-						const key = color as SemanticColorNames
-						if (ghostVariants.base && color in ghostVariants.base) {
-							shades = ghostVariants.base[key] as BtnGhostOrSoft;
-						} else if (ghostVariants.custom && color in ghostVariants.custom) {
-							shades = ghostVariants.custom[color as keyof BtnGhostVariants];
-						} else { shades = ghostVariants['global'] as BtnGhostOrSoft }
-
-						return `${genBtnVariantGhost({
-							color,
-							appearance,
-							ghost: shades,
-							theme
-						})}`;
-					}
-				}
-			},
-			{ autocomplete: ["btn-ghost", "btn-ghost-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
+			([, color]) =>`
+				[--btn-soft-bg-color-hover:--ui-btn-ghost-${color}] [--btn-soft-bg-color-press:--ui-btn-ghost-${color}-press]
+				[--btn-soft-text-color:--ui-btn-ghost-text-${color}] [--btn-focus-outline-color:--btn-soft-text-color]
+				`,
+			{ autocomplete: ["btn-ghost", "btn-ghost-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-ghost-$colors"], },
 		],
 		[
 			/^btn-gradient-(.*)$/,
-			([, color], { theme }) => {
-
-				if (isValidColor(color, theme)) {
-					let shades: GradientBtn
-					if (gradientVariants) {
-						const key = color as SemanticColorNames
-						if (gradientVariants.base && color in gradientVariants.base) {
-							shades = gradientVariants.base[key] as GradientBtn;
-						} else if (gradientVariants.custom && color in gradientVariants.custom) {
-							shades = gradientVariants.custom[color as keyof BtnGradientVariants];
-						} else { shades = gradientVariants['global'] as GradientBtn }
-						return `${genBtnVariantSolidGradient({
-							color,
-							gradientShades: shades,
-							appearance,
-							theme
-						})}`;
-					}
-				}
-			},
-			{ autocomplete: ["btn-gradient", "btn-gradient-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
+			([, color]) =>  `
+				[--btn-gradient-border-color:--ui-btn-gradient-color-${color}] [--btn-gradient-color-from:--ui-btn-gradient-from-${color}]
+    			[--btn-gradient-color-to:--ui-btn-gradient-to-${color}] [--btn-focus-outline-color:--btn-gradient-color-to]
+				`,
+			{ autocomplete: ["btn-gradient", "btn-gradient-(primary|secondary|accent|success|warning|info|danger|gray|neutral)","btn-gradient-$colors"], },
 		],
 	];
 

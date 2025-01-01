@@ -1,24 +1,19 @@
 import { toEscapedSelector as e } from "unocss";
 import type { Rule, RuleContext } from "unocss";
 import type { Theme } from "@unocss/preset-uno";
-import type { BarShade, variantSize } from "./types";
+import type {  variantSize } from "./types";
 import {
 	getSizeProgress_Meter,
 	getRadius,
 	getRangeSize,
-	getVariableBgValue,
-	getBarShades,
-	extractColorAndShades,
 } from "./utils";
-import type { Appearance, ColorShade } from "@/types";
-import { getNextShade, getPrevShade } from "@/utils/colors-utils";
 
-export const getAllRules = (appearance: Appearance) => {
+export const getAllRules = () => {
 	const rules = [
 		[
 			"u-fx-popper",
 			{
-				position: "absolute",
+				position: "fixed",
 				left: "var(--fx-popper-placement-x)",
 				top: "var(--fx-popper-placement-y)",
 			},
@@ -58,68 +53,41 @@ export const getAllRules = (appearance: Appearance) => {
 		],
 		[
 			/^range-thumb-bg-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
+			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--range-thumb-bg": `${getVariableBgValue(body, theme)}`,
+					"--range-thumb-bg": `var(--range-thumb-bg-${body})`,
 				};
 			},
 			{ autocomplete: "range-thumb-bg-$colors" },
 		],
 		[
 			/^switch-checked-thumb-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
+			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-checked-thumb": `${getVariableBgValue(body, theme)}`,
+					"--switch-checked-thumb": `var(--switch-checked-thumb-${body})`,
 				};
 			},
 			{ autocomplete: "switch-checked-thumb-$colors" },
 		],
 		[
 			/^switch-thumb-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
+			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-thumb": `${getVariableBgValue(body, theme)}`,
+					"--switch-thumb": `var(--switch-thumb-${body})`,
 				};
 			},
 			{ autocomplete: "switch-thumb-$colors" },
 		],
 		[
 			/^range-track-bg-(light|gray|high|higher)$/,
-			([, name], { rawSelector, theme, variantHandlers }) => {
+			([, name], { rawSelector, variantHandlers }) => {
 				if (!["light", "gray", "high", "higher"].includes(name)) return;
 				if (variantHandlers.length) return;
 				const selector = e(rawSelector);
 				return `
-${appearance === "light" || appearance === "both"
-						? `
-${selector}{
-    --range-track-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).light,
-							theme,
-						)}
-}`
-						: ""
-					}
- ${appearance === "dark"
-						? `
-${selector}{
-    --range-track-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).dark,
-							theme,
-						)}
-}`
-						: ""
-					}
-${appearance === "both"
-						? `
-.dark ${selector}{
-    --range-track-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).dark,
-							theme,
-						)} !important
-}`
-						: ""
-					}`;
+					${selector}{
+					    --range-track-bg: var(--range-track-bg-${name})
+					}`
 			},
 			{ autocomplete: "range-track-bg-(light|gray|high|higher)" },
 		],
@@ -137,79 +105,37 @@ ${appearance === "both"
 		],
 		[
 			/^progress-bar-bg-(light|gray|high|higher)$/,
-			([, name], { rawSelector, theme, variantHandlers }) => {
+			([, name], { rawSelector, variantHandlers }) => {
 				if (!["light", "gray", "high", "higher"].includes(name)) return;
 				if (variantHandlers.length) return;
 				const selector = e(rawSelector);
 				return `
-${appearance === "light" || appearance === "both"
-						? `
-${selector}{
-    --progress-bar-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).light,
-							theme,
-						)}
-}`
-						: ""
-					}
- ${appearance === "dark"
-						? `
-${selector}{
-    --progress-bar-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).dark,
-							theme,
-						)}
-}`
-						: ""
-					}
-${appearance === "both"
-						? `
-.dark ${selector}{
-    --progress-bar-bg: ${getVariableBgValue(
-							getBarShades(name as BarShade).dark,
-							theme,
-						)}
-}`
-						: ""
+					${selector}{
+					    --progress-bar-bg: var(--progress-bar-bg-${name})
 					}`;
 			},
 			{ autocomplete: "progress-bar-bg-(light|gray|high|higher)" },
 		],
-
 		[
 			/^moz-progress-(.+)$/,
 			([, name], { rawSelector }) => {
 				if (!name.includes("bar")) return;
 				const selector = e(rawSelector);
 				return `
-${selector}::-moz-progress-bar{
-    transition: all 150ms linear;
-    border-radius: var(--progress-bar-radius);
-    background-color: currentColor;
-    width: 100%;
-}
-@supports(selector(&::-moz-progress-bar)) {
-    ${selector} {
-        background-color: var(--progress-bar-bg);
-        border-radius: var(--progress-bar-radius);
-    }
-}`;
+					${selector}::-moz-progress-bar{
+						transition: all 150ms linear;
+						border-radius: var(--progress-bar-radius);
+						background-color: currentColor;
+						width: 100%;
+					}
+					@supports(selector(&::-moz-progress-bar)) {
+						${selector} {
+							background-color: var(--progress-bar-bg);
+							border-radius: var(--progress-bar-radius);
+						}
+					}`;
 			},
-		],
-		[
-			/^unify-internal-btn-solid-base-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
-				const { colorName, shade } = extractColorAndShades(body);
-				const shadowBottomColorShades = getNextShade(shade as ColorShade);
-				const shadowTopColorShades = getPrevShade(shade as ColorShade);
-				const shadowBottom = `${colorName}-${shadowBottomColorShades}`;
-				const shadowTop = `${colorName}-${shadowTopColorShades}`;
-				return {
-					"--btn-solid-top-shadow": `${getVariableBgValue(shadowTop, theme)}`,
-					"--btn-solid-bottom-shadow": `${getVariableBgValue(shadowBottom, theme)}`,
-				};
-			},
-		],
+		]
 
 	] as Rule<Theme>[];
 

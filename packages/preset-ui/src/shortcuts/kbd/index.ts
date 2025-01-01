@@ -3,6 +3,7 @@ import {
 	uiSizeVariants
 } from "../helpers";
 import type { Kbd } from "./types";
+import { Shortcut } from "unocss";
 
 const getKdbShortcuts = ({
 	kdb: kbd,
@@ -16,8 +17,18 @@ const getKdbShortcuts = ({
 		"kbd-lg": `py-${getConfigValue(lg?.py)} px-${getConfigValue(lg?.px)} text-${lg?.textSize}`,
 		"kbd-xl": `py-${getConfigValue(xl?.py)} px-${getConfigValue(xl?.px)} text-${xl?.textSize}`,
 	};
+	const dynamicKbd: Shortcut[] = [
+		[
+			/^kbd-outer-shadow-(.*)$/,
+			([, color]) =>  `
+				 bg-[--bg-body]	border border-[--ui-outer-shadow-${color}] shadow-outer
+				`,
+			{ autocomplete: ["kbd-outer-shadow", "kbd-outer-shadow-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
+		],
+	];
 
-	return [kbds];
+
+	return [kbds, ...dynamicKbd];
 };
 
 export { getKdbShortcuts, type Kbd };
