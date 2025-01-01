@@ -2,7 +2,7 @@ import type { Preset, StaticShortcutMap } from "unocss";
 import type { Components } from "./types";
 import { getBtnShortcuts } from "./button";
 import { getBadgeShortcuts } from "./badge";
-import type {  SharedFormConfig, } from "../types";
+import type {  SharedFormConfig, uiColorFormat, } from "../types";
 import { getAspectRatioShortcuts } from "./aspect-ratio";
 import { getAvatarShortcuts } from "./avatar";
 import { getGeneralShortcuts } from "./utilities";
@@ -23,37 +23,41 @@ export const getAllShortcut = ({
 	components,
 	form,
 	baseVariants,
+	colorFormat
 }: {
 	components?: Components;
 	baseVariants?: BaseVariants,
 	form?: SharedFormConfig;
+	colorFormat: uiColorFormat;
 }) => {
-	const generalShortcuts = getGeneralShortcuts();
+	const generalShortcuts = getGeneralShortcuts(colorFormat);
 
 	const button = getBtnShortcuts({
 		button: components?.button,
 		formConfig: form,
+		colorFormat
 	});
 	const badge = getBadgeShortcuts(components?.badge);
 
-	const accordion = getAccordionShortcuts();
+	const accordion = getAccordionShortcuts(colorFormat);
 	const aspectRatio = getAspectRatioShortcuts();
 	const avatar = getAvatarShortcuts(components?.avatar);
-	const checkbox = getFormCheckboxShortcuts();
-	const divider = getDividerShortcuts();
+	const checkbox = getFormCheckboxShortcuts(colorFormat);
+	const divider = getDividerShortcuts(colorFormat);
 
 	const inputForm = getFormInputShortcuts({
 		input: components?.input,
+		colorFormat
 	});
-	const kbd = getKdbShortcuts({ kdb: components?.kbd });
+	const kbd = getKdbShortcuts({ kdb: components?.kbd, colorFormat});
 
 	const meter = getMeterShortcuts();
-	const progress = getProgressBarShortcuts();
-	const radio = getFormRadioShortcuts();
-	const range = getRangeSlideShortcuts();
-	const switchShortcuts = getSwitchShortcuts();
+	const progress = getProgressBarShortcuts(colorFormat);
+	const radio = getFormRadioShortcuts(colorFormat);
+	const range = getRangeSlideShortcuts(colorFormat);
+	const switchShortcuts = getSwitchShortcuts(colorFormat);
 
-	const uiShortcuts = getUiShortcuts(baseVariants)
+	const uiShortcuts = getUiShortcuts( colorFormat,baseVariants)
 	const shortcuts = [
 		...generalShortcuts,
 		...accordion,

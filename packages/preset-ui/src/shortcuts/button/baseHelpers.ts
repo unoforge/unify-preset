@@ -1,10 +1,10 @@
 export const genBtnVariantSolidBase = () => {
     return `
-        bg-[--btn-solid-color] hover-[--btn-solid-color:--btn-solid-color-hover] 
-        active-[--btn-solid-color:--btn-solid-color-press] 
-        focus-visible-outline-[--btn-solid-color-hover]
-        [background-image:radial-gradient(farthest-corner_at_50%_-50%,_rgba(255,_255,_255,_.1)_0%,_transparent_100%)]
-        [box-shadow:inset_0px_2px_0_var(--btn-solid-top-shadow),_inset_0px_-2px_0_var(--btn-solid-bottom-shadow)]
+     bg-[--btn-solid-bg] shadow-[0_-1px_0_0px_var(--btn-solid-shadow-a)_inset,0_0_0_1px_var(--btn-solid-shadow-b)_inset,0_0.5px_0_1.5px_var(--btn-solid-shadow-c)_inset] 
+     hover:bg-[--btn-solid-bg-hover] active:bg-[--btn-solid-bg-active] 
+     active:[--btn-solid-shadow-a:--btn-solid-shadow-active-a]
+     active:[--btn-solid-shadow-b:--btn-solid-shadow-active-b]
+     active:[--btn-solid-shadow-c:--btn-solid-shadow-active-c] [--btn-focus-outline-color:--btn-solid-bg-hover]
     `;
 };
 
@@ -29,14 +29,3 @@ export const genBtnSoftBase = ({ isGhost }: { isGhost: boolean }) => {
     focus-visible-outline-[--btn-soft-bg-color-hover]`
 }
 
-export const genBtnGradientBase = () => {
-    return `
-    bg-gradient-to-b b active-opacity-90
-    focus-b-transparent
-    b-[--btn-gradient-border-color]
-    from-[--btn-gradient-color-from]
-    to-[--btn-gradient-color-to]
-    hover-from-[--btn-gradient-color-from]
-    hover-to-[--btn-gradient-color-to]
-    focus-visible-outline-[--btn-gradient-color-from]`
-}

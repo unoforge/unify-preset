@@ -2,9 +2,10 @@ import type { BtnIconBase, BtnSizeBase, Button } from "./types";
 import { getConfigValue } from "@/utils";
 import { btnCongig } from "./const";
 
-import type { SharedFormConfig } from "@/types";
+import type { SharedFormConfig, uiColorFormat } from "@/types";
 import type { Shortcut } from "unocss";
-import { genBtnGradientBase, genBtnOutlineBase, genBtnSoftBase, genBtnVariantSolidBase } from "./baseHelpers";
+import { genBtnOutlineBase, genBtnSoftBase, genBtnVariantSolidBase } from "./baseHelpers";
+import { getColorFormat, getGhostSpftBtnUi } from "@/utils/colors-utils";
 
 const getBtnSizeInfo = (sizeVariant: BtnSizeBase) => {
 	return `h-${getConfigValue(sizeVariant?.height)} px-${getConfigValue(
@@ -20,7 +21,8 @@ const getBtnIconSizeInfo = (sizeVariant: BtnIconBase) => {
 const getBtnShortcuts = ({
 	button,
 	formConfig,
-}: { button?: Button; formConfig?: SharedFormConfig }) => {
+	colorFormat
+}: { button?: Button; formConfig?: SharedFormConfig, colorFormat: uiColorFormat }) => {
 	const btn = Object.assign({}, btnCongig, button)
 
 	const btnSizes = btn.sizes;
@@ -32,7 +34,7 @@ const getBtnShortcuts = ({
 	const btnOutlineOnFocus = () =>
 		`focus-visible-outline focus-visible-[outline-offset:var(--btn-focus-outline-offset,${ringBase.offset}px)]
 		focus-visible-[outline-width:var(--btn-focus-outline-width,${ringBase.size}px)] 
-		focus-visible-outline-[--btn-focus-outline-color]`;
+		focus-visible-outline-[${getColorFormat(`--btn-focus-outline-color`, colorFormat)}]`;
 	const btns = {
 		btn: "flex items-center disabled-opacity-50 disabled-cursor-not-allowed disabled-hover-opacity-70 outline-0 outline-transparent",
 		"btn-xs": `${getBtnSizeInfo(btnSizes?.xs as BtnSizeBase)}`,
@@ -49,53 +51,51 @@ const getBtnShortcuts = ({
 		"btn-outline": `${genBtnOutlineBase()} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
 		"btn-ghost": `${genBtnSoftBase({ isGhost: true })} ${btnOutlineOnFocus()}`,
-		"btn-gradient": `${genBtnGradientBase()} ${btnOutlineOnFocus()}`
 	};
 
 	const dynamicBtns: Shortcut[] = [
 		[
 			/^btn-solid-(.*)$/,
-			([, color]) =>  `
-				[--btn-solid-color:--ui-btn-${color}] [--btn-solid-color-hover:--ui-btn-${color}-hover]
-				[--btn-solid-color-press:--ui-btn-${color}-press] [--btn-solid-color-hover:--ui-btn-${color}-hover]
-				[--btn-solid-top-shadow:--ui-btn-${color}-top-shadow] [--btn-solid-bottom-shadow:--ui-btn-${color}-bottom-shadow]
-				[--btn-focus-outline-color:--btn-solid-color-hover]
-				`,
-			{ autocomplete: ["btn-solid", "btn-solid-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
+			([, color]) => `
+			  [--btn-solid-bg:${getColorFormat(`--ui-btn-${color}`, colorFormat)}]
+			  [--btn-solid-bg-hover:${getColorFormat(`--ui-btn-${color}-hover`, colorFormat)}]
+			  [--btn-solid-bg-active:${getColorFormat(`--ui-btn-${color}-press`, colorFormat)}]
+			  [--btn-solid-shadow-a:${getColorFormat(`--ui-btn-solid-shadow-a-${color}`, colorFormat)}]
+			  [--btn-solid-shadow-b:${getColorFormat(`--ui-btn-solid-shadow-b-${color}`, colorFormat)}]
+			  [--btn-solid-shadow-c:${getColorFormat(`--ui-btn-solid-shadow-c-${color}`, colorFormat)}]
+			`,
+			{ autocomplete: ["btn-solid", "btn-solid-(primary|secondary|accent|success|warning|info|danger|gray|neutral)"] },
 		],
 		[
 			/^btn-outline-(.*)$/,
 			([, color]) => `
-				[--btn-outline-color:--ui-btn-outline-${color}] [--btn-outline-color-hover:--ui-btn-outline-${color}-hover]
-				[--btn-outline-text-color:--ui-btn-outline-${color}-text] [--btn-outline-text-color-hover:--btn-ui-outline-${color}-hover]
-				[--btn-focus-outline-color:--btn-outline-text-color-hover]
-				`,
-			{ autocomplete: ["btn-outline", "btn-outline-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-outline-$colors"], },
+			  [--btn-outline-color:${getColorFormat(`--ui-btn-outline-${color}`, colorFormat)}]
+			  [--btn-outline-color-hover:${getColorFormat(`--ui-btn-outline-${color}-hover`, colorFormat)}]
+			  [--btn-outline-text-color:${getColorFormat(`--ui-btn-outline-${color}-text`, colorFormat)}]
+			  [--btn-outline-text-color-hover:${getColorFormat(`--btn-ui-outline-${color}-hover`, colorFormat)}]
+			  [--btn-focus-outline-color:${getColorFormat(`--btn-outline-text-color-hover`, colorFormat)}]
+			`,
+			{ autocomplete: ["btn-outline", "btn-outline-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-outline-$colors"] },
 		],
 		[
 			/^btn-soft-(.*)$/,
-			([, color]) =>  `
-				[--btn-soft-bg-color:--ui-btn-soft-${color}] [--btn-soft-bg-color-hover:--ui-btn-soft-${color}-hover]
-				[--btn-soft-bg-color-press:--ui-btn-soft-${color}-press] [--btn-soft-text-color:--ui-btn-soft-text-${color}]
-				[--btn-focus-outline-color:--btn-soft-text-color]
-				`,
+			([, color]) => `
+			  [--btn-soft-bg-color:${getGhostSpftBtnUi(color, "soft", colorFormat)}]
+			  [--btn-soft-bg-color-hover:${getGhostSpftBtnUi(`hover-${color}`, "soft", colorFormat)}]
+			  [--btn-soft-bg-color-press:${getGhostSpftBtnUi(`press-${color}`, "soft", colorFormat)}]
+			  [--btn-soft-text-color:${getColorFormat(`--ui-btn-soft-text-${color}`, colorFormat)}]
+			  [--btn-focus-outline-color:${getColorFormat(`--ui-btn-soft-text-hover-${color}`, colorFormat)}]
+			`,
 			{ autocomplete: ["btn-soft", "btn-soft-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-soft-$colors"] },
 		],
 		[
 			/^btn-ghost-(.*)$/,
-			([, color]) =>`
-				[--btn-soft-bg-color-hover:--ui-btn-ghost-${color}] [--btn-soft-bg-color-press:--ui-btn-ghost-${color}-press]
-				[--btn-soft-text-color:--ui-btn-ghost-text-${color}] [--btn-focus-outline-color:--btn-soft-text-color]
-				`,
-			{ autocomplete: ["btn-ghost", "btn-ghost-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-ghost-$colors"], },
-		],
-		[
-			/^btn-gradient-(.*)$/,
-			([, color]) =>  `
-				[--btn-gradient-border-color:--ui-btn-gradient-color-${color}] [--btn-gradient-color-from:--ui-btn-gradient-from-${color}]
-    			[--btn-gradient-color-to:--ui-btn-gradient-to-${color}] [--btn-focus-outline-color:--btn-gradient-color-to]
-				`,
-			{ autocomplete: ["btn-gradient", "btn-gradient-(primary|secondary|accent|success|warning|info|danger|gray|neutral)","btn-gradient-$colors"], },
+			([, color]) => `[--btn-ghost-bg-color-hover:${getGhostSpftBtnUi(`hover-${color}`, "ghost", colorFormat)}]
+			  [--btn-ghost-bg-color-press:${getGhostSpftBtnUi(`press-${color}`, "ghost", colorFormat)}]
+			  [--btn-ghost-text-color:${getColorFormat(`--ui-btn-ghost-text-${color}`, colorFormat)}]
+			  [--btn-focus-outline-color:${getColorFormat(`--ui-btn-ghost-text-hover-${color}`, colorFormat)}]
+			`,
+			{ autocomplete: ["btn-ghost", "btn-ghost-(primary|secondary|accent|success|warning|info|danger|gray|neutral)", "btn-ghost-$colors"] },
 		],
 	];
 

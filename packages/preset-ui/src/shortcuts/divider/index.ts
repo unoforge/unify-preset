@@ -1,7 +1,9 @@
 
+import type { uiColorFormat } from "@/types";
+import { getColorFormat } from "@/utils/colors-utils";
 import type { Shortcut } from "unocss";
 
-const getDividerShortcuts = () => {
+const getDividerShortcuts = (colorFormat:uiColorFormat) => {
 	const dividers = {
 		"divider-hr-2": "border-2",
 		"divider-hr-3": "border-3",
@@ -20,11 +22,11 @@ const getDividerShortcuts = () => {
 	const dynamicDividers: Shortcut[] = [
 		[
 			/^divider-hr-border(-(\S+))?$/,
-			([, , color = "gray"]) => `border-[--ui-divider-${color}]`,
+			([, , color = "gray"]) => `border-[${getColorFormat(`--ui-divider-${color}`, colorFormat)}]`,
 		],
 		[
 			/^divider-custom-bg(-(\S+))?$/,
-			([, , color = "gray"]) => `bg-[--ui-bg-divider-${color}]`,
+			([, , color = "gray"]) => `bg-[${getColorFormat(`--ui-divider-bg-${color}`, colorFormat)}]`,
 		],
 	];
 	return [dividers, ...dynamicDividers];

@@ -4,6 +4,8 @@ import type {
 } from ".";
 import type { Components } from "@/shortcuts/types";
 
+export type uiColorFormat = "rgb"|"hex"| "hsl"
+
 export type VariantSizeBoth = {
 	xs?: number | string;
 	sm?: number | string;
@@ -32,4 +34,5 @@ export type presetUiConfig = {
 	prefixDataStateVariant?: string;
 	components?: Components;
 	baseVariants?: BaseVariants,
+	colorFormat?:uiColorFormat;
 };

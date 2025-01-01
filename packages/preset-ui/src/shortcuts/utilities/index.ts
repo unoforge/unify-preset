@@ -1,23 +1,24 @@
-import type { TextVariantBase } from "@/types";
+import type { TextVariantBase, uiColorFormat } from "@/types";
 import { helperDefaultValues } from "../helpers";
 import type { Shortcut } from "unocss";
+import { getColorFormat } from "@/utils/colors-utils";
 
 
-const getGeneralShortcuts = () => {
+const getGeneralShortcuts = (colorFormat:uiColorFormat) => {
 	const textTypo = helperDefaultValues.textTypo
 	const utils: Record<string, string> = {
 		// typo
-		"text-title": "text-[--ui-fg-title]",
-		"text-title-reverse": "text-[--ui-fg-title-reverse]",
-		"text-sub-title": "text-[--ui-fg-title-sub-title]",
-		"text-sub-title-reverse": "text-[--ui-fg-title-sub-title-reverse]",
-		"text-body": "text-[--ui-fg-base]",
-		"text-body-reverse": "text-[--ui-fg-base-reverse]",
-		"text-sub-body": "text-[--ui-fg-caption]",
-		"text-sub-body-reverse": "text-[--ui-fg-captiont-body]",
+		"text-title": `text-[${getColorFormat("--ui-fg-title", colorFormat)}]`,
+		"text-title-reverse": `text-[${getColorFormat("--ui-fg-title-reverse", colorFormat)}]`,
+		"text-sub-title": `text-[${getColorFormat("--ui-fg-title-sub-title", colorFormat)}]`,
+		"text-sub-title-reverse": `text-[${getColorFormat("--ui-fg-title-sub-title-reverse", colorFormat)}]`,
+		"text-body": `text-[${getColorFormat("--ui-fg-body", colorFormat)}]`,
+		"text-body-reverse": `text-[${getColorFormat("--ui-fg-body-reverse", colorFormat)}]`,
+		"text-sub-body": `text-[${getColorFormat("--ui-fg-sub-body", colorFormat)}]`,
+		"text-sub-body-reverse": `text-[${getColorFormat("--ui-fg-sub-body-reverse", colorFormat)}]`,
 
-		//gradient
-		"text-gradient": "text-transparent bg-clip-text",
+		
+		"ui-bg-clip-text": "text-transparent bg-clip-text",
 		"ui-text-transparent": "text-transparent bg-clip-text",
 
 		//flex
