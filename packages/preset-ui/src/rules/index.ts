@@ -7,8 +7,10 @@ import {
 	getRadius,
 	getRangeSize,
 } from "./utils";
+import { uiColorFormat } from "@/types";
+import { getColorFormat } from "@/utils/colors-utils";
 
-export const getAllRules = () => {
+export const getAllRules = (colorFormat:uiColorFormat) => {
 	const rules = [
 		[
 			"u-fx-popper",
@@ -55,7 +57,7 @@ export const getAllRules = () => {
 			/^range-thumb-bg-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--range-thumb-bg": `var(--range-thumb-bg-${body})`,
+					"--range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`,colorFormat)}`,
 				};
 			},
 			{ autocomplete: "range-thumb-bg-$colors" },
@@ -64,7 +66,7 @@ export const getAllRules = () => {
 			/^switch-checked-thumb-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-checked-thumb": `var(--switch-checked-thumb-${body})`,
+					"--switch-checked-thumb": `${getColorFormat(`--switch-checked-thumb-${body}`, colorFormat)}`,
 				};
 			},
 			{ autocomplete: "switch-checked-thumb-$colors" },
@@ -73,7 +75,7 @@ export const getAllRules = () => {
 			/^switch-thumb-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-thumb": `var(--switch-thumb-${body})`,
+					"--switch-thumb": `${getColorFormat(`--switch-thumb-${body}`, colorFormat)}`,
 				};
 			},
 			{ autocomplete: "switch-thumb-$colors" },
@@ -86,7 +88,7 @@ export const getAllRules = () => {
 				const selector = e(rawSelector);
 				return `
 					${selector}{
-					    --range-track-bg: var(--range-track-bg-${name})
+					    --range-track-bg: ${getColorFormat(`--range-track-bg-${name}`, colorFormat)}
 					}`
 			},
 			{ autocomplete: "range-track-bg-(light|gray|high|higher)" },
@@ -111,7 +113,7 @@ export const getAllRules = () => {
 				const selector = e(rawSelector);
 				return `
 					${selector}{
-					    --progress-bar-bg: var(--progress-bar-bg-${name})
+					    --progress-bar-bg: ${getColorFormat(`--progress-bar-bg-${name}`, colorFormat)}
 					}`;
 			},
 			{ autocomplete: "progress-bar-bg-(light|gray|high|higher)" },

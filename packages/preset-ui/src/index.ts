@@ -12,12 +12,14 @@ import { presetBg } from "@unifydev/preset-bg";
  * @returns
  */
 function presetUI(config?: presetUiConfig): Preset {
+	const colorFormat = config?.colorFormat || "rgb"
 	const shortcuts = getAllShortcut({
+		colorFormat,
 		components: config?.components,
 		baseVariants:config?.baseVariants,
 	});
 
-	const rules = getAllRules();
+	const rules = getAllRules(colorFormat);
 	const variants = getAllVariants(config?.prefixDataStateVariant || "fx");
 
 	const presets = [
