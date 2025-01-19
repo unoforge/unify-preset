@@ -40,7 +40,7 @@
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
-    "unbuild": "^3.3.1",
+    "unbuild": "^2.0.0",
     "unocss": "^0.59.0"
   },
   "peerDependencies": {
