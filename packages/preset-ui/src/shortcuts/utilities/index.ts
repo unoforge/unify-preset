@@ -1,53 +1,25 @@
-import type { Appearance, BaseColor, BaseUI, BorderPrefix, TextVariantBase } from "@/types";
-import { genTextColor, genVariantWhiteBlack, genOutline, genUiBackground } from "../helpers";
+import type { TextVariantBase, uiColorFormat } from "@/types";
 import { helperDefaultValues } from "../helpers";
-import { isValidColor } from "@/utils/colors-utils";
 import type { Shortcut } from "unocss";
+import { getColorFormat } from "@/utils/colors-utils";
 
 
-const getGeneralShortcuts = ({ uiConfig, globalElement, }: { globalElement?: BaseUI; uiConfig: { appearance: Appearance }; }) => {
-	const { appearance } = uiConfig;
-	const bg = Object.assign({}, helperDefaultValues.bgSoligUI, globalElement?.bg)
-	const border = Object.assign({}, helperDefaultValues.bdrUI, globalElement?.border)
-	const textTypo = Object.assign({}, helperDefaultValues.textTypo, globalElement?.textTypo)
-	const typoGray = Object.assign({}, helperDefaultValues.defaultTypoGray, globalElement?.textColor)
-	const typoGrayReverse = Object.assign({}, helperDefaultValues.textTypoColorReverse, globalElement?.textColorReverse);
-
-	const typoNeutral = Object.assign({}, helperDefaultValues.defaultTypoNeutral, globalElement?.textNeutral)
-	const bodyBgUi = Object.assign({}, helperDefaultValues.uiBodyColors, globalElement?.body)
-
+const getGeneralShortcuts = (colorFormat:uiColorFormat) => {
+	const textTypo = helperDefaultValues.textTypo
 	const utils: Record<string, string> = {
-		// bg
-		"bg-body": `${genVariantWhiteBlack({ appearance, colors: { white: `${bodyBgUi.default?.color_shade}`, black: `${bodyBgUi.default?.dark}` } })}`,
-		"bg-body-reverse": `${genVariantWhiteBlack({ appearance, colors: { white: `${bodyBgUi.defaultReverse?.color_shade}`, black: `${bodyBgUi.defaultReverse?.dark}` } })}`,
-		"bg-body-light-high": `${genVariantWhiteBlack({ appearance, colors: { white: `${bodyBgUi["light-high"]?.color_shade}`, black: `${bodyBgUi["light-high"]?.dark}` } })}`,
-
 		// typo
-		"text-title": `${genTextColor(appearance, typoGray.title)}`,
-		"text-title-reverse": `${genTextColor(appearance, typoGrayReverse.title)}`,
-		"text-sub-title": `${genTextColor(appearance, typoGray.subTitle)}`,
-		"text-sub-title-reverse": `${genTextColor(
-			appearance,
-			typoGrayReverse.subTitle,
-		)}`,
-		"text-body": `${genTextColor(appearance, typoGray.text)}`,
-		"text-body-reverse": `${genTextColor(appearance, typoGrayReverse.text)}`,
-		"text-text-reverse": `${genTextColor(appearance, typoGrayReverse.text)}`,
-		"text-sub-body": `${genTextColor(appearance, typoGray.subText)}`,
-		"text-sub-body-reverse": `${genTextColor(
-			appearance,
-			typoGrayReverse.subText,
-		)}`,
-		"text-title-neutral": `${genTextColor(appearance, typoNeutral.title)}`,
-		"text-sub-title-neutral": `${genTextColor(
-			appearance,
-			typoNeutral.subTitle,
-		)}`,
-		"text-body-neutral": `${genTextColor(appearance, typoNeutral.text)}`,
-		"text-sub-body-neutral": `${genTextColor(appearance, typoNeutral.subText)}`,
+		"text-title": `text-[${getColorFormat("--ui-fg-title", colorFormat)}]`,
+		"text-title-reverse": `text-[${getColorFormat("--ui-fg-title-reverse", colorFormat)}]`,
+		"text-sub-title": `text-[${getColorFormat("--ui-fg-title-sub-title", colorFormat)}]`,
+		"text-sub-title-reverse": `text-[${getColorFormat("--ui-fg-title-sub-title-reverse", colorFormat)}]`,
+		"text-body": `text-[${getColorFormat("--ui-fg-body", colorFormat)}]`,
+		"text-body-reverse": `text-[${getColorFormat("--ui-fg-body-reverse", colorFormat)}]`,
+		"text-sub-body": `text-[${getColorFormat("--ui-fg-sub-body", colorFormat)}]`,
+		"text-sub-body-reverse": `text-[${getColorFormat("--ui-fg-sub-body-reverse", colorFormat)}]`,
 
-		//gradient
-		"text-gradient": "text-transparent bg-clip-text",
+		
+		"ui-bg-clip-text": "text-transparent bg-clip-text",
+		"ui-text-transparent": "text-transparent bg-clip-text",
 
 		//flex
 		"d-flex-justify-center": "flex justify-center",
@@ -77,17 +49,6 @@ const getGeneralShortcuts = ({ uiConfig, globalElement, }: { globalElement?: Bas
 
 	const dynamicUtils: Shortcut[] = [
 		[
-			/^bg-(light_nm|light|nm_light|nm|high|higher)(-(\S+))?$/,
-			([, type, , color = "gray"], { theme }) => {
-				const uiBg = bg[type as "light" | "nm" | "light_nm" | "nm_light" | "high" | "higher"] as BaseColor
-				if (["light", "nm", "high", "higher", "highest"].includes(type) && isValidColor(color, theme))
-					return `${genUiBackground({
-						color, appearance, colorShades: { shade: uiBg.shade, ignoreTextColor: true, dark: uiBg.dark }
-					})}`;
-			},
-			{ autocomplete: ["bg-(light_nm|light|nm_light|nm|high|higher)", "bg-(light_nm|light|nm_light|nm|high|higher)-$colors"] },
-		],
-		[
 			/^(txt|ui-text)-(xs-body|x-body|body|x-title|title|l-title)$/,
 			([, size]) => {
 				if (["xs-body", "x-body", "body", "x-title", "title", "l-title"].includes(size)) {
@@ -95,33 +56,6 @@ const getGeneralShortcuts = ({ uiConfig, globalElement, }: { globalElement?: Bas
 				}
 			},
 			{ autocomplete: ["(txt|ui-text)-(xs-body|x-body|body|x-title|title|l-title)"] },
-		],
-
-		[/^bdr-(light|nm|high|higher|highest)(-(\S+))?$/,
-			([, type, , color = "gray"], { theme }) => {
-				const bdr_ = border[type as "light" | "nm" | "high" | "higher" | "highest"] as BaseColor
-				if (["light", "nm", "high", "higher", "highest"].includes(type) && isValidColor(color, theme))
-					return `${genOutline({
-						color,
-						appearance,
-						border: bdr_,
-					})}`;
-			},
-			{ autocomplete: ["bdr-(light|nm|high|higher|highest)-$colors", "bdr_<directions>-(light|nm|high|higher|highest)-$colors"] },
-		],
-		[/^bdr_(x|y|l|r|t|b)-(light|nm|high|higher|highest)(-(\S+))?$/,
-			([, position, type, , color = "gray"], { theme }) => {
-				if (["light", "nm", "high", "higher", "highest"].includes(type) && isValidColor(color, theme)) {
-					const borderPosition = `border-${position}` as BorderPrefix
-					const bdr_ = border[type as "light" | "nm" | "high" | "higher" | "highest"] as BaseColor
-					return `${genOutline({
-						color,
-						appearance,
-						border: bdr_,
-						prefix: borderPosition
-					})}`;
-				}
-			},
 		],
 	];
 

@@ -1,28 +1,20 @@
-import type { UiConfig } from "@/types";
-import { getRingOffsetBg } from "../shortcut_helper";
-import type { Checkbox } from "./types";
-import { getChecboxBase } from "./helper";
-import type { Shortcut } from "unocss";
-import { isValidColor } from "@/utils/colors-utils";
+import { uiColorFormat } from "@/types";
+import { getColorFormat } from "@/utils/colors-utils";
 
-const getFormCheckboxShortcuts = ({ uiConfig }: { uiConfig: UiConfig }) => {
-	const appearance = uiConfig.appearance;
+const getFormCheckboxShortcuts = (colorFormat:uiColorFormat) => {
 
-	const baseUtilities = `disabled-op50 disabled-cursor-not-allowed outline-0 outline-transparent focus-visible:ring-1 focus-visible:ring-current focus:ring-0 focus:ring-transparent focus:ring-offset-transparent ${getRingOffsetBg(
-		appearance,
-	)} focus-visible:ring-offset-2`;
+	const baseUtilities = `disabled-op50 disabled-cursor-not-allowed outline-0 outline-transparent focus-visible:ring-1 focus-visible:ring-current focus:ring-0 focus:ring-transparent focus:ring-offset-transparent 
+	focus-visible:ring-offset-[${getColorFormat(`--ui-ring-bg`, colorFormat)}]
+	focus-visible:ring-offset-2`;
 
-	const dynamicCheckboxes: Shortcut[] = [
-		[
-			/^form-input-checkbox(-(\S+))?$/,
-			([, , color = "primary"], { theme }) => {
-				if (isValidColor(color, theme))
-					return `${baseUtilities} ${getChecboxBase(appearance, color)}`;
-			},
-			{ autocomplete: ["form-input-checkbox", "form-input-checkbox-(primary|secondary|accent|success|warning|info|danger|gray|neutral)",], },
-		],
-	];
-	return [...dynamicCheckboxes];
+	const checkbox = {
+		"form-input-checkbox":`${baseUtilities} bg-[${getColorFormat(`--ui-checkbox-bg`, colorFormat)}] b b-[${getColorFormat(`--ui-checkbox-border`, colorFormat)}]
+			checked-bg-current checked-b-transparent 
+			indeterminate-bg-current indeterminate-b-transparent`
+	}
+
+
+	return [checkbox];
 };
 
-export { getFormCheckboxShortcuts, type Checkbox };
+export { getFormCheckboxShortcuts };

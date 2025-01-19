@@ -1,13 +1,11 @@
 import type { BaseVariants } from "@/shortcuts/ui/types";
 import type {
-	Appearance,
-	ColorShade,
-	RingColorShades,
-	BaseUI,
 	RingBase,
 } from ".";
 import type { Components } from "@/shortcuts/types";
 
+export type uiColorFormat = "rgb" | "hex" | "hsl" | "oklch" | "none"
+//
 export type VariantSizeBoth = {
 	xs?: number | string;
 	sm?: number | string;
@@ -18,22 +16,12 @@ export type VariantSizeBoth = {
 
 export type SharedFormConfig = {
 	ringBase?: RingBase;
-	ring: RingColorShades;
-	grayRing: RingColorShades;
 };
 
 
-export type formOutlineBase = {
-	borderShade: ColorShade;
-	hoverBorderShade: ColorShade;
-	activeBorderShade: ColorShade;
-	textShade: ColorShade;
-	hoverTextShade: ColorShade;
-};
 
-export type formOutline = formOutlineBase & {
+export type formOutline = {
 	borderSize?: number | string;
-	dark?: formOutlineBase;
 };
 
 /**
@@ -43,10 +31,8 @@ export type formOutline = formOutlineBase & {
  * - baseUi
  */
 export type presetUiConfig = {
-	appearance?: Appearance;
 	prefixDataStateVariant?: string;
-	formShared?: SharedFormConfig;
 	components?: Components;
-	baseUi?: BaseUI;
 	baseVariants?: BaseVariants,
+	colorFormat?: uiColorFormat;
 };

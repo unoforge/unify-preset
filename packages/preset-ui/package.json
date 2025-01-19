@@ -1,6 +1,6 @@
 {
   "name": "@unifydev/preset-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "UnoCSS Theming Toolkit, create modern and beautifull Web Ui",
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,7 @@
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
-    "unbuild": "^2.0.0",
+    "unbuild": "^3.3.1",
     "unocss": "^0.59.0"
   },
   "peerDependencies": {

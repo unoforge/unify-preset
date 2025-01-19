@@ -1,12 +1,10 @@
 import type { Preset, StaticShortcutMap } from "unocss";
-import { flexillaShortcuts } from "./flexilla-utils";
 import type { Components } from "./types";
 import { getBtnShortcuts } from "./button";
 import { getBadgeShortcuts } from "./badge";
-import type { Appearance, BaseUI, SharedFormConfig, } from "../types";
+import type {  SharedFormConfig, uiColorFormat, } from "../types";
 import { getAspectRatioShortcuts } from "./aspect-ratio";
 import { getAvatarShortcuts } from "./avatar";
-import { getCardShortcuts } from "./card";
 import { getGeneralShortcuts } from "./utilities";
 import { getDividerShortcuts } from "./divider";
 import { getFormInputShortcuts } from "./input";
@@ -24,65 +22,49 @@ import type { BaseVariants } from "./ui/types";
 export const getAllShortcut = ({
 	components,
 	form,
-	baseUI,
 	baseVariants,
-	appearance,
+	colorFormat
 }: {
 	components?: Components;
 	baseVariants?: BaseVariants,
-	baseUI?: BaseUI;
 	form?: SharedFormConfig;
-	appearance: Appearance;
+	colorFormat: uiColorFormat;
 }) => {
-	const generalShortcuts = getGeneralShortcuts({
-		globalElement: baseUI,
-		uiConfig: { appearance: appearance || "both" },
-	});
+	const generalShortcuts = getGeneralShortcuts(colorFormat);
 
 	const button = getBtnShortcuts({
 		button: components?.button,
-		uiConfig: { appearance },
 		formConfig: form,
+		colorFormat
 	});
 	const badge = getBadgeShortcuts(components?.badge);
 
-	const accordion = getAccordionShortcuts(
-		components?.accordion,
-	);
+	const accordion = getAccordionShortcuts(colorFormat);
 	const aspectRatio = getAspectRatioShortcuts();
 	const avatar = getAvatarShortcuts(components?.avatar);
-	const card = getCardShortcuts(
-		baseUI,
-		{ appearance },
-	);
-	const checkbox = getFormCheckboxShortcuts({ uiConfig: { appearance } });
-	const divider = getDividerShortcuts({
-		divider: components?.divider,
-		appearance,
-	});
+	const checkbox = getFormCheckboxShortcuts(colorFormat);
+	const divider = getDividerShortcuts(colorFormat);
 
 	const inputForm = getFormInputShortcuts({
 		input: components?.input,
-		uiConfig: { appearance },
+		colorFormat
 	});
-	const kbd = getKdbShortcuts({ kdb: components?.kbd });
+	const kbd = getKdbShortcuts({ kdb: components?.kbd, colorFormat});
 
 	const meter = getMeterShortcuts();
-	const progress = getProgressBarShortcuts();
-	const radio = getFormRadioShortcuts({ uiConfig: { appearance } });
-	const range = getRangeSlideShortcuts();
-	const switchShortcuts = getSwitchShortcuts({ appearance });
+	const progress = getProgressBarShortcuts(colorFormat);
+	const radio = getFormRadioShortcuts(colorFormat);
+	const range = getRangeSlideShortcuts(colorFormat);
+	const switchShortcuts = getSwitchShortcuts(colorFormat);
 
-	const uiShortcuts = getUiShortcuts(baseVariants, { appearance })
+	const uiShortcuts = getUiShortcuts( colorFormat,baseVariants)
 	const shortcuts = [
-		...[flexillaShortcuts],
 		...generalShortcuts,
 		...accordion,
 		...aspectRatio,
 		...avatar,
 		...badge,
 		...button,
-		...card,
 		...checkbox,
 		...divider,
 		...inputForm,

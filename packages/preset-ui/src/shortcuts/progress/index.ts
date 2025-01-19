@@ -1,9 +1,12 @@
-const getProgressBarShortcuts = () => {
+import { uiColorFormat } from "@/types";
+import { getColorFormat } from "@/utils/colors-utils";
+
+const getProgressBarShortcuts = (colorFormat:uiColorFormat) => {
 	const progress = {
 		"progress-bar": `appearance-none w-full h-[--progressbar-height] 
                 w-progress-bar:w-full
                 w-progress-bar:rounded-[--progress-bar-radius] 
-                w-progress-bar:bg-[--progress-bar-bg] w-progress-value:bg-current 
+                w-progress-bar:bg-[${getColorFormat('--progress-bar-bg', colorFormat)}] w-progress-value:bg-current 
                 w-progress-value:rounded-[--progress-bar-radius] 
                 w-progress-value:ease-linear w-progress-value:transition-all moz-progress-bar`,
 		"progress-bar-indeterminate": ` indeterminate:relative 

@@ -1,24 +1,15 @@
-import type { Appearance } from "@/types";
-import { divideGray, dividerShade } from "./const";
-import { getDivider } from "./helper";
-import type { Divider } from "./types";
-import type { Shortcut } from "unocss";
-import { isValidColor } from "@/utils/colors-utils";
 
-const getDividerShortcuts = ({
-	divider,
-	appearance: appearance_,
-}: { divider?: Divider; appearance?: Appearance | undefined }) => {
-	const appearance = appearance_ || "both";
-	const shades = Object.assign({}, dividerShade, divider?.shades);
-	const grayShades = Object.assign({}, divideGray, divider?.grayShades);
+import type { uiColorFormat } from "@/types";
+import { getColorFormat } from "@/utils/colors-utils";
+import type { Shortcut } from "unocss";
+
+const getDividerShortcuts = (colorFormat:uiColorFormat) => {
 	const dividers = {
 		"divider-hr-2": "border-2",
 		"divider-hr-3": "border-3",
 		"divider-hr-4": "border-4",
 		"divider-hr-6": "border-6",
 		"divider-hr-8": "border-8",
-
 		"divider-custom":
 			"relative before-absolute before-content-empty before-inset-x-0 flex items-center",
 		"divider-custom-1": "before-h-px ",
@@ -31,32 +22,14 @@ const getDividerShortcuts = ({
 	const dynamicDividers: Shortcut[] = [
 		[
 			/^divider-hr-border(-(\S+))?$/,
-			([, , color = "gray"], { theme }) => {
-				const shades_ = color === "gray" ? grayShades : shades;
-				if (isValidColor(color, theme))
-					return `${getDivider({
-						color,
-						appearance,
-						shades: shades_,
-						prefix: "border",
-					})}`;
-			},
+			([, , color = "gray"]) => `border-[${getColorFormat(`--ui-divider-${color}`, colorFormat)}]`,
 		],
 		[
 			/^divider-custom-bg(-(\S+))?$/,
-			([, , color = "gray"], { theme }) => {
-				const shades_ = color === "gray" ? grayShades : shades;
-				if (isValidColor(color, theme))
-					return `${getDivider({
-						color,
-						appearance,
-						shades: shades_,
-						prefix: "before-bg",
-					})}`;
-			},
+			([, , color = "gray"]) => `bg-[${getColorFormat(`--ui-divider-bg-${color}`, colorFormat)}]`,
 		],
 	];
 	return [dividers, ...dynamicDividers];
 };
 
-export { getDividerShortcuts, type Divider };
+export { getDividerShortcuts };

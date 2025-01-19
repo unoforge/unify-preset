@@ -43,21 +43,3 @@ export const rangeSizes = {
 	},
 };
 
-export const barShades = {
-	light: {
-		light: "gray-100",
-		dark: "gray-900/70",
-	},
-	gray: {
-		light: "gray-200",
-		dark: "gray-900",
-	},
-	high: {
-		light: "gray-200",
-		dark: "gray-800",
-	},
-	higher: {
-		light: "gray-300",
-		dark: "gray-700",
-	},
-};
