@@ -7,5 +7,6 @@ export default defineBuildConfig({
     rollup: {
         emitCJS: true,
     },
-    externals: ['unocss'],
+    externals: ['unocss','@unifydev/unify-variant', '@unocss/preset-uno'],
+    failOnWarn:false,
 })
