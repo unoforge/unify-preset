@@ -30,12 +30,11 @@ export const getAllShortcut = ({
 	form?: SharedFormConfig;
 	colorFormat: uiColorFormat;
 }) => {
-	const generalShortcuts = getGeneralShortcuts(colorFormat);
+	const generalShortcuts = getGeneralShortcuts();
 
 	const button = getBtnShortcuts({
 		button: components?.button,
 		formConfig: form,
-		colorFormat
 	});
 	const badge = getBadgeShortcuts(components?.badge);
 
@@ -43,7 +42,7 @@ export const getAllShortcut = ({
 	const aspectRatio = getAspectRatioShortcuts();
 	const avatar = getAvatarShortcuts(components?.avatar);
 	const checkbox = getFormCheckboxShortcuts(colorFormat);
-	const divider = getDividerShortcuts(colorFormat);
+	const divider = getDividerShortcuts();
 
 	const inputForm = getFormInputShortcuts({
 		input: components?.input,
@@ -52,12 +51,12 @@ export const getAllShortcut = ({
 	const kbd = getKdbShortcuts({ kdb: components?.kbd, colorFormat});
 
 	const meter = getMeterShortcuts();
-	const progress = getProgressBarShortcuts(colorFormat);
+	const progress = getProgressBarShortcuts();
 	const radio = getFormRadioShortcuts(colorFormat);
-	const range = getRangeSlideShortcuts(colorFormat);
-	const switchShortcuts = getSwitchShortcuts(colorFormat);
+	const range = getRangeSlideShortcuts();
+	const switchShortcuts = getSwitchShortcuts();
 
-	const uiShortcuts = getUiShortcuts( colorFormat,baseVariants)
+	const uiShortcuts = getUiShortcuts(baseVariants)
 	const shortcuts = [
 		...generalShortcuts,
 		...accordion,

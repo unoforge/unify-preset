@@ -32,17 +32,17 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			},
 		],
 		[
-			/^meter-h-(xs|sm|md|lg|xl|2xl)$/,
+			/^ui-meter-h-(xs|sm|md|lg|xl|2xl)$/,
 			([, d]) => ({ "--metter-bar-height": `${getSizeProgress_Meter(d)}` }),
 			{ autocomplete: "meter-h-(xs|sm|md|lg|xl|2xl)" },
 		],
 		[
-			/^meter-rounded-(sm|md|lg|xl|full)$/,
+			/^ui-meter-rounded-(sm|md|lg|xl|full)$/,
 			([, d]) => ({ "--metter-bar-radius": `${getRadius(d)}` }),
 			{ autocomplete: "meter-rounded-(sm|md|lg|xl|full)" },
 		],
 		[
-			/^range-thumb-size-(xs|sm|md|lg|xl)$/,
+			/^ui-range-thumb-size-(xs|sm|md|lg|xl)$/,
 			([, d], { variantHandlers }) => {
 				if (variantHandlers.length) return;
 				return {
@@ -54,7 +54,7 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			{ autocomplete: "range-thumb-size-(xs|sm|md|lg|xl)" },
 		],
 		[
-			/^range-thumb-bg-(.*)$/,
+			/^ui-range-thumb-bg-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
 					"--range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`,colorFormat)}`,
@@ -66,7 +66,7 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			/^switch-checked-thumb-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-checked-thumb": `${getColorFormat(`--switch-checked-thumb-${body}`, colorFormat)}`,
+					"--switch-checked-thumb": `${getColorFormat(`--switch-checked-thumb-${body}`,colorFormat)}`,
 				};
 			},
 			{ autocomplete: "switch-checked-thumb-$colors" },
@@ -81,32 +81,32 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			{ autocomplete: "switch-thumb-$colors" },
 		],
 		[
-			/^range-track-bg-(light|gray|high|higher)$/,
+			/^ui-range-track-bg-(light|gray|high|higher)$/,
 			([, name], { rawSelector, variantHandlers }) => {
 				if (!["light", "gray", "high", "higher"].includes(name)) return;
 				if (variantHandlers.length) return;
 				const selector = e(rawSelector);
 				return `
 					${selector}{
-					    --range-track-bg: ${getColorFormat(`--range-track-bg-${name}`, colorFormat)}
+					    --range-track-bg: ${getColorFormat(`--range-track-bg-${name}`,colorFormat)}
 					}`
 			},
 			{ autocomplete: "range-track-bg-(light|gray|high|higher)" },
 		],
 		[
-			/^progress-bar-(xs|sm|md|lg|xl|2xl)$/,
+			/^ui-progress-bar-(xs|sm|md|lg|xl|2xl)$/,
 			([, d]) => ({
 				"--progressbar-height": `${getSizeProgress_Meter(d)}`,
 			}),
 			{ autocomplete: "progress-bar-(xs|sm|md|lg|xl|2xl)" },
 		],
 		[
-			/^progress-bar-rounded-(sm|md|lg|xl|full)$/,
+			/^ui-progress-bar-rounded-(sm|md|lg|xl|full)$/,
 			([, d]) => ({ "--progress-bar-radius": `${getRadius(d)}` }),
 			{ autocomplete: "progress-bar-rounded-(sm|md|lg|xl|full)" },
 		],
 		[
-			/^progress-bar-bg-(light|gray|high|higher)$/,
+			/^ui-progress-bar-bg-(light|gray|high|higher)$/,
 			([, name], { rawSelector, variantHandlers }) => {
 				if (!["light", "gray", "high", "higher"].includes(name)) return;
 				if (variantHandlers.length) return;

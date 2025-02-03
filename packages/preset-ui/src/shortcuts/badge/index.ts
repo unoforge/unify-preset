@@ -9,11 +9,11 @@ const getBadgeShortcuts = (
 	const { xs, sm, md, xl, lg } = Object.assign({}, uiSizeVariants, badge?.sizes);
 
 	const badges = {
-		"badge-xs": `${genUiSizes(xs as ElSizeBase)}`,
-		"badge-sm": `${genUiSizes(sm as ElSizeBase)}`,
-		"badge-md": `${genUiSizes(md as ElSizeBase)}`,
-		"badge-lg": `${genUiSizes(lg as ElSizeBase)}`,
-		"badge-xl": `${genUiSizes(xl as ElSizeBase)}`,
+		"badge-xs": `${genUiSizes(xs as ElSizeBase, "xs")}`,
+		"badge-sm": `${genUiSizes(sm as ElSizeBase, "sm")}`,
+		"badge-md": `${genUiSizes(md as ElSizeBase, "md")}`,
+		"badge-lg": `${genUiSizes(lg as ElSizeBase, "lg")}`,
+		"badge-xl": `${genUiSizes(xl as ElSizeBase, "xl")}`,
 	};
 	return [badges];
 };

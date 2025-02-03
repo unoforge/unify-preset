@@ -12,7 +12,7 @@ import { presetBg } from "@unifydev/preset-bg";
  * @returns
  */
 function presetUI(config?: presetUiConfig): Preset {
-	const colorFormat = config?.colorFormat || "rgb"
+	const colorFormat = config?.colorFormat || "hsl"
 	const shortcuts = getAllShortcut({
 		colorFormat,
 		components: config?.components,
