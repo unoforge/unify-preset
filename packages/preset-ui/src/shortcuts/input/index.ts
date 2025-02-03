@@ -1,14 +1,14 @@
 import type { ElSizeBase, uiColorFormat } from "@/types";
 import { InputSizes } from "./const";
 import type { Input } from "./types";
-import { genUiSizes } from "../helpers";
+import { genInputSizes } from "../helpers";
 import { getColorFormat } from "@/utils/colors-utils";
 
 
 const getFormInputShortcuts = ({
 	input,
 	colorFormat
-}: { input?: Input, colorFormat:uiColorFormat }) => {
+}: { input?: Input, colorFormat: uiColorFormat }) => {
 
 	const size = input?.size || InputSizes
 	const _2xs = size["2xs"]
@@ -18,17 +18,16 @@ const getFormInputShortcuts = ({
 	const lg = size.lg;
 	const xl = size.xl;
 
-	const borderFocus = `outline-offset-0 focus-outline focus-outline-offset-0 focus-outline-2 focus-outline-[${getColorFormat('--ui-input-focus-outline', colorFormat)}]`;
+	const borderFocus = `outline-offset-0 focus-outline focus-outline-offset-0 focus-border-transparent focus-outline-2 focus-outline-[${getColorFormat('--ui-input-focus-outline', colorFormat)}]`;
 
 	const inputs = {
-		'form-input': `wfull ${borderFocus}`,
-		
-		"form-input-2xs": `${genUiSizes(_2xs as ElSizeBase)}`,
-		"form-input-xs": `${genUiSizes(xs as ElSizeBase)}`,
-		"form-input-sm": `${genUiSizes(sm as ElSizeBase)}`,
-		"form-input-md": `${genUiSizes(md as ElSizeBase)}`,
-		"form-input-lg": `${genUiSizes(lg as ElSizeBase)}`,
-		"form-input-xl": `${genUiSizes(xl as ElSizeBase)}`,
+		'form-input': `wfull placeholder-[color:${getColorFormat('--ui-input-place-holder',colorFormat)}] invalid:[outline-color:${getColorFormat('--ui-input-invalid-outline',colorFormat)}] ${borderFocus} disabled:hover:cursor-not-allowed disabled:opacity-80`,
+		"form-input-2xs": `${genInputSizes(_2xs as ElSizeBase, "2xs")}`,
+		"form-input-xs": `${genInputSizes(xs as ElSizeBase, "xs")}`,
+		"form-input-sm": `${genInputSizes(sm as ElSizeBase, "sm")}`,
+		"form-input-md": `${genInputSizes(md as ElSizeBase, "md")}`,
+		"form-input-lg": `${genInputSizes(lg as ElSizeBase, "lg")}`,
+		"form-input-xl": `${genInputSizes(xl as ElSizeBase, "xl")}`,
 	};
 
 	return [inputs];

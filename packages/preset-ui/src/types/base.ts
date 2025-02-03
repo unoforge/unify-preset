@@ -2,7 +2,7 @@
 export type SemanticColorNames = 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger' | 'gray'
 
 
-export type SizeVariantBase = "xs" | "sm" | "md" | "lg" | "xl"
+export type SizeVariantBase = "2xs"| "xs" | "sm" | "md" | "lg" | "xl"
 export type TextSize = "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl"
 export type TextVariantBase = "xs-body" | "x-body" | "body" | "x-title" | "title" | "l-title"
 export type FontWeightBase = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "thin" | "light" | "normal" | "black"
