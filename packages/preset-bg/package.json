@@ -1,6 +1,6 @@
 {
   "name": "@unifydev/preset-bg",
-  "version": "0.0.4",
+  "version": "0.0.41",
   "description": "UnoCSS Theming Toolkit, create modern and beautifull Web Ui",
   "publishConfig": {
     "access": "public"
