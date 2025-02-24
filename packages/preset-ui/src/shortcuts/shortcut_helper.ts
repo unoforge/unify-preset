@@ -1,5 +1,3 @@
-
-
 export const getBackgroundOpacity = (opacity?: number) =>
 	typeof opacity === "number" ? `/${opacity}` : "";
 

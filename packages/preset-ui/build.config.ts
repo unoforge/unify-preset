@@ -12,7 +12,9 @@ export default defineBuildConfig({
             entries: {
                 "@/types": resolve(__dirname, './src/types/'),
                 "@/utils": resolve(__dirname, './src/utils/'),
-                "@/rules": resolve(__dirname, './src/rules')
+                "@/rules": resolve(__dirname, './src/rules'),
+                "@/shortcuts": resolve(__dirname, './src/shortcuts/'),
+                "@/ui": resolve(__dirname, "./src/ui/")
             },
         },
         dts: {

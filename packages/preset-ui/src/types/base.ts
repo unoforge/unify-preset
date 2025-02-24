@@ -1,8 +1,8 @@
 
-export type SemanticColorNames = 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger' | 'gray'
+export type SemanticColorNames = 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'danger' | 'gray' | "neutral" | "white"
 
 
-export type SizeVariantBase = "2xs"| "xs" | "sm" | "md" | "lg" | "xl"
+export type SizeVariantBase = "2xs" | "xs" | "sm" | "md" | "lg" | "xl"
 export type TextSize = "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl"
 export type TextVariantBase = "xs-body" | "x-body" | "body" | "x-title" | "title" | "l-title"
 export type FontWeightBase = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "thin" | "light" | "normal" | "black"
@@ -45,20 +45,7 @@ export type RingBase = {
 
 
 
-export type BaseVariant<T extends object> = {
-	base?: {
-		primary?: T;
-		secondary?: T;
-		accent?: T;
-		success?: T;
-		warning?: T;
-		info?: T;
-		danger?: T;
-		gray?: T;
-	};
-	custom?: Record<string, T>;
-	global?: T;
-};
+
 
 
 
@@ -70,6 +57,6 @@ export type TextTypos = {
 	'x-title'?: string,
 	title?: string,
 	'l-title'?: string,
-	'xl-title'?:string,
-	'2xl-title'?:string,
+	'xl-title'?: string,
+	'2xl-title'?: string,
 }

@@ -1,3 +1,6 @@
+import type { Theme } from "unocss/preset-mini";
+
+
 export const getConfigValue = (value: number | string | undefined) =>
 	typeof value === "number"
 		? value
@@ -16,3 +19,9 @@ export const getShortcutsIfNotSame = ({
 	shortcuts,
 }: { val1: string; val2: string; shortcuts: string }) =>
 	val1 === val2 ? "" : shortcuts;
+
+
+export const isValidColor = (color: string, theme: Theme) => {
+	const colors = theme.colors;
+	return !colors ? false : Object.keys(colors).includes(color);
+};

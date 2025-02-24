@@ -12,11 +12,12 @@ const getProgressBarShortcuts = () => {
                         indeterminate:overflow-hidden
                         indeterminate:after:rounded-full
                         indeterminate:after:absolute
+                        indeterminate:after:content-empty
                         indeterminate:after:inset-y-0 
                         indeterminate:after:flex
                         indeterminate:after:w-52 
                         indeterminate:after:bg-red600
-                         w-indeterminate-p-value:w-full
+                        w-indeterminate-p-value:w-full
                         w-indeterminate-p-value:h-full
         `,
 

@@ -1,7 +1,6 @@
 
 
 import { uiColorFormat } from "@/types";
-import type { Accordion } from "./types";
 import type { Shortcut } from "unocss";
 import { getColorFormat } from "@/utils/colors-utils";
 
@@ -28,4 +27,4 @@ const getAccordionShortcuts = (colorFormat:uiColorFormat) => {
 	return [...dynamicAccordions];
 };
 
-export { getAccordionShortcuts, type Accordion };
+export { getAccordionShortcuts };
