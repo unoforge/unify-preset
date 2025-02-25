@@ -1,26 +1,36 @@
 
 import { Appearance, uiColorFormat } from "@/types";
 import type { Preset, StaticShortcutMap } from "unocss";
-import { UiButton } from "./type";
+import { UiButton, UiCommon } from "./type";
 import { getUiBtnShortcuts } from "./buttons";
+import { getCommonUiShortcuts } from "./ui-variants";
 
 export const getAllUIShortcut = ({
 	components,
 	colorFormat,
-    appearance,
-    prefix
+	appearance,
+	prefix,
+	exclude
 }: {
 	components?: {
-        button?:UiButton
-    };
+		button?: UiButton,
+		common?: UiCommon
+	};
 	colorFormat: uiColorFormat;
-    appearance:Appearance,
-    prefix?:string
+	appearance: Appearance,
+	prefix?: string,
+	exclude?: {
+		button?: boolean,
+		uiVariant?: boolean
+	}
 }) => {
-	const btn = getUiBtnShortcuts({button:components?.button, colorFormat, appearance, prefix});
+	const btn = getUiBtnShortcuts({ button: components?.button, colorFormat, appearance, prefix, isExcuded: exclude?.button });
 
+	const commonUi = getCommonUiShortcuts({ uiCommon: components?.common, colorFormat, appearance, prefix })
 	const shortcuts = [
-        ...btn
+		...btn,
+		...commonUi
 	] as Exclude<Preset["shortcuts"], undefined | StaticShortcutMap>;
 	return shortcuts;
 };
+

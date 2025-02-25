@@ -11,9 +11,6 @@ export type ColorShade =
     | "900"
     | "950"
     | "white"
-    | "black"
-    | "dark"
-    | "light";
 
 export type BaseVariant<T extends object> = {
     base?: {

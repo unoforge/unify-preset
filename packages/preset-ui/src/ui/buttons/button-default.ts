@@ -1,12 +1,14 @@
 import { UiFormOutline } from "@/types/ui-t";
 import type {
 	BtnGhostOrSoft,
-	SolidBtnShade,
-	BtnSolidVariants,
+	FlexiBtnShade,
+	BtnFlexiVariants,
 	BtnSoftVariants,
 	BtnGhostVariants,
 	BtnOutlineVariants,
-	UiButton
+	UiButton,
+	SolidBtnShade,
+	BtnSolidVariants
 } from "@/ui/type";
 
 const ghostConfig: BtnGhostOrSoft = {
@@ -109,7 +111,59 @@ const btnGrayOutline: UiFormOutline = {
 };
 
 
+
 const solidShade: SolidBtnShade = {
+	bgShade: "600",
+	bgHoverShade: "700",
+	bgPressShade: "800",
+	topShadow: "500",
+	bottomShadow: "700",
+	topShadowHover: "600",
+	bottomShadowHover: "800",
+};
+
+const solidWhite: SolidBtnShade = {
+	bgShade: "50",
+	bgHoverShade: "100",
+	bgPressShade: "100",
+	topShadow: "100",
+	bottomShadow: "200",
+	topShadowHover: "300",
+	bottomShadowHover: "200",
+	dark: {
+		bgShade: "800",
+		bgHoverShade: "900",
+		bgPressShade: "800",
+		topShadow: "700",
+		bottomShadow: "900",
+		topShadowHover: "800",
+		bottomShadowHover: "900",
+	}
+};
+
+const solidNeutral: SolidBtnShade = {
+	bgShade: "900",
+	bgHoverShade: "950",
+	bgPressShade: "900",
+	topShadow: "800",
+	bottomShadow: "700",
+	topShadowHover: "800",
+	bottomShadowHover: "900",
+	dark: {
+		bgShade: "50",
+		bgHoverShade: "100",
+		bgPressShade: "200",
+		topShadow: "300",
+		bottomShadow: "200",
+		topShadowHover: "50",
+		bottomShadowHover: "200",
+	}
+};
+
+
+
+
+const flexiShade: FlexiBtnShade = {
 	bgShade: "600",
 	hoverBgShade: "700",
 	activeBgShade: "800",
@@ -121,18 +175,18 @@ const solidShade: SolidBtnShade = {
 	activeShadowShadeC: "600",
 	dark: {
 		bgShade: "500",
-		hoverBgShade: "600", 
-		activeBgShade: "700",
-		shadowShadeA: "600",
-		shadowShadeB: "400",
-		shadowShadeC: "500",
+		hoverBgShade: "600",
+		activeBgShade: "500",
+		shadowShadeA: "700",
+		shadowShadeB: "600",
+		shadowShadeC: "400",
 		activeShadowShadeA: "600",
 		activeShadowShadeB: "500",
 		activeShadowShadeC: "400"
 	}
 };
 
-const whiteSolidShade: SolidBtnShade = {
+const whiteFlexiShade: FlexiBtnShade = {
 	bgShade: "white",
 	hoverBgShade: "100",
 	activeBgShade: "50",
@@ -155,7 +209,7 @@ const whiteSolidShade: SolidBtnShade = {
 	}
 };
 
-const neutralSolidShade: SolidBtnShade = {
+const neutralFlexiShade: FlexiBtnShade = {
 	bgShade: "900",
 	hoverBgShade: "800",
 	activeBgShade: "950",
@@ -213,9 +267,9 @@ const ghostNeutralConfig: BtnGhostOrSoft = {
 	}
 };
 
-const solidGrayShade: SolidBtnShade = {
+const flexiGrayShade: FlexiBtnShade = {
 	bgShade: "600",
-	hoverBgShade: "700", 
+	hoverBgShade: "700",
 	activeBgShade: "800",
 	shadowShadeA: "700",
 	shadowShadeB: "500",
@@ -226,7 +280,7 @@ const solidGrayShade: SolidBtnShade = {
 	dark: {
 		bgShade: "500",
 		hoverBgShade: "600",
-		activeBgShade: "700", 
+		activeBgShade: "700",
 		shadowShadeA: "600",
 		shadowShadeB: "400",
 		shadowShadeC: "500",
@@ -236,7 +290,8 @@ const solidGrayShade: SolidBtnShade = {
 	}
 };
 
-const solidVariants: BtnSolidVariants = {
+
+const solidVariants:BtnSolidVariants = {
 	base: {
 		primary: solidShade,
 		secondary: solidShade,
@@ -245,11 +300,26 @@ const solidVariants: BtnSolidVariants = {
 		warning: solidShade,
 		danger: solidShade,
 		success: solidShade,
-		gray: solidGrayShade,
-		white: whiteSolidShade,
-		neutral: neutralSolidShade
+		gray: solidShade,
+		neutral: solidNeutral,
+		white: solidWhite
 	},
 	global: solidShade
+}
+const flexiVariants: BtnFlexiVariants = {
+	base: {
+		primary: flexiShade,
+		secondary: flexiShade,
+		accent: flexiShade,
+		info: flexiShade,
+		warning: flexiShade,
+		danger: flexiShade,
+		success: flexiShade,
+		gray: flexiGrayShade,
+		white: whiteFlexiShade,
+		neutral: neutralFlexiShade
+	},
+	global: flexiShade
 }
 const softVariants: BtnSoftVariants = {
 	base: {
@@ -295,7 +365,6 @@ const btnNeutralOutline: UiFormOutline = {
 		hoverTextShade: "400"
 	}
 };
-
 const btnWhiteOutline: UiFormOutline = {
 	borderSize: 1,
 	borderShade: "200",
@@ -311,7 +380,6 @@ const btnWhiteOutline: UiFormOutline = {
 		hoverTextShade: "900"
 	}
 };
-
 const outlineVariants: BtnOutlineVariants = {
 	base: {
 		primary: btnOutline,
@@ -330,6 +398,7 @@ const outlineVariants: BtnOutlineVariants = {
 
 export const btnConfig: UiButton = {
 	solidVariants,
+	flexiVariants,
 	softVariants,
 	ghostVariants,
 	outlineVariants,

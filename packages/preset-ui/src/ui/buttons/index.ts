@@ -1,9 +1,9 @@
 import type { SemanticColorNames, uiColorFormat } from "@/types";
 import type { Shortcut } from "unocss";
-import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, SolidBtnShade, UiButton } from "../type";
+import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, FlexiBtnShade, SolidBtnShade, UiButton } from "../type";
 import { btnConfig } from "@/ui/buttons/button-default";
 
-import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantSolid } from "./helpers";
+import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantFlexi, genBtnVariantSolid } from "./helpers";
 import { UiFormOutline } from "@/types/ui-t";
 
 const getUiBtnShortcuts = ({
@@ -11,10 +11,11 @@ const getUiBtnShortcuts = ({
 	colorFormat,
 	appearance,
 	prefix
-}: { button?: UiButton; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string }) => {
+}: { button?: UiButton; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string, isExcuded?:boolean }) => {
 	const btn = Object.assign({}, btnConfig, button)
 
 	const solidVariants = btn.solidVariants
+	const flexiVariants = btn.flexiVariants
 	const softVariants = btn.softVariants
 	const ghostVariants = btn.ghostVariants
 	const outlineVariants = btn.outlineVariants
@@ -25,15 +26,13 @@ const getUiBtnShortcuts = ({
 			/^btn-solid-(.*)$/,
 			([, color]) => {
 				let shades: SolidBtnShade = {
-					bgShade: "500",
-					hoverBgShade: "600",
-					activeBgShade: "700",
-					shadowShadeA: "700",
-					shadowShadeB: "500",
-					shadowShadeC: "400",
-					activeShadowShadeA: "800",
-					activeShadowShadeB: "600",
-					activeShadowShadeC: "500"
+					bgShade: "600",
+					bgHoverShade: "700",
+					bgPressShade: "800",
+					topShadow: "500",
+					bottomShadow: "700",
+					topShadowHover: "600",
+					bottomShadowHover: "800",
 				};
 				if (solidVariants) {
 					const key = color as SemanticColorNames
@@ -45,7 +44,33 @@ const getUiBtnShortcuts = ({
 					return `${genBtnVariantSolid({ color, appearance, shades, colorFormat, prefix })}`;
 				}
 			},
-			{ autocomplete: ["btn-solid", "btn-solid-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)",], },
+			{ autocomplete: ["btn-solid-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)",], },
+		],
+		[
+			/^btn-flexi-(.*)$/,
+			([, color]) => {
+				let shades: FlexiBtnShade = {
+					bgShade: "500",
+					hoverBgShade: "600",
+					activeBgShade: "700",
+					shadowShadeA: "700",
+					shadowShadeB: "500",
+					shadowShadeC: "400",
+					activeShadowShadeA: "800",
+					activeShadowShadeB: "600",
+					activeShadowShadeC: "500"
+				};
+				if (flexiVariants) {
+					const key = color as SemanticColorNames
+					if (flexiVariants.base && color in flexiVariants.base) {
+						shades = flexiVariants.base[key] as FlexiBtnShade;
+					} else if (flexiVariants.custom && color in flexiVariants.custom) {
+						shades = flexiVariants.custom[key];
+					} else { shades = flexiVariants['global'] as FlexiBtnShade }
+					return `${genBtnVariantFlexi({ color, appearance, shades, colorFormat, prefix })}`;
+				}
+			},
+			{ autocomplete: ["btn-flexi-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)",], },
 		],
 		[
 			/^btn-outline-(.*)$/,
@@ -85,7 +110,6 @@ const getUiBtnShortcuts = ({
 						prefix
 					})}`;
 				}
-
 			},
 			{ autocomplete: ["btn-soft-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)",] },
 		],

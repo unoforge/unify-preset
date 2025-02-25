@@ -13,7 +13,7 @@ export type UiSoft = UiSoftBase & {
 
 export type UiSolidBase = {
 	bgShade: ColorShade;
-	textShade: ColorShade;
+	textColor: string;
 };
 
 export type UiSolid = UiSolidBase & {
@@ -63,7 +63,22 @@ export type BtnGhostOrSoft = Btn_GhostSoftBase & {
 	dark?: Btn_GhostSoftBase;
 };
 
-export type SolidBtnShadeBase = {
+
+
+export type SoliddBtnShadeBase = {
+	bgShade: ColorShade;
+	bgHoverShade: ColorShade;
+	bgPressShade: ColorShade;
+	topShadow: ColorShade;
+	bottomShadow: ColorShade;
+	topShadowHover: ColorShade;
+	bottomShadowHover: ColorShade;
+}
+
+export type SolidBtnShade = SoliddBtnShadeBase & {
+	dark?: SoliddBtnShadeBase;
+}
+export type FlexiBtnShadeBase = {
 	bgShade: ColorShade;
 	hoverBgShade: ColorShade;
 	activeBgShade: ColorShade;
@@ -74,22 +89,33 @@ export type SolidBtnShadeBase = {
 	activeShadowShadeB: ColorShade;
 	activeShadowShadeC: ColorShade;
 };
-export type SolidBtnShade = SolidBtnShadeBase & {
-	dark?: SolidBtnShadeBase;
+export type FlexiBtnShade = FlexiBtnShadeBase & {
+	dark?: FlexiBtnShadeBase;
 };
 
 export type BtnSolidVariants = BaseVariant<SolidBtnShade>;
+export type BtnFlexiVariants = BaseVariant<FlexiBtnShade>;
 export type BtnSoftVariants = BaseVariant<BtnGhostOrSoft>;
 export type BtnGhostVariants = BaseVariant<BtnGhostOrSoft>;
 export type BtnOutlineVariants = BaseVariant<UiFormOutline>
 
 
 export type UiButton = {
-	solidVariants?: BtnSolidVariants,
+	solidVariants?: BtnSolidVariants
+	flexiVariants?: BtnFlexiVariants,
 	outlineVariants?: BtnOutlineVariants,
 	softVariants?: BtnSoftVariants,
 	ghostVariants?: BtnGhostVariants
 };
+
+export type UiCommon = {
+	uiVariants?: {
+		solid?:UiSolidVariants,
+		soft?:UiSoftVariants,
+		outline?:UiOutlineVariants,
+		subtle?:UiSubtleVariants
+	},
+}
 
 export type UiVariants = {
 	solid: UiSolidVariants,

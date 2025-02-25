@@ -3,7 +3,7 @@ import { getConfigValue } from "@/utils";
 import { btnCongig } from "./const";
 
 import type { SharedFormConfig } from "@/types";
-import { genBtnOutlineBase, genBtnSoftBase, genBtnVariantSolidBase } from "./baseHelpers";
+import { genBtnOutlineBase, genBtnSoftBase, genBtnVariantFlexiBase, genBtnVariantSolidBase } from "./baseHelpers";
 
 
 const getBtnSizeInfo = (sizeVariant: BtnSizeBase) => {
@@ -47,6 +47,7 @@ const getBtnShortcuts = ({
 		"btn-icon-lg": `${getBtnIconSizeInfo(btnIconSizes?.lg as BtnIconBase)}`,
 		"btn-icon-xl": `${getBtnIconSizeInfo(btnIconSizes?.xl as BtnIconBase)}`,
 		"btn-solid": `${genBtnVariantSolidBase()} ${btnOutlineOnFocus()}`,
+		"btn-flexi": `${genBtnVariantFlexiBase()} ${btnOutlineOnFocus()}`,
 		"btn-outline": `${genBtnOutlineBase()} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
 		"btn-ghost": `${genBtnSoftBase({ isGhost: true })} ${btnOutlineOnFocus()}`,
