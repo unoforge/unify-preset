@@ -13,7 +13,7 @@
     "b-preset-bg": "npx lerna run build --scope=@unifydev/preset-bg",
     "b-unify-variant": "npx lerna run build --scope=@unifydev/unify-variant",
     "b-preset-ui": "npx lerna run build --scope=@unifydev/preset-ui",
-    "b-flexilla":"npx lerna run build --scope=@unifydev/flexilla",
+    "b-flexilla": "npx lerna run build --scope=@unifydev/flexilla",
     "build": "npm run b-preset-bg &&  npm run b-unify-variant && npm run b-preset-ui && npm run b-flexilla"
   }
 }
