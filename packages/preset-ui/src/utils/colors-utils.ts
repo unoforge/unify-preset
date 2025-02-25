@@ -18,15 +18,19 @@ export const getColorFormatWithOpacity = (color: string, opacity: number, format
 				: format === "hsl" ? `hsl(var(${color})/${getRealOpacityValue(opacity)})`
 					: `var(${color}/${opacity})`;
 }
-export const getVarName = (color: string, shade?: ColorShade, prefix: string = 'c') => {
+
+
+export const getVarName = (color: string, shade?: ColorShade|string, prefix: string = 'c') => {
+	const shadeList = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950", "white"]
 	const colorName = color === 'white' || color === 'neutral' ? 'gray' : color;
 	const prefixStr = prefix === 'none' || prefix === '' ? '' : `${prefix}-`;
-	
+
 	if (shade === 'white') {
 		return `--${prefixStr}white`;
 	}
-	if (shade === 'black') {
-		return `--${prefixStr}${colorName}`;
+	if (!shadeList.includes(shade as string)) {
+		return `--${prefixStr}${shadeList[0]}`;
 	}
+
 	return `--${prefixStr}${colorName}-${shade}`;
 };
