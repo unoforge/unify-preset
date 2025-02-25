@@ -46,9 +46,9 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			([, d], { variantHandlers }) => {
 				if (variantHandlers.length) return;
 				return {
-					"--range-slide-thumb-size": `${getRangeSize(d as variantSize).size}`,
-					"--range-track-height": `${getRangeSize(d as variantSize).track}`,
-					"--range-mt": `${getRangeSize(d as variantSize).mt}`,
+					"--ui-range-thumb-size": `${getRangeSize(d as variantSize).size}`,
+					"--ui-range-track-height": `${getRangeSize(d as variantSize).track}`,
+					"--ui-range-mt": `${getRangeSize(d as variantSize).mt}`,
 				};
 			},
 			{ autocomplete: "range-thumb-size-(xs|sm|md|lg|xl)" },
@@ -57,28 +57,28 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			/^ui-range-thumb-bg-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`,colorFormat)}`,
+					"--ui-range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`,colorFormat)}`,
 				};
 			},
 			{ autocomplete: "range-thumb-bg-$colors" },
 		],
 		[
-			/^switch-checked-thumb-(.*)$/,
+			/^switch-checked-knob-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-checked-thumb": `${getColorFormat(`--switch-checked-thumb-${body}`,colorFormat)}`,
+					"--knob-bg-checked": `${getColorFormat(`--switch-checked-knob-${body}`,colorFormat)}`,
 				};
 			},
-			{ autocomplete: "switch-checked-thumb-$colors" },
+			{ autocomplete: "switch-checked-knob-$colors" },
 		],
 		[
-			/^switch-thumb-(.*)$/,
+			/^switch-knob-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--switch-thumb": `${getColorFormat(`--switch-thumb-${body}`, colorFormat)}`,
+					"--knob-bg": `${getColorFormat(`--switch-knob-${body}`, colorFormat)}`,
 				};
 			},
-			{ autocomplete: "switch-thumb-$colors" },
+			{ autocomplete: "switch-knob-bg-$colors" },
 		],
 		[
 			/^ui-range-track-bg-(light|gray|high|higher)$/,
@@ -88,10 +88,10 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 				const selector = e(rawSelector);
 				return `
 					${selector}{
-					    --range-track-bg: ${getColorFormat(`--range-track-bg-${name}`,colorFormat)}
+					    --ui-range-track-bg: ${getColorFormat(`--range-track-bg-${name}`,colorFormat)}
 					}`
 			},
-			{ autocomplete: "range-track-bg-(light|gray|high|higher)" },
+			{ autocomplete: "ui-range-track-bg-(light|gray|high|higher)" },
 		],
 		[
 			/^ui-progress-bar-(xs|sm|md|lg|xl|2xl)$/,

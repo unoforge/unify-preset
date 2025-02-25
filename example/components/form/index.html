@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/load.theme.js"></script>
+</head>
+
+<body class="bg-bg pt14">
+    <div class="fixed bottom-0 wscreen inset-x-0">
+        <div class="max-w6xl pr8 pb8 mxauto flex justify-end">
+            <button data-switch-theme aria-label="toggle app theme"
+                class="p3 bg-bg-light b b-neutral3 dark-b-neutral7 text-fg-text rd-full focus-scale-90 active-scale-95 duration-200 ease-linear">
+                <span aria-hidden="true" class="hidden dark-flex i-carbon-light text-md"></span>
+                <span aria-hidden="true" class="flex dark-hidden i-carbon-moon text-md"></span>
+            </button>
+        </div>
+    </div>
+    <section class="max-w3xl mxauto space-y-16 relative z20 pb20">
+        <div class="space-y-6">
+            <h1 class="text-xl font-semibold text-fg-title">
+                Form
+            </h1>
+            <div class="p6 flex flex-col gap3 rd-lg b b-border">
+                <form
+                    class="ring-offset-gray950 p6 md-p-10 divide-y divide-border focus-visible-outline-none focus-visible-ring-2 focus-visible-ring-red5 focus-visible-ring-offset-2 b b-border-high rd-md mt2 bg-bg max-wlg mxauto">
+                    <div class="space-y-1.5 pb6 md-pb-8">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight text-fg-title">
+                            Password</h3>
+                        <p class="text-sm text-fg-text">Change your password here. After saving,
+                            you'll be logged out.</p>
+                    </div>
+                    <div class="py6 md-py8 space-y-4">
+                        <div class="flex flex-col wfull space-y-2">
+                            <label for="currentPassword" class="text-sm text-fg-subtext">Current
+                                Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword"
+                            class="form-input b b-border bg-bg form-input-md rd-lg text-fg">
+                        </div>
+                        <div class="flex flex-col wfull space-y-2">
+                            <label for="new_password" class="text-sm text-fg-subtext">New
+                                Password</label>
+                            <input type="password" id="new_password" name="new_password"
+                            class="form-input b b-border bg-bg form-input-md rd-lg text-fg">
+                        </div>
+                    </div>
+                    <div class="flex items-center pt6 md-pt-8">
+                        <button
+                            class="btn btn-md rd-md btn-solid btn-solid-neutral text-bg">
+                            Save changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="space-y-6">
+            <h1 class="text-xl font-semibold text-fg-title">
+                Form - Gray
+            </h1>
+            <div class="p6 flex flex-col gap3 rd-lg b b-border">
+                <form
+                    class="ring-offset-gray950 p6 md-p-10 divide-y divide-border focus-visible-outline-none focus-visible-ring-2 focus-visible-ring-red5 focus-visible-ring-offset-2 b b-border-high rd-md mt2 bg-bg-light max-wlg mxauto">
+                    <div class="space-y-1.5 pb6 md-pb-8">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight text-fg-title">
+                            Password</h3>
+                        <p class="text-sm text-fg-text">Change your password here. After saving,
+                            you'll be logged out.</p>
+                    </div>
+                    <div class="py6 md-py8 space-y-4">
+                        <div class="flex flex-col wfull space-y-2">
+                            <label for="currentPassword" class="text-sm text-fg-subtext">Current
+                                Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword"
+                            class="form-input b b-border bg-bg form-input-md rd-lg text-fg">
+                        </div>
+                        <div class="flex flex-col wfull space-y-2">
+                            <label for="new_password" class="text-sm text-fg-subtext">New
+                                Password</label>
+                            <input type="password" id="new_password" name="new_password"
+                            class="form-input b b-border bg-bg form-input-md rd-lg text-fg">
+                        </div>
+                    </div>
+                    <div class="flex items-center pt6 md-pt-8">
+                        <button
+                            class="btn btn-md rd-md btn-solid btn-solid-neutral text-bg">
+                            Save changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
