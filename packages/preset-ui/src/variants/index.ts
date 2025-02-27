@@ -26,6 +26,18 @@ export const getAllVariants = (prefixState?: string) => {
 				"w-progress-value": "::-webkit-progress-value",
 				"m-progress-bar": "::-moz-progress-bar",
 				"w-indeterminate-p-value": ":indeterminate::-webkit-progress-value",
+
+				'v-webkit-datetime-edit': '::-webkit-datetime-edit',
+				'v-webkit-datetime-edit-year-field': '::-webkit-datetime-edit-year-field',
+				'v-webkit-datetime-edit-month-field': '::-webkit-datetime-edit-month-field',
+				'v-webkit-datetime-edit-day-field': '::-webkit-datetime-edit-day-field',
+				'v-webkit-datetime-edit-hour-field': '::-webkit-datetime-edit-hour-field',
+				'v-webkit-datetime-edit-minute-field': '::-webkit-datetime-edit-minute-field',
+				'v-webkit-datetime-edit-second-field': '::-webkit-datetime-edit-second-field',
+				'v-webkit-datetime-edit-millisecond-field': '::-webkit-datetime-edit-millisecond-field',
+				'v-webkit-datetime-edit-meridiem-field': '::-webkit-datetime-edit-meridiem-field',
+				'v-webkit-datetime-edit-fields-wrapper': '::-webkit-datetime-edit-fields-wrapper',
+				'v-webkit-date-and-time-value': '::-webkit-date-and-time-value'
 			},
 		}),
 	] as Variant<Theme>[];

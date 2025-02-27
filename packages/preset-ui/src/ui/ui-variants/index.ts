@@ -104,22 +104,6 @@ const getCommonUiShortcuts = ({
             },
             { autocomplete: ["range-track-bg-(light|body|high|higher|lighter)"], },
         ],
-        [
-            /^progress-bar-bg-(light|body|high|higher|lighter)$/,
-            ([, color]) => {
-                const finalColor = color === 'body' ? "bg" : `bg-${color}`
-                return `[--range-thumb-bg:${getPrefix}${finalColor}]`
-            },
-            { autocomplete: ["progress-bar-bg-(light|body|high|higher|lighter)"], },
-        ],
-        [
-            /^metter-bar-bg-(light|body|high|higher|lighter)$/,
-            ([, color]) => {
-                const finalColor = color === 'body' ? "bg" : `bg-${color}`
-                return `[--range-thumb-bg:${getPrefix}${finalColor}]`
-            },
-            { autocomplete: ["metter-bar-bg-(light|body|high|higher|lighter)"], },
-        ],
     ];
 
     return [...dynamicUi];

@@ -9,8 +9,11 @@ const getFormRadioShortcuts = (colorFormat:uiColorFormat) => {
     focus-visible:ring-offset-2`;
 
 	const radio ={
-		"form-input-radio":`${baseUtilities} checked-bg-current checked-b-transparent 
-			indeterminate-bg-current indeterminate-b-transparent`,
+		"ui-form-radio":`${baseUtilities} checked-bg-current checked-b-transparent 
+			indeterminate-bg-current indeterminate-b-transparent
+			checked:preset-internal-radio-icon
+			
+			`,
 	}
 
 	
