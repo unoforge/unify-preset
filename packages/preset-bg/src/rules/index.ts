@@ -1,8 +1,7 @@
 
-import type { Rule, RuleContext } from "unocss";
+import type { Rule } from "unocss";
 import type { Theme } from "@unocss/preset-uno";
 import { gridSquareSizes, gridRecSizes } from "./const";
-import { getVariableBgValue } from "./helpers";
 import type { variantSize } from "./types";
 
 
@@ -18,9 +17,9 @@ export const getAllRules = () => {
 		],
 		[
 			/^ui-grid-dotted-bg-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
+			([, body]: string[]) => {
 				return {
-					"--bg-grid-dotted": `${getVariableBgValue(body, theme)}`,
+					"--bg-grid-dotted": `--unify-grid-dotted-bg-${body}`,
 				};
 			},
 			{ autocomplete: "ui-grid-dotted-bg-$colors" },
@@ -33,9 +32,9 @@ export const getAllRules = () => {
 		],
 		[
 			/^ui-radial-gradient-bg-(.*)$/,
-			([, body]: string[], { theme }: RuleContext<Theme>) => {
+			([, body]: string[]) => {
 				return {
-					"--unify-radial-bg": `${getVariableBgValue(body, theme)}`,
+					"--unify-radial-bg": `--unify-radial-gradient-bg-${body}`,
 				};
 			},
 			{ autocomplete: "ui-radial-gradient-bg-$colors" },

@@ -19,7 +19,7 @@ This presset is a customizable collection of gradient, grid, radial background b
 ```bash
 npm i -D @unifydev/preset-bg
 ```
-Note that PresetUI is a dev dependency
+Note that PresetBG is a dev dependency
 
 ### Config
 
@@ -47,8 +47,15 @@ Now you can use :
 Grid
 ```html
 <div class="relative size-screen">
-  <span aria-hidden="true" class="absolute size-full ui-grid-dotted ui-grid-dotted-bg-size-xl ui-grid-dotted-bg-gray950 text-blue"></span>
+  <span aria-hidden="true" class="absolute size-full ui-grid-dotted ui-grid-dotted-bg-size-xl ui-grid-dotted-bg-gray text-blue"></span>
 </div>
+```
+
+In CSS 
+```css
+:root{
+  --unify-grid-dotted-bg-gray:valueHere;
+}
 ```
 
 
