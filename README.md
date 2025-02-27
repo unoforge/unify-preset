@@ -35,12 +35,6 @@ This is a preset package that provides variants for Components Libraries based o
 
 
 
-Install also `@julr/unocss-preset-forms` in case you'll form controls.
-
-```bash
-npm i -D @julr/unocss-preset-forms
-```
-
 ### Config
 
 in your uno.config.(ts|js)
@@ -53,7 +47,6 @@ import {
 
 import { colors } from "@unocss/preset-mini/colors";
 
-import { presetForms } from "@julr/unocss-preset-forms";
 // import the preset
 import {presetUI} from "@unifydev/preset-ui"
 
@@ -74,9 +67,6 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetUI({}),
-    presetForms({
-      strategy: "base", // Only add preflights and not new rules
-    }),
     presetMini({
       dark: "class", //  
     }),
@@ -130,10 +120,7 @@ Contribute, collaborate, and become a part of our mission 🚀
 
 - [Antfu](https://github.com/antfu) 
 - [UnoCSS](https://github.com/unocss/unocss)
-- [Méschac Irung](https://github.com/Meschacirung) - [Tailus Themer](https://github.com/Tailus-UI/themer).
-- [Nuxt UI](https://github.com/nuxt/ui) -
 - [Phojie Rengel](https://github.com/phojie) - [Una UI](https://github.com/una-ui/una-ui)
-- [Saadeghi](https://github.com/saadeghi) - [DaisyUI](https://github.com/saadeghi/daisyui)
 
 
 ## Support Us

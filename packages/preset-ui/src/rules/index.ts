@@ -1,7 +1,7 @@
 import { toEscapedSelector as e } from "unocss";
 import type { Rule, RuleContext } from "unocss";
 import type { Theme } from "@unocss/preset-uno";
-import type {  variantSize } from "./types";
+import type { variantSize } from "./types";
 import {
 	getSizeProgress_Meter,
 	getRadius,
@@ -10,7 +10,23 @@ import {
 import { uiColorFormat } from "@/types";
 import { getColorFormat } from "@/utils/colors-utils";
 
-export const getAllRules = (colorFormat:uiColorFormat) => {
+export const getAllRules = (colorFormat: uiColorFormat) => {
+	const encodeSvg = (svg: any) =>
+		`data:image/svg+xml,${svg
+			.replace(
+				'<svg',
+				~svg.indexOf('xmlns')
+					? '<svg'
+					: '<svg xmlns="http://www.w3.org/2000/svg"',
+			)
+			.replace(/"/g, '\'')
+			.replace(/%/g, '%25')
+			.replace(/#/g, '%23')
+			.replace(/{/g, '%7B')
+			.replace(/}/g, '%7D')
+			.replace(/</g, '%3C')
+			.replace(/>/g, '%3E')}`
+
 	const rules = [
 		[
 			"u-fx-popper",
@@ -19,6 +35,28 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 				left: "var(--fx-popper-placement-x)",
 				top: "var(--fx-popper-placement-y)",
 			},
+		],
+		[
+			"preset-internal-select-icon", {
+				'background-image': `url("${encodeSvg(
+					`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="#94a3b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/></svg>`,
+				)}")`
+			}
+		],
+		[
+			"preset-internal-checkbox-icon", {
+				'background-image': `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e")`
+			}
+		],
+		[
+			"preset-internal-checkbox-indeterminate-icon", {
+				'background-image': `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e")`
+			}
+		],
+		[
+			"preset-internal-radio-icon", {
+				'background-image': `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e")`
+			}
 		],
 		[
 			"moz-meter",
@@ -57,7 +95,7 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			/^ui-range-thumb-bg-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--ui-range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`,colorFormat)}`,
+					"--ui-range-thumb-bg": `${getColorFormat(`--range-thumb-bg-${body}`, colorFormat)}`,
 				};
 			},
 			{ autocomplete: "range-thumb-bg-$colors" },
@@ -66,7 +104,7 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 			/^switch-checked-knob-(.*)$/,
 			([, body]: string[], { }: RuleContext<Theme>) => {
 				return {
-					"--knob-bg-checked": `${getColorFormat(`--switch-checked-knob-${body}`,colorFormat)}`,
+					"--knob-bg-checked": `${getColorFormat(`--switch-checked-knob-${body}`, colorFormat)}`,
 				};
 			},
 			{ autocomplete: "switch-checked-knob-$colors" },
@@ -88,7 +126,7 @@ export const getAllRules = (colorFormat:uiColorFormat) => {
 				const selector = e(rawSelector);
 				return `
 					${selector}{
-					    --ui-range-track-bg: ${getColorFormat(`--range-track-bg-${name}`,colorFormat)}
+					    --ui-range-track-bg: ${getColorFormat(`--range-track-bg-${name}`, colorFormat)}
 					}`
 			},
 			{ autocomplete: "ui-range-track-bg-(light|gray|high|higher)" },
