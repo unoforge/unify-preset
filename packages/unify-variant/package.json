@@ -42,9 +42,6 @@
     "unbuild": "^2.0.0",
     "unocss": "^0.59.0"
   },
-  "peerDependencies": {
-    "unocss": ">=0.58.0-0 <90.0.0"
-  },
   "keywords": [
     "variants",
     "unocss preset",

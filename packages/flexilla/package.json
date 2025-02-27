@@ -43,9 +43,6 @@
     "unbuild": "^2.0.0",
     "unocss": "^0.59.0"
   },
-  "peerDependencies": {
-    "unocss": ">=0.60.0-0 <90.0.0"
-  },
   "keywords": [
     "uno preset",
     "unocss",
