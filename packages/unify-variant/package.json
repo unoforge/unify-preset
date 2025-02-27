@@ -1,6 +1,6 @@
 {
   "name": "@unifydev/unify-variant",
-  "version": "0.0.42",
+  "version": "0.1.0",
   "description": "UnoCSS Variants",
   "publishConfig": {
     "access": "public"
