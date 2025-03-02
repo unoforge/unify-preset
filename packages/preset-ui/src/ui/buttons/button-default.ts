@@ -16,7 +16,7 @@ const ghostConfig: BtnGhostOrSoft = {
 	hoverBgOpacity: 50,
 	pressBgShade: "100",
 	pressOpacity: 70,
-	textShade: "900",
+	textShade: "600",
 	dark: {
 		hoverBgShade: "600",
 		hoverBgOpacity: 30,
@@ -48,7 +48,7 @@ const softConfig: BtnGhostOrSoft = {
 	hoverBgOpacity: 60,
 	pressOpacity: 40,
 	pressBgShade: "400",
-	textShade: "800",
+	textShade: "600",
 	dark: {
 		bgShade: "600",
 		bgOpacity: 15,
@@ -123,17 +123,17 @@ const solidShade: SolidBtnShade = {
 };
 
 const solidWhite: SolidBtnShade = {
-	bgShade: "50",
-	bgHoverShade: "100",
+	bgShade: "100",
+	bgHoverShade: "200",
 	bgPressShade: "100",
-	topShadow: "100",
-	bottomShadow: "200",
+	topShadow: "200",
+	bottomShadow: "300",
 	topShadowHover: "300",
 	bottomShadowHover: "200",
 	dark: {
 		bgShade: "800",
 		bgHoverShade: "900",
-		bgPressShade: "800",
+		bgPressShade: "950",
 		topShadow: "700",
 		bottomShadow: "900",
 		topShadowHover: "800",
@@ -150,9 +150,9 @@ const solidNeutral: SolidBtnShade = {
 	topShadowHover: "800",
 	bottomShadowHover: "900",
 	dark: {
-		bgShade: "50",
-		bgHoverShade: "100",
-		bgPressShade: "200",
+		bgShade: "100",
+		bgHoverShade: "200",
+		bgPressShade: "50",
 		topShadow: "300",
 		bottomShadow: "200",
 		topShadowHover: "50",
@@ -231,6 +231,29 @@ const neutralFlexiShade: FlexiBtnShade = {
 		activeShadowShadeC: "50"
 	}
 };
+const flexiGrayShade: FlexiBtnShade = {
+	bgShade: "600",
+	hoverBgShade: "700",
+	activeBgShade: "800",
+	shadowShadeA: "700",
+	shadowShadeB: "500",
+	shadowShadeC: "400",
+	activeShadowShadeA: "900",
+	activeShadowShadeB: "700",
+	activeShadowShadeC: "600",
+	dark: {
+		bgShade: "500",
+		hoverBgShade: "600",
+		activeBgShade: "700",
+		shadowShadeA: "600",
+		shadowShadeB: "400",
+		shadowShadeC: "500",
+		activeShadowShadeA: "600",
+		activeShadowShadeB: "500",
+		activeShadowShadeC: "400"
+	}
+};
+
 
 
 const neutralSoftConfig: BtnGhostOrSoft = {
@@ -264,29 +287,6 @@ const ghostNeutralConfig: BtnGhostOrSoft = {
 		pressBgShade: "700",
 		pressOpacity: 40,
 		textShade: "100"
-	}
-};
-
-const flexiGrayShade: FlexiBtnShade = {
-	bgShade: "600",
-	hoverBgShade: "700",
-	activeBgShade: "800",
-	shadowShadeA: "700",
-	shadowShadeB: "500",
-	shadowShadeC: "400",
-	activeShadowShadeA: "900",
-	activeShadowShadeB: "700",
-	activeShadowShadeC: "600",
-	dark: {
-		bgShade: "500",
-		hoverBgShade: "600",
-		activeBgShade: "700",
-		shadowShadeA: "600",
-		shadowShadeB: "400",
-		shadowShadeC: "500",
-		activeShadowShadeA: "600",
-		activeShadowShadeB: "500",
-		activeShadowShadeC: "400"
 	}
 };
 

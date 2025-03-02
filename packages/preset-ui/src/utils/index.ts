@@ -1,3 +1,4 @@
+import { PredefinedValues, ThingsToExclude } from "@/ui/type";
 import type { Theme } from "unocss/preset-mini";
 
 
@@ -25,3 +26,21 @@ export const isValidColor = (color: string, theme: Theme) => {
 	const colors = theme.colors;
 	return !colors ? false : Object.keys(colors).includes(color);
 };
+
+
+
+export const isVariantExcluded = (config: ThingsToExclude | undefined, type: keyof ThingsToExclude, variant: string, value: PredefinedValues) => {
+	if (!config) return false
+
+	const typeConfig = config[type];
+	if (typeConfig === "all") return true;
+	if (typeConfig === "none") return false;
+
+	if (typeof typeConfig === 'object') {
+		const variantConfig = typeConfig[variant as keyof typeof typeConfig];
+		if (variantConfig === "all") return true;
+		if (variantConfig === "none") return false;
+		if (Array.isArray(variantConfig)) return variantConfig.includes(value);
+	}
+	return false;
+}

@@ -1,6 +1,25 @@
 import { ColorShade, BaseVariant, UiFormOutline } from "@/types/ui-t";
 
 
+export type PredefinedValues = 'primary' | "secondary" | "accent" | "danger" | "warning" | "success" | "info" | "neutral" | "white" | "gray"|string;
+
+export type ExcludedVariants = "all" | "none" | PredefinedValues[]
+export type ThingsToExclude = {
+	btn?: {
+		solid?: ExcludedVariants,
+		flexi?: ExcludedVariants,
+		soft?: ExcludedVariants,
+		ghost?: ExcludedVariants,
+		outlined?: ExcludedVariants,
+	} | "all" | "none",
+	ui?:{
+		solid?: ExcludedVariants,
+		outline?: ExcludedVariants,
+		soft?: ExcludedVariants,
+		subtle?: ExcludedVariants
+	}
+};
+
 export type UiSoftBase = {
 	textShade: ColorShade;
 	bgShade: ColorShade;
