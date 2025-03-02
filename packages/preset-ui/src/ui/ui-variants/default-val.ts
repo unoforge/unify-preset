@@ -12,8 +12,8 @@ const defaultNeutralSolidShades: UiSolid = { bgShade: "900", textColor: "white",
 const defaultSubtleShades: UiSubtle = {
     bgShade: "50",
     opacity: 100,
-    borderShade: "600",
-    borderOpacity: 15,
+    borderShade: "300",
+    borderOpacity: 20,
     textShade: "700",
     dark: {
         bgShade: "600",
@@ -46,7 +46,7 @@ const defaultSubtleGray: UiSubtle = {
     textShade: "800",
     dark: {
         bgShade: "600",
-        opacity: 20,
+        opacity: 40,
         borderShade: "500",
         borderOpacity: 40,
         textShade: "300",

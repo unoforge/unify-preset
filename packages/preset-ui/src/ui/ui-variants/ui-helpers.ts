@@ -30,10 +30,10 @@ export const genUiVariantSoft = ({ color, appearance, shades, colorFormat, prefi
     const { bgShade, opacity, textShade, dark } = shades;
     const variantLight = appearance === "light" || appearance === "both" ? `[--ui-soft-bg:${getColorFormatWithOpacity(getVarName(color, bgShade, prefix), opacity, colorFormat)}] [--ui-soft-text:${getColorFormat(getVarName(color, textShade, prefix), colorFormat)}]` : "";
     const variantDark = dark ? appearance === "dark"
-        ? `[--ui-soft-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), opacity, colorFormat)}]
+        ? `[--ui-soft-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.opacity, colorFormat)}]
          [--ui-soft-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}]`
         : appearance === "both"
-            ? `dark-[--ui-soft-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), opacity, colorFormat)}]
+            ? `dark-[--ui-soft-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.opacity, colorFormat)}]
          dark-[--ui-soft-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}]` : ""
         : '';
     return `${variantLight} ${variantDark}`;
@@ -43,7 +43,7 @@ export const genUiVariantSubtle = ({ color, appearance, shades, colorFormat, pre
     const { bgShade, opacity, textShade, borderOpacity, borderShade, dark } = shades;
     const variantLight = appearance === "light" || appearance === "both" ? `[--ui-subtle-bg:${getColorFormatWithOpacity(getVarName(color, bgShade, prefix), opacity, colorFormat)}] [--ui-subtle-text:${getColorFormat(getVarName(color, textShade, prefix), colorFormat)}]
     [--ui-subtle-border:${getColorFormatWithOpacity(getVarName(color, borderShade, prefix), borderOpacity, colorFormat)}]` : "";
-    const variantDark = dark ? appearance === "dark" ? `[--ui-subtle-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), opacity, colorFormat)}] [--ui-subtle-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}] [--ui-subtle-border:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity, colorFormat)}]`
-        : appearance === "both" ? `dark-[--ui-subtle-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), opacity, colorFormat)}] dark-[--ui-subtle-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}] dark-[--ui-subtle-border:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity, colorFormat)}]` : "" : '';
+    const variantDark = dark ? appearance === "dark" ? `[--ui-subtle-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.opacity, colorFormat)}] [--ui-subtle-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}] [--ui-subtle-border:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity, colorFormat)}]`
+        : appearance === "both" ? `dark-[--ui-subtle-bg:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.opacity, colorFormat)}] dark-[--ui-subtle-text:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}] dark-[--ui-subtle-border:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity, colorFormat)}]` : "" : '';
     return `${variantLight} ${variantDark}`;
 };

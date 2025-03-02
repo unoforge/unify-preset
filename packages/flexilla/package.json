@@ -1,6 +1,6 @@
 {
   "name": "@unifydev/flexilla",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Variants, shortcuts, utilities for flexilla",
   "publishConfig": {
     "access": "public"
@@ -42,9 +42,6 @@
     "typescript": "^5.4.2",
     "unbuild": "^2.0.0",
     "unocss": "^0.59.0"
-  },
-  "peerDependencies": {
-    "unocss": ">=0.60.0 <89.0.0"
   },
   "keywords": [
     "uno preset",
