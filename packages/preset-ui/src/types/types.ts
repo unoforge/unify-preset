@@ -1,11 +1,13 @@
 import type { BaseVariants } from "@/shortcuts/ui/types";
 import type {
+	Appearance,
 	RingBase,
 } from ".";
 import type { Components } from "@/shortcuts/types";
+import { ThingsToExclude, UiButton } from "@/ui/type";
 
 export type uiColorFormat = "rgb" | "hex" | "hsl" | "oklch" | "none"
-//
+
 export type VariantSizeBoth = {
 	xs?: number | string;
 	sm?: number | string;
@@ -19,20 +21,27 @@ export type SharedFormConfig = {
 };
 
 
-
 export type formOutline = {
 	borderSize?: number | string;
 };
 
-/**
- * - appearance
- * - prefixDataStateVariant
- * - components
- * - baseUi
- */
+
+
+export type UiHelperConfig = {
+	variablePrefix?: string,
+	colorFormat?: uiColorFormat,
+	components?: {
+		button?: UiButton
+	},
+	exclude?: ThingsToExclude,
+	appearance?: Appearance
+}
+
 export type presetUiConfig = {
 	prefixDataStateVariant?: string;
 	components?: Components;
 	baseVariants?: BaseVariants,
 	colorFormat?: uiColorFormat;
+	appearance?: Appearance,
+	uiGen?: UiHelperConfig
 };

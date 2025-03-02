@@ -4,6 +4,7 @@ import { uiColorFormat } from "@/types";
 import type { Theme } from "@unocss/preset-uno";
 
 export const getUiTheme = (colorMode: uiColorFormat, colorPrefix?: string) => {
+    const colors = themeColors(colorMode, colorPrefix);
     const theme: Theme = {
         colors: {
             bg: {
@@ -28,7 +29,7 @@ export const getUiTheme = (colorMode: uiColorFormat, colorPrefix?: string) => {
             },
             dark: getBrice(colorMode, "gray-950", colorPrefix),
             white: getBrice(colorMode, "white", colorPrefix),
-            ...themeColors
+            ...colors
         },
     };
     return theme

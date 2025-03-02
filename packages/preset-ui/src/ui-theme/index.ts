@@ -1,4 +1,4 @@
-import { themeColors } from "@/colors/getPreconfigColors";
+
 import type { Theme } from "@unocss/preset-uno";
 
 export const theme: Theme = {
@@ -68,7 +68,4 @@ export const theme: Theme = {
 			"background-shine": "infinite",
 		},
 	},
-	colors:{
-		...themeColors
-	}
 };
