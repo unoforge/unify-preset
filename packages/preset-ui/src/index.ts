@@ -5,9 +5,9 @@ import { getAllRules } from "./rules";
 import { getAllVariants } from "./variants";
 import { theme } from "./ui-theme";
 import { presetBg } from "@unifydev/preset-bg";
-import { UiButton } from "./ui/type";
+import { ThingsToExclude, UiButton } from "./ui/type";
 import { getAllUIShortcut } from "./ui";
-
+import { getUiTheme } from "./ui-theme/ui";
 
 function presetUI(config?: presetUiConfig): Preset {
 	const colorFormat = config?.colorFormat || "hsl"
@@ -35,27 +35,36 @@ function presetUI(config?: presetUiConfig): Preset {
 }
 
 
+
+
 function presetUIHelper(config?: {
-	prefix?: string,
+	variablePrefix?: string,
 	colorFormat?: uiColorFormat,
 	components?: {
 		button?: UiButton
 	},
+	exclude?: ThingsToExclude,
 	appearance?: Appearance
 }): Preset {
 	const colorFormat = config?.colorFormat || "hsl"
+	const appearance = config?.appearance || "both"
+	const varPrefix = config?.variablePrefix || "c"
+	const excluded: ThingsToExclude | undefined = config?.exclude
 	const shortcuts = getAllUIShortcut({
-		prefix: config?.prefix,
+		prefix: varPrefix,
 		colorFormat,
 		components: config?.components,
-		appearance: config?.appearance || "both"
+		appearance: appearance,
+		exclude: excluded
 	});
+
 
 
 
 	return {
 		name: "preset-ui-helper",
 		shortcuts,
+		theme: getUiTheme(colorFormat, varPrefix)
 	};
 }
 

@@ -1,16 +1,17 @@
 import type { SemanticColorNames, uiColorFormat } from "@/types";
 import type { Shortcut } from "unocss";
-import { UiButton, UiCommon, UiOutline, UiSoft, UiSolid, UiSubtle } from "../type";
+import { ThingsToExclude, UiButton, UiCommon, UiOutline, UiSoft, UiSolid, UiSubtle } from "../type";
 import { defaultUiConfig } from "./default-val";
 import { genUiVariantOutline, genUiVariantSoft, genUiVariantSubtle, genVariantSolid } from "./ui-helpers";
+import { isVariantExcluded } from "@/utils";
 
 
 const getCommonUiShortcuts = ({
     uiCommon,
     colorFormat,
     appearance,
-    prefix = 'c'
-}: { uiCommon?: UiCommon; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string }) => {
+    prefix = 'c', exclude
+}: { uiCommon?: UiCommon; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string, exclude?: ThingsToExclude }) => {
     const ui = Object.assign({}, defaultUiConfig, uiCommon)
     const { uiVariants } = ui
     const solidVariants = uiVariants?.solid
@@ -27,9 +28,9 @@ const getCommonUiShortcuts = ({
             ([, color]) => {
                 let shades: UiSolid = {
                     bgShade: "600",
-                    textColor: "sl"
+                    textColor: "text-white"
                 };
-                if (solidVariants) {
+                if (solidVariants && !isVariantExcluded(exclude, "ui", "solid", color)) {
                     const key = color as SemanticColorNames
                     if (solidVariants.base && color in solidVariants.base) {
                         shades = solidVariants.base[key] as UiSolid;
@@ -45,7 +46,7 @@ const getCommonUiShortcuts = ({
             /^ui-subtle-(.*)$/,
             ([, color]) => {
                 let shades: UiSubtle = { bgShade: "100", borderOpacity: 40, textShade: "400", borderShade: "300", opacity: 10, };
-                if (subtleVariants) {
+                if (subtleVariants && !isVariantExcluded(exclude, "ui", "subtle", color)) {
                     const key = color as SemanticColorNames
                     if (subtleVariants.base && color in subtleVariants.base) {
                         shades = subtleVariants.base[key] as UiSubtle;
@@ -65,7 +66,7 @@ const getCommonUiShortcuts = ({
                     textShade: "400",
                     opacity: 10,
                 };
-                if (softVariants) {
+                if (softVariants && !isVariantExcluded(exclude, "ui", "soft", color)) {
                     const key = color as SemanticColorNames
                     if (softVariants.base && color in softVariants.base) {
                         shades = softVariants.base[key] as UiSoft;
@@ -84,7 +85,7 @@ const getCommonUiShortcuts = ({
                     textShade: "400",
                     borderShade: "500"
                 };
-                if (outlineVariants) {
+                if (outlineVariants && !isVariantExcluded(exclude, "ui", "outline", color)) {
                     const key = color as SemanticColorNames
                     if (outlineVariants.base && color in outlineVariants.base) {
                         shades = outlineVariants.base[key] as UiOutline;

@@ -46,7 +46,7 @@ const defaultSubtleGray: UiSubtle = {
     textShade: "800",
     dark: {
         bgShade: "600",
-        opacity: 40,
+        opacity: 20,
         borderShade: "500",
         borderOpacity: 40,
         textShade: "300",
