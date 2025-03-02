@@ -31,7 +31,6 @@
   "author": "Johnkat MJ",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "1.6.2",
     "@types/node": "^20.11.27",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",

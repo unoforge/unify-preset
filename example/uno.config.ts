@@ -6,15 +6,10 @@ import {
 } from "unocss";
 
 import { flexillaPreset } from "@unifydev/flexilla"
-import { presetUI, presetUIHelper } from "@unifydev/preset-ui"
-
-
-
+import { presetUI } from "@unifydev/preset-ui"
 
 
 export default defineConfig({
-    theme: {
-    },
     presets: [
         presetWind3(),
         presetMini({
@@ -30,7 +25,6 @@ export default defineConfig({
         }),
         // presetForms(),
         presetUI({}) as any,
-        presetUIHelper({}) as any,
         flexillaPreset(),
     ],
 })
