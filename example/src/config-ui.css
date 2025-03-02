@@ -19,7 +19,7 @@
 
 
 .dark {
-    --switch-knob-white: var(--c-black);
+    --switch-knob-white: var(--c-white);
 
     --range-thumb-bg-gray: var(--c-gray-800);
     --range-track-bg-gray: var(--c-gray-900);

@@ -1,17 +1,18 @@
 import type { SemanticColorNames, uiColorFormat } from "@/types";
 import type { Shortcut } from "unocss";
-import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, FlexiBtnShade, SolidBtnShade, UiButton } from "../type";
+import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, FlexiBtnShade, SolidBtnShade, ThingsToExclude, UiButton } from "../type";
 import { btnConfig } from "@/ui/buttons/button-default";
 
 import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantFlexi, genBtnVariantSolid } from "./helpers";
 import { UiFormOutline } from "@/types/ui-t";
+import { isVariantExcluded } from "@/utils";
 
 const getUiBtnShortcuts = ({
 	button,
 	colorFormat,
 	appearance,
-	prefix
-}: { button?: UiButton; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string, isExcuded?:boolean }) => {
+	prefix, exclude
+}: { button?: UiButton; colorFormat: uiColorFormat, appearance: "light" | "dark" | "both", prefix?: string, exclude?: ThingsToExclude }) => {
 	const btn = Object.assign({}, btnConfig, button)
 
 	const solidVariants = btn.solidVariants
@@ -34,7 +35,7 @@ const getUiBtnShortcuts = ({
 					topShadowHover: "600",
 					bottomShadowHover: "800",
 				};
-				if (solidVariants) {
+				if (solidVariants && !isVariantExcluded(exclude, "btn", "solid", color)) {
 					const key = color as SemanticColorNames
 					if (solidVariants.base && color in solidVariants.base) {
 						shades = solidVariants.base[key] as SolidBtnShade;
@@ -60,7 +61,7 @@ const getUiBtnShortcuts = ({
 					activeShadowShadeB: "600",
 					activeShadowShadeC: "500"
 				};
-				if (flexiVariants) {
+				if (flexiVariants && !isVariantExcluded(exclude, "btn", "flexi", color)) {
 					const key = color as SemanticColorNames
 					if (flexiVariants.base && color in flexiVariants.base) {
 						shades = flexiVariants.base[key] as FlexiBtnShade;
@@ -76,7 +77,7 @@ const getUiBtnShortcuts = ({
 			/^btn-outline-(.*)$/,
 			([, color]) => {
 				let shades: UiFormOutline = { borderSize: 1, borderShade: "500", textShade: "600", hoverBorderShade: "600", hoverTextShade: "700", activeBorderShade: "600" }
-				if (outlineVariants) {
+				if (outlineVariants && !isVariantExcluded(exclude, "btn", "outline", color)) {
 					const key = color as SemanticColorNames
 					if (outlineVariants.base && color in outlineVariants.base) {
 						shades = outlineVariants.base[key] as UiFormOutline;
@@ -93,7 +94,7 @@ const getUiBtnShortcuts = ({
 		[
 			/^btn-soft-(.*)$/,
 			([, color]) => {
-				if (softVariants) {
+				if (softVariants && !isVariantExcluded(exclude, "btn", "soft", color)) {
 					let shades: BtnGhostOrSoft
 					const key = color as SemanticColorNames
 					if (softVariants.base && color in softVariants.base) {
@@ -116,7 +117,7 @@ const getUiBtnShortcuts = ({
 		[
 			/^btn-ghost-(.*)$/,
 			([, color]) => {
-				if (ghostVariants) {
+				if (ghostVariants && !isVariantExcluded(exclude, "btn", "ghost", color)) {
 					let shades: BtnGhostOrSoft
 					const key = color as SemanticColorNames
 					if (ghostVariants.base && color in ghostVariants.base) {

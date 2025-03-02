@@ -1,3 +1,5 @@
+
+
 const getThemePreference = () => {
   const currentTheme = localStorage.getItem("theme");
   if (localStorage !== undefined && currentTheme) {

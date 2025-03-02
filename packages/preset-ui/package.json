@@ -13,7 +13,14 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    }
+    },
+    "./css/default/base.css": "./dist/css/default/base.css",
+    "./css/default/dark.css": "./dist/css/default/dark.css",
+    "./css/default/light.css": "./dist/css/default/light.css",
+    "./themes/air.css": "./dist/css/themes/air.css",
+    "./themes/water.css": "./dist/css/themes/water.css",
+    "./themes/earth.css": "./dist/css/themes/earth.css",
+    "./themes/fire.css": "./dist/css/themes/fire.css"
   },
   "scripts": {
     "format": "biome format --write ./src",
