@@ -20,6 +20,8 @@ const getUiShortcuts = (
         'ui-solid': "bg-[--ui-solid-bg] text-[--ui-solid-text]",
         'ui-outline': "text-[--ui-outline-text] border border-[--ui-outline-border]",
         'ui-subtle': "bg-[--ui-subtle-bg] border text-[--ui-subtle-text] border-[--ui-subtle-border]",
+        "ui-card":" p-[var(--card-padding)] rounded-[var(--card-radius)]",
+		"inner-radius":"[border-radius:calc(var(--card-radius)-var(--card-padding))]"
     }
 
 

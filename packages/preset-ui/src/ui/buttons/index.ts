@@ -21,6 +21,11 @@ const getUiBtnShortcuts = ({
 	const ghostVariants = btn.ghostVariants
 	const outlineVariants = btn.outlineVariants
 
+	const btnWhite = flexiVariants?.base?.white!
+
+	const buttons = {
+		'ui-btn-white': `${genBtnVariantFlexi({ color: "white", appearance, shades: btnWhite, colorFormat, prefix })}`
+	}
 
 	const dynamicBtns: Shortcut[] = [
 		[
@@ -138,7 +143,7 @@ const getUiBtnShortcuts = ({
 		],
 	];
 
-	return [...dynamicBtns];
+	return [buttons, ...dynamicBtns];
 };
 
 export { getUiBtnShortcuts, type UiButton };
