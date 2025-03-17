@@ -40,8 +40,6 @@ const ghostGrayCongif: BtnGhostOrSoft = {
 	},
 };
 
-
-
 const softConfig: BtnGhostOrSoft = {
 	bgShade: "50",
 	hoverBgShade: "400",
@@ -111,7 +109,6 @@ const btnGrayOutline: UiFormOutline = {
 };
 
 
-
 const solidShade: SolidBtnShade = {
 	bgShade: "600",
 	bgHoverShade: "700",
@@ -122,22 +119,23 @@ const solidShade: SolidBtnShade = {
 	bottomShadowHover: "800",
 };
 
+
 const solidWhite: SolidBtnShade = {
-	bgShade: "100",
-	bgHoverShade: "200",
-	bgPressShade: "100",
-	topShadow: "200",
-	bottomShadow: "300",
-	topShadowHover: "300",
-	bottomShadowHover: "200",
+	bgShade: "white",
+	bgHoverShade: "100",
+	bgPressShade: "50",
+	topShadow: "50",
+	bottomShadow: "100",
+	topShadowHover: "200",
+	bottomShadowHover: "300",
 	dark: {
-		bgShade: "800",
-		bgHoverShade: "900",
-		bgPressShade: "950",
-		topShadow: "700",
-		bottomShadow: "900",
-		topShadowHover: "800",
-		bottomShadowHover: "900",
+		bgShade: "900",
+		bgHoverShade: "800",
+		bgPressShade: "700",
+		topShadow: "900",
+		bottomShadow: "800",
+		topShadowHover: "700",
+		bottomShadowHover: "700",
 	}
 };
 
@@ -151,16 +149,14 @@ const solidNeutral: SolidBtnShade = {
 	bottomShadowHover: "900",
 	dark: {
 		bgShade: "100",
-		bgHoverShade: "200",
-		bgPressShade: "50",
-		topShadow: "300",
-		bottomShadow: "200",
-		topShadowHover: "50",
+		bgHoverShade: "white",
+		bgPressShade: "200",
+		topShadow: "200",
+		bottomShadow: "100",
+		topShadowHover: "300",
 		bottomShadowHover: "200",
 	}
 };
-
-
 
 
 const flexiShade: FlexiBtnShade = {
@@ -254,8 +250,6 @@ const flexiGrayShade: FlexiBtnShade = {
 	}
 };
 
-
-
 const neutralSoftConfig: BtnGhostOrSoft = {
 	bgShade: "300",
 	bgOpacity: 60,
@@ -289,7 +283,6 @@ const ghostNeutralConfig: BtnGhostOrSoft = {
 		textShade: "100"
 	}
 };
-
 
 const solidVariants:BtnSolidVariants = {
 	base: {

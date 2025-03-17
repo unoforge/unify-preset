@@ -48,6 +48,7 @@ const getBtnShortcuts = ({
 		"btn-icon-xl": `${getBtnIconSizeInfo(btnIconSizes?.xl as BtnIconBase)}`,
 		"btn-solid": `${genBtnVariantSolidBase()} ${btnOutlineOnFocus()}`,
 		"btn-flexi": `${genBtnVariantFlexiBase()} ${btnOutlineOnFocus()}`,
+		"btn-white": `${genBtnVariantFlexiBase()} ${btnOutlineOnFocus()}`,
 		"btn-outline": `${genBtnOutlineBase()} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
 		"btn-ghost": `${genBtnSoftBase({ isGhost: true })} ${btnOutlineOnFocus()}`,
