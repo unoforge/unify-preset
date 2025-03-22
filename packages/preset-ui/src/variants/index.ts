@@ -1,15 +1,9 @@
-import { browserVariants, dataStateVariants } from "@unifydev/unify-variant";
+import { browserVariants } from "@unifydev/unify-variant";
 import type { Variant } from "unocss";
 import type { Theme } from "@unocss/preset-uno";
 
-export const getAllVariants = (prefixState?: string) => {
+export const getAllVariants = () => {
 	const variants = [
-		dataStateVariants({
-			prefix: prefixState,
-			variants:
-				"visible|hidden|active|inactive|open|close|resize|minimize|maximaze|opened|closed|maximazed|resized|copied",
-			selector: "data-state",
-		}),
 		browserVariants({
 			variants: {
 				"meter-inner-el": "::-webkit-meter-inner-element",

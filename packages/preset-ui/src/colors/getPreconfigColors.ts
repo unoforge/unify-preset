@@ -1,7 +1,5 @@
 import { uiColorFormat } from "@/types"
 import { genColorValue } from "./genColor"
-import { ColorShade } from "@/types/ui-t"
-
 export const themeColors = (colorMode: uiColorFormat,  colorPrefix?: string) => {
     return {
         primary: genColorValue("primary", colorMode,  colorPrefix),

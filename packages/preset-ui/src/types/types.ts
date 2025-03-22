@@ -38,7 +38,6 @@ export type UiHelperConfig = {
 }
 
 export type presetUiConfig = {
-	prefixDataStateVariant?: string;
 	components?: Components;
 	baseVariants?: BaseVariants,
 	colorFormat?: uiColorFormat;

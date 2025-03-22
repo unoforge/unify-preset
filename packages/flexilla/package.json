@@ -34,13 +34,15 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.27",
-    "@unifydev/unify-variant": "latest",
     "@unocss/reset": "^0.58.6",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
     "unbuild": "^2.0.0",
     "unocss": "^0.59.0"
+  },
+  "dependencies": {
+    "@unifydev/unify-variant": "latest"
   },
   "keywords": [
     "uno preset",
