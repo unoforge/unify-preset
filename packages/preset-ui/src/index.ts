@@ -54,7 +54,7 @@ function presetUI(config?: presetUiConfig): Preset {
 	});
 
 	const rules = getAllRules(colorFormat);
-	const variants = getAllVariants(config?.prefixDataStateVariant || "fx");
+	const variants = getAllVariants();
 
 	const presets = [
 		presetBg(),
