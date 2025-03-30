@@ -8,10 +8,16 @@ import type {
 
 
 
+// xs: "text-sm h-7 px-3",
+//             sm: "text-sm h-8 px-3.5",
+//             md: "text-base h-9 px-4",
+//             lg: "text-base h-10 px-5",
+//             xl: "text-lg h-12 px-6",
+
 const btnSizes: BtnSizes = {
 	xs: {
-		height: 6,
-		px: 2.5,
+		height: 7,
+		px: 3,
 		textSize: "sm",
 	},
 	sm: {
@@ -20,19 +26,19 @@ const btnSizes: BtnSizes = {
 		textSize: "sm",
 	},
 	md: {
-		height: 9.5,
+		height: 9,
 		px: 4,
 		textSize: "base",
 	},
 	lg: {
-		height: 10.5,
+		height: 10,
 		px: 5,
 		textSize: "base",
 	},
 	xl: {
 		height: 12,
 		px: 6,
-		textSize: "base",
+		textSize: "lg",
 	},
 };
 

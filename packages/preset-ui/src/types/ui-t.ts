@@ -23,7 +23,7 @@ export type BaseVariant<T extends object> = {
         danger?: T;
         gray?: T;
         white?: T;
-        neutral?:T
+        neutral?: T
     };
     custom?: Record<string, T>;
     global?: T;
@@ -31,14 +31,20 @@ export type BaseVariant<T extends object> = {
 
 
 export type formOutlineBase = {
-	borderShade: ColorShade;
-	hoverBorderShade: ColorShade;
-	activeBorderShade: ColorShade;
-	textShade: ColorShade;
-	hoverTextShade: ColorShade;
+    borderShade: ColorShade;
+    borderOpacity?: number;
+    textShade: ColorShade;
+    bg: ColorShade,
+    bgOpacity?: number,
+    bgHover?: ColorShade,
+    bgHoverOpacity?: number
 };
 
-export type UiFormOutline = formOutlineBase & {
-	borderSize?: number | string;
-	dark?: formOutlineBase;
+export type UiBtnOutline = formOutlineBase & {
+    borderSize?: number | string;
+    extraClass?: {
+        base?: string[],
+        dark?: string[]
+    },
+    dark?: formOutlineBase;
 };

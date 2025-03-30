@@ -1,4 +1,4 @@
-import { UiFormOutline } from "@/types/ui-t";
+import { UiBtnOutline } from "@/types/ui-t";
 import type {
 	BtnGhostOrSoft,
 	FlexiBtnShade,
@@ -76,37 +76,28 @@ const softGrayConfig: BtnGhostOrSoft = {
 };
 
 
-const btnOutline: UiFormOutline = {
+const btnOutline: UiBtnOutline = {
 	borderSize: 1,
-	borderShade: "300",
-	hoverBorderShade: "400",
-	activeBorderShade: "300",
+	borderShade: "200",
+	borderOpacity: 100,
 	textShade: "800",
-	hoverTextShade: "900",
-	dark: {
-		borderShade: "400",
-		hoverBorderShade: "300",
-		activeBorderShade: "500",
-		textShade: "300",
-		hoverTextShade: "400",
-	},
-};
-
-const btnGrayOutline: UiFormOutline = {
-	borderSize: 1,
-	borderShade: "500",
-	hoverBorderShade: "600",
-	activeBorderShade: "700",
-	textShade: "800",
-	hoverTextShade: "900",
+	bg: "50",
 	dark: {
 		borderShade: "500",
-		hoverBorderShade: "600",
-		activeBorderShade: "700",
+		borderOpacity: 30,
 		textShade: "300",
-		hoverTextShade: "400",
+		bg: "500",
+		bgOpacity: 5,
+		bgHover: "500",
+		bgHoverOpacity: 10,
 	},
+	extraClass: {
+		base: ["[--outline-radial-opacity:0.6]", "[--inner-border-color:1]"],
+		dark: ["[background-image:none]", "[--inner-border-color:0]", "[--outline-radial-opacity:0.2]", "[--inner-border-color:0]"]
+	}
 };
+
+const btnGrayOutline: UiBtnOutline = btnOutline
 
 
 const solidShade: SolidBtnShade = {
@@ -253,19 +244,21 @@ const flexiGrayShade: FlexiBtnShade = {
 const neutralSoftConfig: BtnGhostOrSoft = {
 	bgShade: "300",
 	bgOpacity: 60,
-	hoverBgShade: "400",
-	hoverBgOpacity: 70,
-	pressBgShade: "300",
-	pressOpacity: 40,
+	hoverBgShade: "950",
+	hoverBgOpacity: 100,
+	pressBgShade: "900",
+	pressOpacity: 100,
 	textShade: "900",
+	textHover: "white",
 	dark: {
 		bgShade: "700",
 		bgOpacity: 60,
-		hoverBgShade: "600",
-		hoverBgOpacity: 70,
-		pressBgShade: "700",
-		pressOpacity: 40,
-		textShade: "100"
+		hoverBgShade: "white",
+		hoverBgOpacity: 100,
+		pressBgShade: "200",
+		pressOpacity: 100,
+		textShade: "100",
+		textHover: "950"
 	}
 };
 
@@ -284,7 +277,7 @@ const ghostNeutralConfig: BtnGhostOrSoft = {
 	}
 };
 
-const solidVariants:BtnSolidVariants = {
+const solidVariants: BtnSolidVariants = {
 	base: {
 		primary: solidShade,
 		secondary: solidShade,
@@ -343,36 +336,25 @@ const ghostVariants: BtnGhostVariants = {
 	global: ghostConfig
 }
 
-const btnNeutralOutline: UiFormOutline = {
+const btnNeutralOutline: UiBtnOutline = {
 	borderSize: 1,
-	borderShade: "800",
-	hoverBorderShade: "900",
-	activeBorderShade: "900",
-	textShade: "700",
-	hoverTextShade: "700",
+	borderShade: "300",
+	textShade: "800",
+	bg: "100",
 	dark: {
-		borderShade: "400",
-		hoverBorderShade: "500",
-		activeBorderShade: "500",
-		textShade: "300",
-		hoverTextShade: "400"
+		borderShade: "white",
+		textShade: "white",
+		bg: "500",
+		bgOpacity: 5,
+		bgHover: "500",
+		bgHoverOpacity: 10,
+	},
+	extraClass: {
+		base: ["[--outline-radial-opacity:0.6]", "[--inner-border-color:1]"],
+		dark: ["[background-image:none]", "[--inner-border-color:0]", "[--outline-radial-opacity:0.2]", "[--inner-border-color:0]"]
 	}
 };
-const btnWhiteOutline: UiFormOutline = {
-	borderSize: 1,
-	borderShade: "200",
-	hoverBorderShade: "300",
-	activeBorderShade: "300",
-	textShade: "700",
-	hoverTextShade: "900",
-	dark: {
-		borderShade: "200",
-		hoverBorderShade: "300",
-		activeBorderShade: "300",
-		textShade: "700",
-		hoverTextShade: "900"
-	}
-};
+
 const outlineVariants: BtnOutlineVariants = {
 	base: {
 		primary: btnOutline,
@@ -383,7 +365,6 @@ const outlineVariants: BtnOutlineVariants = {
 		danger: btnOutline,
 		success: btnOutline,
 		gray: btnGrayOutline,
-		white: btnWhiteOutline,
 		neutral: btnNeutralOutline
 	},
 	global: btnOutline
