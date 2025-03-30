@@ -26,10 +26,13 @@ export const genBtnVariantFlexiBase = () => {
 
 export const genBtnOutlineBase = () => {
     return `
-       border border-[--btn-outline-color] 
-       hover-border-[--btn-outline-color-hover] 
-       text-[--btn-outline-text-color] 
-       hover-text-[--btn-outline-text-color-hover] focus-visible-outline-[--btn-outline-color-hover] 
+ [--inner-border-color:1]  
+[background-image:radial-gradient(76%_151%_at_52%_-52%,rgba(255,255,255,var(--outline-radial-opacity))_0%,transparent_100%)] 
+[box-shadow:rgba(255,255,255,var(--inner-border-color))_0px_1px_0px_0px_inset,var(--btn-outline-color)_0px_0px_0px_1px,0px_1px_2px_rgba(0,0,0,0.1)] 
+hover:brightness-[0.98]  active:brightness-100  bg-[--btn-outline-bg] 
+    hover:bg-[--btn-outline-bg-hover]  active:bg-[--btn-outline-bg]
+    text-[--btn-outline-text-color] 
+    focus-visible-outline-[--btn-outline-color-hover] 
     `
 }
 
@@ -43,6 +46,7 @@ export const genBtnSoftBase = ({ isGhost }: { isGhost: boolean }) => {
     active-bg-[--btn-${key}-bg-color-press]
     focus-bg-[--btn-${key}-bg-color-press]
     text-[--btn-${key}-text-color] 
+    hover-text-[var(--btn-${key}-text-color-hover,--btn-${key}-text-color)]
     [--btn-focus-outline-color:--btn-${key}-text-color]`
 }
 

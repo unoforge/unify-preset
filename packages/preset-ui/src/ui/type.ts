@@ -1,7 +1,7 @@
-import { ColorShade, BaseVariant, UiFormOutline } from "@/types/ui-t";
+import { ColorShade, BaseVariant, UiBtnOutline } from "@/types/ui-t";
 
 
-export type PredefinedValues = 'primary' | "secondary" | "accent" | "danger" | "warning" | "success" | "info" | "neutral" | "white" | "gray"|string;
+export type PredefinedValues = 'primary' | "secondary" | "accent" | "danger" | "warning" | "success" | "info" | "neutral" | "white" | "gray" | string;
 
 export type ExcludedVariants = "all" | "none" | PredefinedValues[]
 export type ThingsToExclude = {
@@ -12,7 +12,7 @@ export type ThingsToExclude = {
 		ghost?: ExcludedVariants,
 		outlined?: ExcludedVariants,
 	} | "all" | "none",
-	ui?:{
+	ui?: {
 		solid?: ExcludedVariants,
 		outline?: ExcludedVariants,
 		soft?: ExcludedVariants,
@@ -76,6 +76,7 @@ export type Btn_GhostSoftBase = {
 	pressBgShade: ColorShade;
 	pressOpacity: number;
 	textShade: ColorShade;
+	textHover?: ColorShade
 };
 
 export type BtnGhostOrSoft = Btn_GhostSoftBase & {
@@ -116,7 +117,7 @@ export type BtnSolidVariants = BaseVariant<SolidBtnShade>;
 export type BtnFlexiVariants = BaseVariant<FlexiBtnShade>;
 export type BtnSoftVariants = BaseVariant<BtnGhostOrSoft>;
 export type BtnGhostVariants = BaseVariant<BtnGhostOrSoft>;
-export type BtnOutlineVariants = BaseVariant<UiFormOutline>
+export type BtnOutlineVariants = BaseVariant<UiBtnOutline>
 
 
 export type UiButton = {
@@ -129,10 +130,10 @@ export type UiButton = {
 
 export type UiCommon = {
 	uiVariants?: {
-		solid?:UiSolidVariants,
-		soft?:UiSoftVariants,
-		outline?:UiOutlineVariants,
-		subtle?:UiSubtleVariants
+		solid?: UiSolidVariants,
+		soft?: UiSoftVariants,
+		outline?: UiOutlineVariants,
+		subtle?: UiSubtleVariants
 	},
 }
 

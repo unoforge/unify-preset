@@ -2,7 +2,7 @@ import type { Appearance, uiColorFormat } from "@/types";
 import { getShortcutsIfNotSame } from "@/utils";
 import { getColorFormat, getColorFormatWithOpacity, getVarName } from "@/utils/colors-utils";
 import { FlexiBtnShade, BtnGhostOrSoft, SolidBtnShade } from "../type";
-import { UiFormOutline } from "@/types/ui-t";
+import { UiBtnOutline } from "@/types/ui-t";
 
 export const genBtnVariantSolid = ({
 	color,
@@ -171,49 +171,45 @@ export const genBtnVariantOutline = ({
 }: {
 	color: string;
 	appearance: Appearance;
-	outlineShades: UiFormOutline;
+	outlineShades: UiBtnOutline;
 	colorFormat: uiColorFormat;
 	prefix?: string;
 }) => {
-	const { textShade, borderShade, hoverBorderShade, hoverTextShade, dark } = outlineShades;
+	const { textShade, borderShade, bgHover, bg, bgOpacity, borderOpacity, dark, extraClass } = outlineShades;
+
 
 	const variantLight = `${appearance === "light" || appearance === "both"
 		? ` 
-		[--btn-outline-color:${getColorFormat(getVarName(color, borderShade, prefix), colorFormat, prefix)}] 
-		[--btn-outline-border-hover:${getColorFormat(getVarName(color, hoverBorderShade, prefix), colorFormat, prefix)}] 
+		[--btn-outline-bg:${getColorFormatWithOpacity(getVarName(color, bg, prefix), bgOpacity || 100, colorFormat)}]
+		${bgHover ? `[--btn-outline-bg-hover:${getColorFormat(getVarName(color, bgHover, prefix), colorFormat, prefix)}]` : ''}
+		[--btn-outline-color:${getColorFormatWithOpacity(getVarName(color, borderShade, prefix), borderOpacity || 100, colorFormat)}] 
 		[--btn-outline-text-color:${getColorFormat(getVarName(color, textShade, prefix), colorFormat, prefix)}] 
-		[--btn-outline-text-color-hover:${getColorFormat(getVarName(color, hoverTextShade, prefix), colorFormat, prefix)}]`
+		${extraClass?.base ? `${extraClass?.base?.join(' ')}` : ''}
+		`
 		: ""
 		}`;
 
 	const variantDark = dark ? `${appearance === "dark"
-		? `
-		[--btn-outline-color:${getColorFormat(getVarName(color, dark.borderShade, prefix), colorFormat, prefix)}] 
-		[--btn-outline-border-hover:${getColorFormat(getVarName(color, dark.hoverBorderShade, prefix), colorFormat, prefix)}] 
-		[--btn-outline-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat, prefix)}] 
-		[--btn-outline-text-color-hover:${getColorFormat(getVarName(color, dark.hoverTextShade, prefix), colorFormat, prefix)}]`
+		? ` ${extraClass?.dark ? `${extraClass?.dark?.join(' ')}` : ''}
+		[--btn-outline-bg:${getColorFormatWithOpacity(getVarName(color, dark.bg, prefix), dark.bgOpacity || 100, colorFormat)}]
+		${dark.bgHover ? `[--btn-outline-bg-hover:${getColorFormatWithOpacity(getVarName(color, dark.bgHover, prefix), dark.bgHoverOpacity || 100, colorFormat)}]` : ''}
+		[--btn-outline-color:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity || 100, colorFormat)}] 
+		[--btn-outline-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat, prefix)}] `
 		: appearance === "both"
-			? `
+			? ` ${extraClass?.dark ? `${extraClass?.dark?.map(str => `dark-${str}`).join(' ')}` : ''}
             ${getShortcutsIfNotSame({
 				val1: `${borderShade}`,
 				val2: `${dark?.borderShade}`,
-				shortcuts: `dark-[--btn-outline-color:${getColorFormat(getVarName(color, dark?.borderShade, prefix), colorFormat, prefix)}]`,
+				shortcuts: `dark-[--btn-outline-color:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity || 100, colorFormat)}]`,
 			})}
             ${getShortcutsIfNotSame({
 				val1: `${textShade}`,
 				val2: `${dark?.textShade}`,
 				shortcuts: `dark-[--btn-outline-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat, prefix)}] `,
 			})}
-            ${getShortcutsIfNotSame({
-				val1: `${hoverBorderShade}`,
-				val2: `${dark?.hoverBorderShade}`,
-				shortcuts: `dark-[--btn-outline-border-hover:${getColorFormat(getVarName(color, dark.hoverBorderShade, prefix), colorFormat, prefix)}]`,
-			})}
-            ${getShortcutsIfNotSame({
-				val1: `${hoverTextShade}`,
-				val2: `${dark?.hoverTextShade}`,
-				shortcuts: `dark-[--btn-outline-text-color-hover:${getColorFormat(getVarName(color, dark.hoverTextShade, prefix), colorFormat, prefix)}]`,
-			})}`
+			dark-[--btn-outline-bg:${getColorFormatWithOpacity(getVarName(color, dark.bg, prefix), dark.bgOpacity || 100, colorFormat)}]
+			${dark.bgHover ? `dark-[--btn-outline-bg-hover:${getColorFormatWithOpacity(getVarName(color, dark.bgHover, prefix), dark.bgHoverOpacity || 100, colorFormat)}]` : ''}	
+			`
 			: ""
 		}` : '';
 	return `${variantLight} ${variantDark}`;
@@ -235,23 +231,27 @@ export const genBtnVariantSoftOrGost = ({
 	prefix?: string
 }) => {
 
-	const { bgShade, bgOpacity, hoverBgOpacity, hoverBgShade, textShade, pressBgShade, pressOpacity, dark } = ghostOrSoft;
+	const { bgShade, bgOpacity, hoverBgOpacity,textHover, hoverBgShade, textShade, pressBgShade, pressOpacity, dark } = ghostOrSoft;
 	const variantLight = `${appearance === "light" || appearance === "both"
 		? `
 		${variant === "ghost" ? "" :
 			`[--btn-soft-bg-color:${getColorFormatWithOpacity(getVarName(color, bgShade, prefix), bgOpacity as number, colorFormat)}]`}
 		 [--btn-${variant}-bg-color-hover:${getColorFormatWithOpacity(getVarName(color, hoverBgShade, prefix), hoverBgOpacity, colorFormat)}]
 		 [--btn-${variant}-bg-color-press:${getColorFormatWithOpacity(getVarName(color, pressBgShade, prefix), pressOpacity, colorFormat)}]
-		 [--btn-${variant}-text-color:${getColorFormat(getVarName(color, textShade, prefix), colorFormat)}]`
+		 [--btn-${variant}-text-color:${getColorFormat(getVarName(color, textShade, prefix), colorFormat)}]
+		 ${textHover? `[--btn-${variant}-text-color-hover:${getColorFormat(getVarName(color, textHover, prefix), colorFormat)}]` : ''}
+		 `
 		: ""
 		}`;
 
 	const variantDark = dark ? `${appearance === "dark"
 		? `${variant === "ghost" ? "" :
-			` [--btn-${variant}-bg-color:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.bgOpacity as number, colorFormat)}] `}
+			`
+			 [--btn-${variant}-bg-color:${getColorFormatWithOpacity(getVarName(color, dark.bgShade, prefix), dark.bgOpacity as number, colorFormat)}] `}
 		 [--btn-${variant}-bg-color-hover:${getColorFormatWithOpacity(getVarName(color, dark.hoverBgShade, prefix), dark.hoverBgOpacity, colorFormat)}] 
 		 [--btn-${variant}-bg-color-press:${getColorFormatWithOpacity(getVarName(color, dark.pressBgShade, prefix), dark.pressOpacity, colorFormat)}]
 		 [--btn-${variant}-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}]
+		 ${dark.textHover? `[--btn-${variant}-text-color-hover:${getColorFormat(getVarName(color, dark.textHover, prefix), colorFormat)}]` : ''}
 		`
 		: appearance === "both"
 			? `${variant === "ghost" ? "" :
@@ -261,7 +261,9 @@ export const genBtnVariantSoftOrGost = ({
 			}
 		 dark-[--btn-${variant}-bg-color-hover:${getColorFormatWithOpacity(getVarName(color, dark.hoverBgShade, prefix), dark.hoverBgOpacity, colorFormat)}]
 		 dark-[--btn-${variant}-bg-color-press:${getColorFormatWithOpacity(getVarName(color, dark.pressBgShade, prefix), dark.pressOpacity, colorFormat)}]
-		 dark-[--btn-${variant}-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}]` : ""
+		 dark-[--btn-${variant}-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat)}]
+		 ${dark.textHover? `dark-[--btn-${variant}-text-color-hover:${getColorFormat(getVarName(color, dark.textHover, prefix), colorFormat)}]` : ''}
+		 ` : ""
 		}` : '';
 	return `${variantLight} ${variantDark} [--btn-focus-outline-color:var(--btn-${variant}-text-color)]`;
 };

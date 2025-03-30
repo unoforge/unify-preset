@@ -4,7 +4,7 @@ import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, 
 import { btnConfig } from "@/ui/buttons/button-default";
 
 import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantFlexi, genBtnVariantSolid } from "./helpers";
-import { UiFormOutline } from "@/types/ui-t";
+import { UiBtnOutline } from "@/types/ui-t";
 import { isVariantExcluded } from "@/utils";
 
 const getUiBtnShortcuts = ({
@@ -81,14 +81,14 @@ const getUiBtnShortcuts = ({
 		[
 			/^btn-outline-(.*)$/,
 			([, color]) => {
-				let shades: UiFormOutline = { borderSize: 1, borderShade: "500", textShade: "600", hoverBorderShade: "600", hoverTextShade: "700", activeBorderShade: "600" }
+				let shades: UiBtnOutline = { borderSize: 1, borderShade: "500", textShade: "600", hoverBorderShade: "600", hoverTextShade: "700", activeBorderShade: "600" }
 				if (outlineVariants && !isVariantExcluded(exclude, "btn", "outline", color)) {
 					const key = color as SemanticColorNames
 					if (outlineVariants.base && color in outlineVariants.base) {
-						shades = outlineVariants.base[key] as UiFormOutline;
+						shades = outlineVariants.base[key] as UiBtnOutline;
 					} else if (outlineVariants.custom && color in outlineVariants.custom) {
 						shades = outlineVariants.custom[color as keyof BtnOutlineVariants];
-					} else { shades = outlineVariants['global'] as UiFormOutline }
+					} else { shades = outlineVariants['global'] as UiBtnOutline }
 					return `${genBtnVariantOutline({
 						color, appearance, outlineShades: shades, colorFormat, prefix
 					})}`;
