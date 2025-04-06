@@ -1,13 +1,13 @@
 <p align="center">
   <img src="./favicon-dark.png" style="width:100px;" />
-  <h1 align="center">Unify Preset</h1>
+  <h1 align="center">UnoUI Preset</h1>
   <p align="center">UnoCSS Toolkit.</p>
 </p>
 
 
-## UnifyUI-Preset
+## UnoUI (UnifyUI-Preset)
 
-UnifyPreset is a collection of UnoCSS Presets.
+UnoUI Preset is a collection of UnoCSS Presets.
 
 > **Not** : This project is a WIP, you can test it and report bug... Your contribution is much valualed for us, help us to make it better.
 
@@ -34,7 +34,6 @@ This is a preset package that provides variants for Components Libraries based o
 [Know more here](./packages/unify-variant/README.md)
 
 
-
 ### Config
 
 in your uno.config.(ts|js)
@@ -42,7 +41,7 @@ in your uno.config.(ts|js)
 ```js
 
 import {
-  defineConfig, presetAttributify, presetUno, presetMini,
+  defineConfig, presetAttributify, presetWind3,
 } from "unocss";
 
 import { colors } from "@unocss/preset-mini/colors";
@@ -52,25 +51,10 @@ import {presetUI} from "@unifydev/preset-ui"
 
 
 export default defineConfig({
-  theme: {
-    colors: {
-      inherit: colors.inherit,
-      current: colors.current,
-      transparent: colors.transparent,
-      primary: colors.indigo,
-      // add other colors for : success, danger, info, ....
-      black: colors.black,
-      white: colors.white,
-    },
-  },
   presets: [
-    presetUno(),
-    presetAttributify(),
+    presetWind3({dark: "class"}),
+    presetAttributify(), // optional
     presetUI({}),
-    presetMini({
-      dark: "class", //  
-    }),
-    
   ],
 });
 
@@ -84,22 +68,10 @@ export default defineConfig({
       Badges
   </h1>
   <div class="p6 flex flex-wrap gap4 rd-lg bdr-gray">
-      <span class="badge-md badge-solid">
+      <span class="badge-md ui-solid ui-solid-gray rd-sm">
           badge
       </span>
-      <span un-badge="md solig" rd-sm>
-          badge
-      </span>
-      <span class="badge-md badge-solid rd-md">
-          badge
-      </span>
-      <span class="badge-md badge-solid rd-lg">
-          badge
-      </span>
-      <span class="badge-md badge-solid rd-xl">
-          badge
-      </span>
-      <span class="badge-md badge-solid rd-full">
+      <span un-badge="md" ui-solid="~ gray" rd-sm>
           badge
       </span>
   </div>
@@ -108,7 +80,7 @@ export default defineConfig({
 
 ## Contributing
 
-If you're interested in contributing to Unify-UI, please read our [contributing docs](CONTRIBUTING.MD) before submitting a pull request.
+If you're interested in contributing to Uno-UI, please read our [contributing docs](CONTRIBUTING.MD) before submitting a pull request.
 
 ### Join Our Community 🌍
 
@@ -127,4 +99,4 @@ Contribute, collaborate, and become a part of our mission 🚀
 
 If you like this project and want to support us, feel free to get in touch with one of maintainers : 
 
-- [johnkatembue4@gmail.com](mailto:johnkatembue4@gmail.com)
+- [Johnkat MJ](mailto:johnkatembue4@gmail.com)

@@ -48,7 +48,10 @@
     "modern ui",
     "component library",
     "unify ui",
-    "unifyui"
+    "unifyui",
+    "uno ui",
+    "unoui",
+    "unoforge"
   ],
   "repository": {
     "type": "git",

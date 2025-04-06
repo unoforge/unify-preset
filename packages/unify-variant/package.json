@@ -47,7 +47,10 @@
     "unocss variant",
     "custom variants",
     "unifyui",
-    "unify-preset"
+    "unify-preset",
+    "uno ui",
+    "unoui",
+    "unoforge"
   ],
   "repository": {
     "type": "git",

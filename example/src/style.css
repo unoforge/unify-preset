@@ -7,6 +7,7 @@
 @import url(./config-ui.css);
 
 :root {
+  --global-main-radius: 0.5rem;
   --c-white: 0 0% 100%;
   --c-emerald-50: 151 81% 96%;
   --c-emerald-100: 149 80% 90%;

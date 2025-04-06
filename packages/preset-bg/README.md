@@ -4,9 +4,7 @@
   <p align="center">UI Background.</p>
 </p>
 
-
 This presset is a customizable collection of gradient, grid, radial background by [bg.ibelick.com](https://bg.ibelick.com/)
-
 
 ### Credit
 
@@ -14,16 +12,18 @@ This presset is a customizable collection of gradient, grid, radial background b
 
 ## Usage
 
-### Installation 
+### Installation
 
 ```bash
 npm i -D @unifydev/preset-bg
 ```
+
 Note that PresetBG is a dev dependency
 
 ### Config
 
 In you `uno.config.(js|ts)` :
+
 ```js
 ...
 // import the packages
@@ -39,25 +39,28 @@ export default defineConfig({
 
 ```
 
-
 ### Use it
 
 Now you can use :
 
 Grid
+
 ```html
 <div class="relative size-screen">
-  <span aria-hidden="true" class="absolute size-full ui-grid-dotted ui-grid-dotted-bg-size-xl ui-grid-dotted-bg-gray text-blue"></span>
+  <span
+    aria-hidden="true"
+    class="absolute size-full ui-grid-dotted ui-grid-dotted-bg-size-xl ui-grid-dotted-bg-gray text-blue"
+  ></span>
 </div>
 ```
 
-In CSS 
+In CSS
+
 ```css
-:root{
-  --unify-grid-dotted-bg-gray:valueHere;
+:root {
+  --unify-grid-dotted-bg-gray: valueHere;
 }
 ```
-
 
 ## Contributing
 
@@ -66,4 +69,11 @@ If you're interested in contributing to Unify-UI, please read our [contributing 
 ### Join Our Community 🌍
 
 Contribute, collaborate, and become a part of our mission 🚀
+
 - [Discord Community](https://discord.gg/6VN6zTPZAy)
+
+## Support Us
+
+If you like this project and want to support us, feel free to get in touch with one of maintainers :
+
+- [Johnkat MJ](mailto:johnkatembue4@gmail.com)
