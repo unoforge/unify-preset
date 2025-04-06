@@ -1,6 +1,6 @@
 {
   "name": "@unifydev/preset-ui",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "UnoCSS Theming Toolkit, create modern and beautifull Web Ui",
   "publishConfig": {
     "access": "public"
@@ -59,7 +59,10 @@
     "modern ui",
     "component library",
     "unify ui",
-    "unifyui"
+    "unifyui",
+    "uno ui",
+    "unoui",
+    "unoforge"
   ],
   "repository": {
     "type": "git",

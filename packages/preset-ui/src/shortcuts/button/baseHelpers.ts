@@ -47,6 +47,7 @@ export const genBtnSoftBase = ({ isGhost }: { isGhost: boolean }) => {
     focus-bg-[--btn-${key}-bg-color-press]
     text-[--btn-${key}-text-color] 
     hover-text-[var(--btn-${key}-text-color-hover,--btn-${key}-text-color)]
+    focus-text-[var(--btn-${key}-text-color-hover,--btn-${key}-text-color)]
     [--btn-focus-outline-color:--btn-${key}-text-color]`
 }
 

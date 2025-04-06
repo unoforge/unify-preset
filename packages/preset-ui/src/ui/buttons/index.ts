@@ -7,6 +7,7 @@ import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVari
 import { UiBtnOutline } from "@/types/ui-t";
 import { isVariantExcluded } from "@/utils";
 
+
 const getUiBtnShortcuts = ({
 	button,
 	colorFormat,
@@ -81,7 +82,7 @@ const getUiBtnShortcuts = ({
 		[
 			/^btn-outline-(.*)$/,
 			([, color]) => {
-				let shades: UiBtnOutline = { borderSize: 1, borderShade: "500", textShade: "600", hoverBorderShade: "600", hoverTextShade: "700", activeBorderShade: "600" }
+				let shades: UiBtnOutline = { borderShade: "200", borderOpacity: 100, textShade: "800", bg: "50" }
 				if (outlineVariants && !isVariantExcluded(exclude, "btn", "outline", color)) {
 					const key = color as SemanticColorNames
 					if (outlineVariants.base && color in outlineVariants.base) {

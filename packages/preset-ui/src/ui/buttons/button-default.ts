@@ -11,35 +11,23 @@ import type {
 	BtnSolidVariants
 } from "@/ui/type";
 
+
 const ghostConfig: BtnGhostOrSoft = {
 	hoverBgShade: "100",
 	hoverBgOpacity: 50,
 	pressBgShade: "100",
 	pressOpacity: 70,
 	textShade: "600",
+	textHover: "700",
 	dark: {
 		hoverBgShade: "600",
 		hoverBgOpacity: 30,
 		pressOpacity: 25,
 		pressBgShade: "600",
 		textShade: "300",
+		textHover: "200"
 	},
 };
-const ghostGrayCongif: BtnGhostOrSoft = {
-	hoverBgShade: "200",
-	hoverBgOpacity: 40,
-	pressBgShade: "200",
-	pressOpacity: 75,
-	textShade: "800",
-	dark: {
-		hoverBgShade: "800",
-		hoverBgOpacity: 40,
-		pressBgShade: "900",
-		pressOpacity: 20,
-		textShade: "100",
-	},
-};
-
 const softConfig: BtnGhostOrSoft = {
 	bgShade: "50",
 	hoverBgShade: "400",
@@ -47,6 +35,7 @@ const softConfig: BtnGhostOrSoft = {
 	pressOpacity: 40,
 	pressBgShade: "400",
 	textShade: "600",
+	textHover:"700",
 	dark: {
 		bgShade: "600",
 		bgOpacity: 15,
@@ -55,6 +44,7 @@ const softConfig: BtnGhostOrSoft = {
 		pressOpacity: 25,
 		pressBgShade: "600",
 		textShade: "300",
+		textHover:"200"
 	},
 };
 const softGrayConfig: BtnGhostOrSoft = {
@@ -64,6 +54,7 @@ const softGrayConfig: BtnGhostOrSoft = {
 	pressBgShade: "200",
 	pressOpacity: 80,
 	textShade: "800",
+	textHover:"900",
 	dark: {
 		bgShade: "600",
 		bgOpacity: 20,
@@ -72,6 +63,23 @@ const softGrayConfig: BtnGhostOrSoft = {
 		pressBgShade: "600",
 		pressOpacity: 25,
 		textShade: "100",
+		textHover:"50",
+	},
+};
+const ghostGrayCongif: BtnGhostOrSoft = {
+	hoverBgShade: "200",
+	hoverBgOpacity: 40,
+	pressBgShade: "200",
+	pressOpacity: 75,
+	textShade: "800",
+	textHover:"900",
+	dark: {
+		hoverBgShade: "800",
+		hoverBgOpacity: 40,
+		pressBgShade: "900",
+		pressOpacity: 20,
+		textShade: "100",
+		textHover:"50"
 	},
 };
 
@@ -263,17 +271,19 @@ const neutralSoftConfig: BtnGhostOrSoft = {
 };
 
 const ghostNeutralConfig: BtnGhostOrSoft = {
-	hoverBgShade: "400",
-	hoverBgOpacity: 70,
-	pressBgShade: "300",
-	pressOpacity: 40,
+	hoverBgShade: "950",
+	hoverBgOpacity: 100,
+	pressBgShade: "900",
+	pressOpacity: 100,
 	textShade: "900",
+	textHover: "white",
 	dark: {
-		hoverBgShade: "600",
-		hoverBgOpacity: 70,
-		pressBgShade: "700",
-		pressOpacity: 40,
-		textShade: "100"
+		hoverBgShade: "white",
+		hoverBgOpacity: 100,
+		pressBgShade: "200",
+		pressOpacity: 100,
+		textShade: "100",
+		textHover: "950"
 	}
 };
 
