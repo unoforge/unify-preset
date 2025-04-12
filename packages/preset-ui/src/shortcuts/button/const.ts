@@ -7,13 +7,6 @@ import type {
 
 
 
-
-// xs: "text-sm h-7 px-3",
-//             sm: "text-sm h-8 px-3.5",
-//             md: "text-base h-9 px-4",
-//             lg: "text-base h-10 px-5",
-//             xl: "text-lg h-12 px-6",
-
 const btnSizes: BtnSizes = {
 	xs: {
 		height: 7,
@@ -69,7 +62,6 @@ const ringBase: RingBase = {
 	size: 2,
 	offset: 2,
 };
-
 
 
 export const btnCongig: Button = {

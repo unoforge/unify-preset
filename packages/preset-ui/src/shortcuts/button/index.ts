@@ -2,7 +2,7 @@ import type { BtnIconBase, BtnSizeBase, Button } from "./types";
 import { getConfigValue } from "@/utils";
 import { btnCongig } from "./const";
 
-import type { SharedFormConfig } from "@/types";
+import type { Appearance, SharedFormConfig } from "@/types";
 import { genBtnOutlineBase, genBtnSoftBase, genBtnVariantFlexiBase, genBtnVariantSolidBase } from "./baseHelpers";
 
 
@@ -20,8 +20,8 @@ const getBtnIconSizeInfo = (sizeVariant: BtnIconBase) => {
 const getBtnShortcuts = ({
 	button,
 	formConfig,
-
-}: { button?: Button; formConfig?: SharedFormConfig, }) => {
+	appearance
+}: { button?: Button; formConfig?: SharedFormConfig, appearance:Appearance }) => {
 	const btn = Object.assign({}, btnCongig, button)
 
 	const btnSizes = btn.sizes;
@@ -49,7 +49,7 @@ const getBtnShortcuts = ({
 		"btn-solid": `${genBtnVariantSolidBase()} ${btnOutlineOnFocus()}`,
 		"btn-flexi": `${genBtnVariantFlexiBase()} ${btnOutlineOnFocus()}`,
 		"btn-white": `${genBtnVariantFlexiBase()} ${btnOutlineOnFocus()}`,
-		"btn-outline": `${genBtnOutlineBase()} ${btnOutlineOnFocus()}`,
+		"btn-outline": `${genBtnOutlineBase(appearance)} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
 		"btn-ghost": `${genBtnSoftBase({ isGhost: true })} ${btnOutlineOnFocus()}`,
 	};

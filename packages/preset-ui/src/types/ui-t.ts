@@ -42,9 +42,5 @@ export type formOutlineBase = {
 
 export type UiBtnOutline = formOutlineBase & {
     borderSize?: number | string;
-    extraClass?: {
-        base?: string[],
-        dark?: string[]
-    },
     dark?: formOutlineBase;
 };

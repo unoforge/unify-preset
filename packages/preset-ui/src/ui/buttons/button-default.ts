@@ -35,7 +35,7 @@ const softConfig: BtnGhostOrSoft = {
 	pressOpacity: 40,
 	pressBgShade: "400",
 	textShade: "600",
-	textHover:"700",
+	textHover: "700",
 	dark: {
 		bgShade: "600",
 		bgOpacity: 15,
@@ -44,7 +44,7 @@ const softConfig: BtnGhostOrSoft = {
 		pressOpacity: 25,
 		pressBgShade: "600",
 		textShade: "300",
-		textHover:"200"
+		textHover: "200"
 	},
 };
 const softGrayConfig: BtnGhostOrSoft = {
@@ -54,7 +54,7 @@ const softGrayConfig: BtnGhostOrSoft = {
 	pressBgShade: "200",
 	pressOpacity: 80,
 	textShade: "800",
-	textHover:"900",
+	textHover: "900",
 	dark: {
 		bgShade: "600",
 		bgOpacity: 20,
@@ -63,7 +63,7 @@ const softGrayConfig: BtnGhostOrSoft = {
 		pressBgShade: "600",
 		pressOpacity: 25,
 		textShade: "100",
-		textHover:"50",
+		textHover: "50",
 	},
 };
 const ghostGrayCongif: BtnGhostOrSoft = {
@@ -72,14 +72,14 @@ const ghostGrayCongif: BtnGhostOrSoft = {
 	pressBgShade: "200",
 	pressOpacity: 75,
 	textShade: "800",
-	textHover:"900",
+	textHover: "900",
 	dark: {
 		hoverBgShade: "800",
 		hoverBgOpacity: 40,
 		pressBgShade: "900",
 		pressOpacity: 20,
 		textShade: "100",
-		textHover:"50"
+		textHover: "50"
 	},
 };
 
@@ -90,6 +90,7 @@ const btnOutline: UiBtnOutline = {
 	borderOpacity: 100,
 	textShade: "800",
 	bg: "50",
+	bgHover: "100",
 	dark: {
 		borderShade: "500",
 		borderOpacity: 30,
@@ -98,10 +99,6 @@ const btnOutline: UiBtnOutline = {
 		bgOpacity: 5,
 		bgHover: "500",
 		bgHoverOpacity: 10,
-	},
-	extraClass: {
-		base: ["[--outline-radial-opacity:0.6]", "[--inner-border-color:1]"],
-		dark: ["[background-image:none]", "[--inner-border-color:0]", "[--outline-radial-opacity:0.2]", "[--inner-border-color:0]"]
 	}
 };
 
@@ -351,6 +348,8 @@ const btnNeutralOutline: UiBtnOutline = {
 	borderShade: "300",
 	textShade: "800",
 	bg: "100",
+	bgHover: "200",
+	bgHoverOpacity: 60,
 	dark: {
 		borderShade: "white",
 		textShade: "white",
@@ -358,10 +357,6 @@ const btnNeutralOutline: UiBtnOutline = {
 		bgOpacity: 5,
 		bgHover: "500",
 		bgHoverOpacity: 10,
-	},
-	extraClass: {
-		base: ["[--outline-radial-opacity:0.6]", "[--inner-border-color:1]"],
-		dark: ["[background-image:none]", "[--inner-border-color:0]", "[--outline-radial-opacity:0.2]", "[--inner-border-color:0]"]
 	}
 };
 
