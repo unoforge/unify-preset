@@ -175,7 +175,7 @@ export const genBtnVariantOutline = ({
 	colorFormat: uiColorFormat;
 	prefix?: string;
 }) => {
-	const { textShade, borderShade, bgHover, bg, bgOpacity, borderOpacity, dark, extraClass } = outlineShades;
+	const { textShade, borderShade, bgHover, bg, bgOpacity, borderOpacity, dark } = outlineShades;
 
 
 	const variantLight = `${appearance === "light" || appearance === "both"
@@ -183,20 +183,18 @@ export const genBtnVariantOutline = ({
 		[--btn-outline-bg:${getColorFormatWithOpacity(getVarName(color, bg, prefix), bgOpacity || 100, colorFormat)}]
 		${bgHover ? `[--btn-outline-bg-hover:${getColorFormat(getVarName(color, bgHover, prefix), colorFormat, prefix)}]` : ''}
 		[--btn-outline-color:${getColorFormatWithOpacity(getVarName(color, borderShade, prefix), borderOpacity || 100, colorFormat)}] 
-		[--btn-outline-text-color:${getColorFormat(getVarName(color, textShade, prefix), colorFormat, prefix)}] 
-		${extraClass?.base ? `${extraClass?.base?.join(' ')}` : ''}
-		`
+		[--btn-outline-text-color:${getColorFormat(getVarName(color, textShade, prefix), colorFormat, prefix)}]`
 		: ""
 		}`;
 
 	const variantDark = dark ? `${appearance === "dark"
-		? ` ${extraClass?.dark ? `${extraClass?.dark?.join(' ')}` : ''}
+		? ` ]
 		[--btn-outline-bg:${getColorFormatWithOpacity(getVarName(color, dark.bg, prefix), dark.bgOpacity || 100, colorFormat)}]
 		${dark.bgHover ? `[--btn-outline-bg-hover:${getColorFormatWithOpacity(getVarName(color, dark.bgHover, prefix), dark.bgHoverOpacity || 100, colorFormat)}]` : ''}
 		[--btn-outline-color:${getColorFormatWithOpacity(getVarName(color, dark.borderShade, prefix), dark.borderOpacity || 100, colorFormat)}] 
 		[--btn-outline-text-color:${getColorFormat(getVarName(color, dark.textShade, prefix), colorFormat, prefix)}] `
 		: appearance === "both"
-			? ` ${extraClass?.dark ? `${extraClass?.dark?.map(str => `dark-${str}`).join(' ')}` : ''}
+			? `
             ${getShortcutsIfNotSame({
 				val1: `${borderShade}`,
 				val2: `${dark?.borderShade}`,
@@ -265,7 +263,7 @@ export const genBtnVariantSoftOrGost = ({
 		 ${dark.textHover? `dark-[--btn-${variant}-text-color-hover:${getColorFormat(getVarName(color, dark.textHover, prefix), colorFormat)}]` : ''}
 		 ` : ""
 		}` : '';
-	return `${variantLight} ${variantDark} [--btn-focus-outline-color:var(--btn-${variant}-text-color)]`;
+	return `${variantLight} ${variantDark}`;
 };
 
 export const genBtnVariantSoft = ({

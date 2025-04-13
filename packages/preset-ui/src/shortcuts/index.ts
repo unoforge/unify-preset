@@ -2,7 +2,7 @@ import type { Preset, StaticShortcutMap } from "unocss";
 import type { Components } from "./types";
 import { getBtnShortcuts } from "./button";
 import { getBadgeShortcuts } from "./badge";
-import type {  SharedFormConfig, uiColorFormat, } from "../types";
+import type {  Appearance, SharedFormConfig, uiColorFormat, } from "../types";
 import { getAspectRatioShortcuts } from "./aspect-ratio";
 import { getAvatarShortcuts } from "./avatar";
 import { getGeneralShortcuts } from "./utilities";
@@ -23,18 +23,21 @@ export const getAllShortcut = ({
 	components,
 	form,
 	baseVariants,
-	colorFormat
+	colorFormat,
+	appearance
 }: {
 	components?: Components;
 	baseVariants?: BaseVariants,
 	form?: SharedFormConfig;
 	colorFormat: uiColorFormat;
+	appearance:Appearance
 }) => {
 	const generalShortcuts = getGeneralShortcuts();
 
 	const button = getBtnShortcuts({
 		button: components?.button,
 		formConfig: form,
+		appearance
 	});
 	const badge = getBadgeShortcuts(components?.badge);
 

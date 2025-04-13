@@ -51,6 +51,7 @@ function presetUI(config?: presetUiConfig): Preset {
 		colorFormat,
 		components: config?.components,
 		baseVariants: config?.baseVariants,
+		appearance: config?.appearance || "both"
 	});
 
 	const rules = getAllRules(colorFormat);
