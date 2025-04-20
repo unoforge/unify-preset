@@ -34,9 +34,12 @@ export type SizeBaseVaraint<T extends object> = {
 
 export type ElSizeBase = { py: number | string; px: number | string; textSize: TextSize }
 export type CardSizeBase = { padding: number | string; textSize: TextSize }
+export type InputSizeBase = { px: number | string; textSize: TextSize, height:number|string}
+
 
 export type ElSizeVariants = SizeBaseVaraint<ElSizeBase>
 export type CardSizeVariant = SizeBaseVaraint<CardSizeBase>
+export type InputSizeVariant = SizeBaseVaraint<InputSizeBase>
 
 export type RingBase = {
 	offset: number;

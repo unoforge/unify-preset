@@ -1,4 +1,4 @@
-import { CardSizeBase, ElSizeBase, SizeVariantBase } from "@/types";
+import { CardSizeBase, ElSizeBase, InputSizeBase, SizeVariantBase } from "@/types";
 import { getConfigValue } from "@/utils";
 
 
@@ -18,7 +18,11 @@ const convertSize = (size: number | string) => typeof size === 'number' ? `${siz
 
 export const genUiSizes = (size: ElSizeBase, val: SizeVariantBase) => `[padding:var(--ui-s-py-${val},${convertSize(size.py)})_var(--ui-s-px-${val},${convertSize(size.px)})] [font-size:var(--ui-s-text-${val},_${textSizes[size.textSize]})]`
 
-export const genInputSizes = (size: ElSizeBase, val: SizeVariantBase) => `[padding:var(--ui-input-padding-${val},${convertSize(size.py)}_${convertSize(size.px)})] [font-size:var(--ui-input-text-${val},_${textSizes[size.textSize]})]`
+export const genInputSizes = (size: InputSizeBase, val: SizeVariantBase) => `
+        [padding-left:var(--ui-input-px-${val},${convertSize(size.px)})]
+        [padding-right:var(--ui-input-px-${val},${convertSize(size.px)})]
+        [height:var(--ui-input-height-${val},${convertSize(size.height)})]
+        [font-size:var(--ui-input-text-${val},_${textSizes[size.textSize]})]`
 
 
 export const getUiCardSize = (sizeVariant: CardSizeBase) => `p-${getConfigValue(sizeVariant.padding)} text-${sizeVariant.textSize}`;

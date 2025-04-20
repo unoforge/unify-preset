@@ -1,4 +1,4 @@
-import type { ElSizeBase, uiColorFormat } from "@/types";
+import type { InputSizeBase, uiColorFormat } from "@/types";
 import { InputSizes } from "./const";
 import type { Input } from "./types";
 import { genInputSizes } from "../helpers";
@@ -22,12 +22,12 @@ const getFormInputShortcuts = ({
 
 	const inputs = {
 		'ui-form-input': `${borderFocus} disabled:hover:cursor-not-allowed disabled:opacity-80`,
-		"ui-form-input-2xs": `${genInputSizes(_2xs as ElSizeBase, "2xs")}`,
-		"ui-form-input-xs": `${genInputSizes(xs as ElSizeBase, "xs")}`,
-		"ui-form-input-sm": `${genInputSizes(sm as ElSizeBase, "sm")}`,
-		"ui-form-input-md": `${genInputSizes(md as ElSizeBase, "md")}`,
-		"ui-form-input-lg": `${genInputSizes(lg as ElSizeBase, "lg")}`,
-		"ui-form-input-xl": `${genInputSizes(xl as ElSizeBase, "xl")}`,
+		"ui-form-input-2xs": `${genInputSizes(_2xs as InputSizeBase, "2xs")}`,
+		"ui-form-input-xs": `${genInputSizes(xs as InputSizeBase, "xs")}`,
+		"ui-form-input-sm": `${genInputSizes(sm as InputSizeBase, "sm")}`,
+		"ui-form-input-md": `${genInputSizes(md as InputSizeBase, "md")}`,
+		"ui-form-input-lg": `${genInputSizes(lg as InputSizeBase, "lg")}`,
+		"ui-form-input-xl": `${genInputSizes(xl as InputSizeBase, "xl")}`,
 		'ui-form-base': `appearance-none wfull placeholder-[color:${getColorFormat('--ui-input-place-holder', colorFormat)}] invalid:[outline-color:${getColorFormat('--ui-input-invalid-outline', colorFormat)}] 
 						[line-height:1.5rem] 
 						`,
@@ -43,7 +43,8 @@ const getFormInputShortcuts = ({
 						focus-outline-offset-2 
 						focus-[outline-color:var(--check-radio-offset-color,currentColor)] 
 						focus-ring-0 focus-ring-transparent
-						cheked-focus-[background-color:currentColor]
+						checked-focus-[background-color:currentColor]
+						
 						checked-hover-[border-color:transparent]
 						[border-color:transparent]
           				[background-color:currentColor]
