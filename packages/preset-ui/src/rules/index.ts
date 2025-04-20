@@ -28,6 +28,16 @@ export const getAllRules = (colorFormat: uiColorFormat) => {
 			.replace(/>/g, '%3E')}`
 
 	const rules = [
+		[/^cp-(\d+)$/, match => ({ '--card-padding': `${Number(match[1]) / 4}rem` })],
+		// Handle numeric values (converted to rem)
+		[/^c-rd-(\d+)$/, match => ({ '--card-radius': `${Number(match[1]) / 4}rem` })],
+		// Handle pixel values
+		[/^c-rd-(\d+)px$/, match => ({ '--card-radius': `${match[1]}px` })],
+		[/^c-rd-(\d+)rem$/, match => ({ '--card-radius': `${match[1]}rem` })],
+		// Handle named sizes matching UnoCSS rounded utilities
+		[/^c-rd-(none|sm|md|lg|xl|full)$/, ([, d]) => ({ '--card-radius': getRadius(d) }),
+			{ autocomplete: 'c-rd-(none|sm|md|lg|xl|full)' }
+		],
 		[
 			"u-fx-popper",
 			{
@@ -175,7 +185,8 @@ export const getAllRules = (colorFormat: uiColorFormat) => {
 						}
 					}`;
 			},
-		]
+		],
+
 
 	] as Rule<Theme>[];
 

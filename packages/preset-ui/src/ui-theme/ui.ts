@@ -43,9 +43,6 @@ export const getUiTheme = (colorMode: uiColorFormat, colorPrefix?: string) => {
             dark: getBrice(colorMode, "gray-950", colorPrefix),
             white: getBrice(colorMode, "white", colorPrefix),
             ...colors
-        },
-        borderRadius:{
-            inner:""
         }
     };
     return theme

@@ -1,13 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/js/load.theme.js"></script>
+</head>
+
+<body class="pt14 bg-bg">
+  <div class="fixed bottom-0 wscreen inset-x-0">
+    <div class="max-w6xl pr8 pb8  mxauto flex justify-end">
+      <button data-switch-theme aria-label="toggle app theme"
+        class="p3 bg-bg-surface b b-neutral3 dark-b-neutral7 text-fg-text rd-full focus-scale-90 active-scale-95 duration-200 ease-linear">
+        <span class="hidden dark-flex i-carbon-light text-md"></span>
+        <span class="flex dark-hidden i-carbon-moon text-md"></span>
+      </button>
+    </div>
+  </div>
+  <section class="max-w3xl mxauto space-y-16 relative z20 pb20 ">
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid (Rectangle)
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid ui-grid-w-md [--unify-ui-grid-height:24px]
+          text-fg/20 ">
+        </div>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid (Square)
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid [--unify-ui-grid-width:24px] [--unify-ui-grid-height:24px]
+          text-fg/20 ">
+        </div>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid (Square)
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid [--unify-ui-grid-width:6rem] [--unify-ui-grid-height:6rem]
+          text-fg/20 ">
+        </div>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid stripped (Rectangle)
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid ui-grid-w-md [--unify-ui-grid-height:24px]
+          ui-striped-overlay-mask text-fg/20 ">
+        </div>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid stripped (Square)
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid [--unify-ui-grid-width:24px] [--unify-ui-grid-height:24px]
+          ui-striped-overlay-mask text-fg/20 ">
+        </div>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid stripped reverse
+      </h1>
+      <div class="h96 b b-border relative">
+        <div class="absolute bottom-0 left-0 right-0 top-0 
+          ui-grid ui-grid-w-md [--unify-ui-grid-height:24px]
+          ui-striped-overlay-mask-reverse text-fg/20 ">
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Radial BG
+      </h1>
+      <div class="h96 b b-border relative overflow-hidden">
+        <div style="--unify-radial-bg:hsl(var(--bg));" class="text-primary-600 absolute inset-0 
+        h-full w-full items-center px-5 py-24
+           ui-radial-gradient">
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Radial BG
+      </h1>
+      <div class="h96 b b-border relative overflow-hidden">
+        <div style="--unify-radial-bg:hsl(var(--bg));"
+          class="absolute inset-0 h-full w-full text-blue5
+          ui-radial-gradient">
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid dotted
+      </h1>
+      <div class="h96 b b-border bg-bg relative overflow-hidden">
+        <div class="absolute inset-0 text-red
+        ui-grid-dotted ui-grid-square-xl"></div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h1 class="text-xl font-semibold text-fg-title">
+        Grid dotted stripped oval
+      </h1>
+      <div class="h96 b b-border bg-bg relative overflow-hidden">
+        <div class="absolute h-full w-full 
+            ui-grid-dotted ui-grid-square-lg ui-striped-mask-oval">
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
