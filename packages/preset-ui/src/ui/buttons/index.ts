@@ -1,9 +1,9 @@
 import type { SemanticColorNames, uiColorFormat } from "@/types";
 import type { Shortcut } from "unocss";
-import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, FlexiBtnShade, SolidBtnShade, ThingsToExclude, UiButton } from "../type";
+import { BtnGhostOrSoft, BtnGhostVariants, BtnOutlineVariants, BtnSoftVariants, CnBtn, FlexiBtnShade, SolidBtnShade, ThingsToExclude, UiButton } from "../type";
 import { btnConfig } from "@/ui/buttons/button-default";
 
-import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantFlexi, genBtnVariantSolid } from "./helpers";
+import { genBtnVariantGhost, genBtnVariantOutline, genBtnVariantSoft, genBtnVariantFlexi, genBtnVariantSolid, genBtnVariantCn } from "./helpers";
 import { UiBtnOutline } from "@/types/ui-t";
 import { isVariantExcluded } from "@/utils";
 
@@ -21,6 +21,7 @@ const getUiBtnShortcuts = ({
 	const softVariants = btn.softVariants
 	const ghostVariants = btn.ghostVariants
 	const outlineVariants = btn.outlineVariants
+	const cnVariants = btn.cnVariants
 
 	const btnWhite = flexiVariants?.base?.white!
 
@@ -141,6 +142,37 @@ const getUiBtnShortcuts = ({
 				}
 			},
 			{ autocomplete: ["btn-ghost-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)",], },
+		],
+		[
+			/^btn-cn-(.*)$/,
+			([, color]) => {
+				let shades: CnBtn = {
+					bgColor: "600",
+					textColor: "50",
+					hoverBgColor: "700",
+					hoverBgOpacity: 80
+				};
+
+				if (cnVariants && !isVariantExcluded(exclude, "btn", "cn", color)) {
+					const key = color as SemanticColorNames
+					if (cnVariants.base && color in cnVariants.base) {
+						shades = cnVariants.base[key] as CnBtn;
+					} else if (cnVariants.custom && color in cnVariants.custom) {
+						shades = cnVariants.custom[key];
+					} else {
+						shades = cnVariants['global'] as CnBtn
+					}
+
+					return `${genBtnVariantCn({
+						color,
+						appearance,
+						colorFormat,
+						prefix,
+						cn: shades
+					})}`;
+				}
+			},
+			{ autocomplete: ["btn-cn-(primary|secondary|accent|success|warning|info|danger|gray|neutral|white)"] }
 		],
 	];
 

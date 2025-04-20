@@ -1,7 +1,7 @@
 import type { Appearance, uiColorFormat } from "@/types";
 import { getShortcutsIfNotSame } from "@/utils";
 import { getColorFormat, getColorFormatWithOpacity, getVarName } from "@/utils/colors-utils";
-import { FlexiBtnShade, BtnGhostOrSoft, SolidBtnShade } from "../type";
+import { FlexiBtnShade, BtnGhostOrSoft, SolidBtnShade, CnBtn } from "../type";
 import { UiBtnOutline } from "@/types/ui-t";
 
 export const genBtnVariantSolid = ({
@@ -299,3 +299,46 @@ export const genBtnVariantGhost = ({
 		prefix
 	})}`;
 };
+
+
+
+export const genBtnVariantCn = ({
+	color,
+	appearance,
+	colorFormat,
+	prefix = 'c',
+	cn
+  }: {
+	color: string;
+	appearance: Appearance;
+	colorFormat: uiColorFormat;
+	prefix?: string;
+	cn: CnBtn;
+  }) => {
+	const {
+	 bgColor,
+	  textColor , 
+	  hoverBgColor,
+	  hoverBgOpacity,
+	  dark
+	} = cn;
+	
+	const variantLight = `${appearance === "light" || appearance === "both"
+	  ? `[--btn-cn-bg-color:${getColorFormat(getVarName(color, bgColor, prefix), colorFormat)}]
+		 [--btn-cn-text-color:${getColorFormat(getVarName(color, textColor, prefix), colorFormat)}]
+		 [--btn-cn-bg-hover-color:${getColorFormatWithOpacity(getVarName(color, hoverBgColor, prefix), hoverBgOpacity || 100, colorFormat)}]`
+	  : ""}`;
+  
+	const variantDark = dark ? `${appearance === "dark"
+	  ? `[--btn-cn-bg-color:${getColorFormat(getVarName(color, dark.bgColor, prefix), colorFormat)}]
+		 [--btn-cn-text-color:${getColorFormat(getVarName(color, dark.textColor, prefix), colorFormat)}]
+		 [--btn-cn-bg-hover-color:${getColorFormatWithOpacity(getVarName(color, dark.hoverBgColor || "800", prefix), dark.hoverBgOpacity || 100, colorFormat)}]`
+	  : appearance === "both"
+		? `dark:[--btn-cn-bg-color:${getColorFormat(getVarName(color, dark.bgColor, prefix), colorFormat)}]
+		   dark:[--btn-cn-text-color:${getColorFormat(getVarName(color, dark.textColor || "50", prefix), colorFormat)}]
+		   dark:[--btn-cn-bg-hover-color:${getColorFormatWithOpacity(getVarName(color, dark.hoverBgColor || "800", prefix), dark.hoverBgOpacity || 100, colorFormat)}]`
+		: ""
+	}` : '';
+  
+	return `${variantLight} ${variantDark}`;
+  };

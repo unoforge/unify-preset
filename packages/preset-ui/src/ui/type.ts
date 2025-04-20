@@ -11,6 +11,7 @@ export type ThingsToExclude = {
 		soft?: ExcludedVariants,
 		ghost?: ExcludedVariants,
 		outlined?: ExcludedVariants,
+		cn?: ExcludedVariants,
 	} | "all" | "none",
 	ui?: {
 		solid?: ExcludedVariants,
@@ -113,19 +114,32 @@ export type FlexiBtnShade = FlexiBtnShadeBase & {
 	dark?: FlexiBtnShadeBase;
 };
 
+export type CnBtnBase = {
+	bgColor: ColorShade,
+	textColor: string;
+	hoverBgColor: string;
+	hoverBgOpacity?:number,
+}
+export type CnBtn = CnBtnBase & {
+	dark?: CnBtnBase;
+}
+
+
+
 export type BtnSolidVariants = BaseVariant<SolidBtnShade>;
 export type BtnFlexiVariants = BaseVariant<FlexiBtnShade>;
 export type BtnSoftVariants = BaseVariant<BtnGhostOrSoft>;
 export type BtnGhostVariants = BaseVariant<BtnGhostOrSoft>;
 export type BtnOutlineVariants = BaseVariant<UiBtnOutline>
-
+export type BtnCnVariants = BaseVariant<CnBtn>
 
 export type UiButton = {
 	solidVariants?: BtnSolidVariants
 	flexiVariants?: BtnFlexiVariants,
 	outlineVariants?: BtnOutlineVariants,
 	softVariants?: BtnSoftVariants,
-	ghostVariants?: BtnGhostVariants
+	ghostVariants?: BtnGhostVariants,
+	cnVariants?: BtnCnVariants,
 };
 
 export type UiCommon = {

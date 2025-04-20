@@ -8,7 +8,9 @@ import type {
 	BtnOutlineVariants,
 	UiButton,
 	SolidBtnShade,
-	BtnSolidVariants
+	BtnSolidVariants,
+	BtnCnVariants,
+	CnBtn,
 } from "@/ui/type";
 
 
@@ -284,6 +286,26 @@ const ghostNeutralConfig: BtnGhostOrSoft = {
 	}
 };
 
+const btnCnDefault: CnBtn = {
+	bgColor: "600",
+	textColor: "white",
+	hoverBgColor: "600",
+	hoverBgOpacity: 90
+}
+
+const btnCnNeutral: CnBtn = {
+	bgColor: "900",
+	textColor: "white",
+	hoverBgColor: "900",
+	hoverBgOpacity: 90,
+	dark: {
+		bgColor: "white",
+		textColor: "900",
+		hoverBgColor: "100",
+		hoverBgOpacity: 90
+	}
+}
+
 const solidVariants: BtnSolidVariants = {
 	base: {
 		primary: solidShade,
@@ -375,10 +397,28 @@ const outlineVariants: BtnOutlineVariants = {
 	global: btnOutline
 }
 
+const btnCnVariant: BtnCnVariants = {
+	base: {
+		primary: btnCnDefault,
+		secondary: btnCnDefault,
+		accent: btnCnDefault,
+		info: btnCnDefault,
+		warning: btnCnDefault,
+		danger: btnCnDefault,
+		success: btnCnDefault,
+		gray: btnCnDefault,
+		neutral: btnCnNeutral
+	},
+	global: btnCnDefault
+}
+
+
+
 export const btnConfig: UiButton = {
 	solidVariants,
 	flexiVariants,
 	softVariants,
 	ghostVariants,
 	outlineVariants,
+	cnVariants: btnCnVariant,
 };
