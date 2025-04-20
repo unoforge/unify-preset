@@ -1,7 +1,6 @@
 import {
     defineConfig,
     presetIcons,
-    presetMini,
     presetWind3,
 } from "unocss";
 
@@ -11,20 +10,17 @@ import { presetUI } from "@unifydev/preset-ui"
 
 export default defineConfig({
     presets: [
-        presetWind3(),
-        presetMini({
-            dark: "class",
-        }),
+        presetWind3({dark: "class",}),
         presetIcons({
             collections: {
                 //@ts-ignore
                 ph: () =>
                     import("@iconify-json/ph/icons.json").then((i) => i.default),
-                carbon:()=>import("@iconify-json/carbon/icons.json")
+                carbon: () => import("@iconify-json/carbon/icons.json")
             },
         }),
-        // presetForms(),
         presetUI({}) as any,
+        // presetBg() as any,
         flexillaPreset(),
     ],
 })

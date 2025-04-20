@@ -52,6 +52,7 @@ const getBtnShortcuts = ({
 		"btn-outline": `${genBtnOutlineBase(appearance)} ${btnOutlineOnFocus()}`,
 		"btn-soft": `${genBtnSoftBase({ isGhost: false })} ${btnOutlineOnFocus()}`,
 		"btn-ghost": `${genBtnSoftBase({ isGhost: true })} ${btnOutlineOnFocus()}`,
+		"btn-cn":'bg-[var(--btn-cn-bg-color)] text-[var(--btn-cn-text-color)] shadow-xs hover:bg-[var(--btn-cn-bg-hover-color)] [--btn-focus-outline-color:--btn-cn-bg-hover-color]'
 	};
 
 

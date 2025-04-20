@@ -15,23 +15,23 @@
   --c-white: value;
   /* bg colors  */
   --bg: var(--c-white);
-  --bg-lighter: var(--c-gray-50);
-  --bg-light: var(--c-gray-100);
-  --bg-high: var(--c-gray-200);
-  --bg-higher: var(--c-gray-300);
+  --bg-subtle: var(--c-gray-50);
+  --bg-surface: var(--c-gray-100);
+  --bg-muted: var(--c-gray-200);
+  --bg-surface-elevated: var(--c-gray-300);
 
   /* text foreground */
   --fg: var(--c-gray-700);
-  --fg-subtext: var(--c-gray-600);
+  --fg-muted: var(--c-gray-600);
   --fg-title: var(--c-gray-900);
   --fg-subtitle: var(--c-gray-800);
 
   /* border colors  */
   --border: var(--c-gray-200);
-  --border-lighter: var(--c-gray-50);
+  --border-subtle: var(--c-gray-50);
   --border-light: var(--c-gray-200);
-  --border-high: var(--c-gray-300);
-  --border-higher: var(--c-gray-400);
+  --border-strong: var(--c-gray-300);
+  --border-emphasis: var(--c-gray-400);
 
   /* gray colors */
   --c-gray-50: value;
