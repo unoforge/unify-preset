@@ -31,12 +31,12 @@
   "author": "Johnkat MJ",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.27",
-    "rimraf": "^5.0.5",
+    "@types/node": "^22.14.1",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2",
-    "unbuild": "^3.3.1",
-    "unocss": "^0.59.0"
+    "typescript": "^5.8.3",
+    "unbuild": "^3.5.0",
+    "unocss": "^v66.0.0"
   },
   "keywords": [
     "Preset BG",
