@@ -11,18 +11,9 @@ export const getAllRules = () => {
 			"ui-grid-dotted",
 			{
 				"--dotsize": "1px",
-				"background-image": "radial-gradient(currentColor var(--dotsize), var(--bg-grid-dotted) var(--dotsize))",
+				"background-image": "radial-gradient(currentColor var(--dotsize), transparent var(--dotsize))",
 				"background-size": 'var(--unify-ui-grid-width) var(--unify-ui-grid-height)',
 			},
-		],
-		[
-			/^ui-grid-dotted-bg-(.*)$/,
-			([, body]: string[]) => {
-				return {
-					"--bg-grid-dotted": `--unify-grid-dotted-bg-${body}`,
-				};
-			},
-			{ autocomplete: "ui-grid-dotted-bg-$colors" },
 		],
 		[
 			"ui-radial-gradient",
@@ -31,13 +22,10 @@ export const getAllRules = () => {
 			},
 		],
 		[
-			/^ui-radial-gradient-bg-(.*)$/,
-			([, body]: string[]) => {
-				return {
-					"--unify-radial-bg": `--unify-radial-gradient-bg-${body}`,
-				};
+			"ui-radial-gradient-reverse",
+			{
+				background: 'radial-gradient(125% 125% at 50% 90%, var(--unify-radial-bg) 40%, currentColor 100%)'
 			},
-			{ autocomplete: "ui-radial-gradient-bg-$colors" },
 		],
 		[
 			"ui-grid",
@@ -48,11 +36,24 @@ export const getAllRules = () => {
 			},
 		],
 		[
-			"ui-striped-overlay-mask",
+			"ui-striped-overlay-mask-reverse",
 			{
-				"mask-image": `radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 110%)`
+				"mask-image": "radial-gradient(ellipse 60% 50% at 50% 100%, #000 70%, transparent 110%)"
 			},
 		],
+		[
+			"ui-striped-overlay-mask",
+			{
+				"mask-image": "radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 110%)"
+			},
+		],
+		[
+			"ui-striped-mask-oval",
+			{
+				"mask-image": "radial-gradient(ellipse 50% 50% at 50% 50%,  #000 70%,  transparent 100%)"
+			},
+		],
+		
 		[
 			/^ui-grid-w-(xs|sm|md|lg|xl|2xl)$/,
 			([, d]) => ({ "--unify-ui-grid-width": `${gridRecSizes[d as variantSize]?.width}px` }),
@@ -60,7 +61,7 @@ export const getAllRules = () => {
 		],
 		[
 			/^ui-grid-h-(xs|sm|md|lg|xl|2xl)$/,
-			([, d]) => ({ "--unify-ui-grid-height": `${gridRecSizes[d as variantSize]?.height}` }),
+			([, d]) => ({ "--unify-ui-grid-height": `${gridRecSizes[d as variantSize]?.height}px` }),
 			{ autocomplete: 'ui-grid-h-(xs|sm|md|lg|xl|2xl)' }
 		],
 		[
@@ -69,7 +70,7 @@ export const getAllRules = () => {
 				"--unify-ui-grid-width": `${gridSquareSizes[d as variantSize]}px`,
 				"--unify-ui-grid-height": `${gridSquareSizes[d as variantSize]}px`
 			}),
-			{ autocomplete: 'ui-grid-size-(xs|sm|md|lg|xl|2xl)' }
+			{ autocomplete: 'ui-grid-square-(xs|sm|md|lg|xl|2xl)' }
 		],
 		[
 			/^ui-grid-rec-(xs|sm|md|lg|xl|2xl)$/,
