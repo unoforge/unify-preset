@@ -28,16 +28,18 @@ export const getAllRules = (colorFormat: uiColorFormat) => {
 			.replace(/>/g, '%3E')}`
 
 	const rules = [
-		[/^cp-(\d+)$/, match => ({ '--card-padding': `${Number(match[1]) / 4}rem` })],
+		[/^cp-?(\d*\.?\d+)$/, match => ({ '--card-padding': `${Number(match[1]) / 4}rem` })],	
+		// Handle pixel values for padding
+		[/^cp-?(\d+)px$/, match => ({ '--card-padding': `${match[1]}px` })],
+		// Handle rem values for padding
+		[/^cp-?(\d+)rem$/, match => ({ '--card-padding': `${match[1]}rem` })],
 		// Handle numeric values (converted to rem)
-		[/^c-rd-(\d+)$/, match => ({ '--card-radius': `${Number(match[1]) / 4}rem` })],
+		[/^c-rd-(\d*\.?\d+)$/, match => ({ '--card-radius': `${Number(match[1]) / 4}rem` })],
 		// Handle pixel values
 		[/^c-rd-(\d+)px$/, match => ({ '--card-radius': `${match[1]}px` })],
 		[/^c-rd-(\d+)rem$/, match => ({ '--card-radius': `${match[1]}rem` })],
 		// Handle named sizes matching UnoCSS rounded utilities
-		[/^c-rd-(none|sm|md|lg|xl|full)$/, ([, d]) => ({ '--card-radius': getRadius(d) }),
-			{ autocomplete: 'c-rd-(none|sm|md|lg|xl|full)' }
-		],
+		[/^c-rd-(none|sm|md|lg|xl|2xl|3xl|full)$/, ([, d]) => ({ '--card-radius': getRadius(d) })],
 		[
 			"u-fx-popper",
 			{

@@ -13,7 +13,7 @@ const getFormCheckboxShortcuts = (colorFormat: uiColorFormat) => {
 			checked:preset-internal-checkbox-icon
 			indeterminate-bg-current indeterminate-b-transparent
 			indeterminate:preset-internal-checkbox-indeterminate-icon
-		'	indeterminate:[border-color:transparent]
+			indeterminate:[border-color:transparent]
         	indeterminate:[background-color:currentColor]
         	indeterminate:[background-size:100%_100%]
         	indeterminate:[background-position:center]

@@ -1,39 +1,39 @@
-import type { ElSizeVariants, RingBase } from "@/types";
+import type { InputSizeVariant, RingBase } from "@/types";
 
 export const defRingBase: RingBase = {
 	size: 2,
 	offset: 6,
 };
 
-export const InputSizes: ElSizeVariants = {
+export const InputSizes: InputSizeVariant = {
 	"2xs": {
 		px: 2,
-		py: 1,
 		textSize: "xs",
+		height:7.5
 	},
 	xs: {
 		px: 2.5,
-		py: 1.5,
 		textSize: "xs",
+		height:7
 	},
 	sm: {
 		px: 2.5,
-		py: 1.5,
 		textSize: "sm",
+		height:8
 	},
 	md: {
 		px: 3,
-		py: 2,
 		textSize: "sm",
+		height:9
 	},
 	lg: {
-		px: 3.5,
-		py: 2.5,
+		px: 4,
 		textSize: "sm",
+		height:10
 	},
 	xl: {
-		px: 3.5,
-		py: 2.5,
+		px: 5,
 		textSize: "base",
+		height:12
 	},
 }

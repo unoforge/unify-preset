@@ -33,10 +33,14 @@ export const getUiTheme = (colorMode: uiColorFormat, colorPrefix?: string) => {
             },
             card:{
                 DEFAULT: getBrice(colorMode, "card", "none"),
+                elevated: getBrice(colorMode, "card-elevated", "none"),
+                surface: getBrice(colorMode, "card-surface", "none"),
                 gray: getBrice(colorMode, "card-gray", "none"),
             },
             popover:{
                 DEFAULT: getBrice(colorMode, "popover", "none"),
+                surface: getBrice(colorMode, "popover-surface", "none"),
+                elevated: getBrice(colorMode, "popover-elevated", "none"),
                 gray: getBrice(colorMode, "popover-gray", "none"),
             },
 
